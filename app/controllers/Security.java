@@ -3,7 +3,6 @@ package controllers;
 import java.sql.*;
 import play.db.DB;
 import play.mvc.*;
-import models.*;
 
 public class Security extends Secure.Security
 {
