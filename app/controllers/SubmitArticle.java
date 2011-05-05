@@ -56,10 +56,11 @@ public class SubmitArticle extends Controller {
 			//is main author
 			if (authNumber[i].equals(author)){
 				user = new User();
-				user.passwordHash = Codec.hexMD5(CommonUtil.randomString()); 
+				user.passwordHash = Codec.hexMD5(pass = CommonUtil.randomString()); 
 				user.personDetail = personDetail;
 				user.role = UserRole.findByRole(UserRole.Role.READER);
 				user.save();
+				//TODO check for existing user
 			}
 		}
 		
