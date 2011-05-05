@@ -11,7 +11,7 @@ import play.data.validation.*;
 public class Article extends Model {
  
 	public String title;
-	public String pdfFileLink;
+	public Blob pdfFileLink;
 	public Date dateSubmitted;
 	public Date datePublished;
 	public String summary;
