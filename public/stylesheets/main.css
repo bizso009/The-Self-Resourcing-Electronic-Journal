@@ -113,6 +113,26 @@ body {
 	text-decoration: none;
 }
 
+#messagestrip{
+	text-align:center;
+	width:100%;
+	line-height: 29px;
+	background:#4E9258;
+	color:#fff;
+	margin: 3px;
+	display: none;
+}
+
+#errorstrip{
+	text-align:center;
+	width:100%;
+	line-height: 29px;
+	background:#800517;
+	color:#fff;
+	margin: 3px;
+	display:none;
+}
+
 #center{
 	background: url(/public/images/body_bg.jpg) repeat-x;
 	padding:10px;
@@ -168,6 +188,7 @@ body {
 }
 
 #footer{
+	text-align:center;
 	font-size:11px;
 }
 
