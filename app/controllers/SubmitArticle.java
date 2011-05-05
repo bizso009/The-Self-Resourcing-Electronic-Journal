@@ -21,7 +21,6 @@ public class SubmitArticle extends Controller {
 		} else {
 			redirect("../displayInfo");
 		}
-
 	}
 
 	public static void displayInfo() {

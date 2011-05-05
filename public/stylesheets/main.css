@@ -1,4 +1,4 @@
-﻿/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -105,7 +105,7 @@ body {
 	margin: 0px 10px 0px 10px;
 	background: url(/public/images/section_header.jpg);
 	line-height:35px;
-	width:100px;
+	padding: 0px 12px 0px 12px
 }
 
 #header #topmenu li a{

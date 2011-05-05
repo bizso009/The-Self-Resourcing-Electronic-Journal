@@ -23,23 +23,11 @@
     		<div id="header"> 
 				<div id="logo">The Journal</div>				
 				<div id="status">
-				<a href="/login">| Login |</a>
-				#{secure.check 'reader'}
-					<a href="/logout">Logout</a>
-				#{/secure.check}
-				#{secure.check 'author/reviewer'}
-					<a href="/logout">Logout</a>
-				#{/secure.check}
-				#{secure.check 'editor'}
-					<a href="/logout">Logout</a>
-				#{/secure.check}				
+					#{include 'Application/loginStatus.html' /}			
 				</div>
 				<div id="topmenu"> 
 					<ul> 
-						<li class="roundtop"><a href="#">Home</a></li> 
-						<li class="roundtop"><a href="#">Browse</a></li> 
-						<li class="roundtop"><a href="#">About</a></li> 
-						<li class="roundtop"><a href="#">Contact us</a></li> 
+						#{include 'Application/menu.html' /}	
 					</ul> 
 				</div> 
 			</div> 

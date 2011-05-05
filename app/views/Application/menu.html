@@ -1,0 +1,9 @@
+<li class="roundtop"><a href="#">Home</a></li>
+<li class="roundtop"><a href="#">Browse</a></li>
+<li class="roundtop"><a href="#">Submit Article</a></li>
+#{secure.check 'author/reviewer'}
+	<li class="roundtop"><a href="#">Review Article</a></li>
+#{/secure.check}
+#{secure.check 'editor'}
+	<li class="roundtop"><a href="#">Editor Panel</a></li>
+#{/secure.check}

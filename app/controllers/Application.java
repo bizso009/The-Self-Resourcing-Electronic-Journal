@@ -13,11 +13,12 @@ import java.util.*;
 public class Application extends Controller
 {
     @Before
-    static void setConnectedUser()
+    public static void setConnectedUser()
     {
+    	renderArgs.put("loggedin", Security.isConnected());
         if (Security.isConnected())
         {
-            renderArgs.put("user", Security.connected());
+            renderArgs.put("user", Security.connected());   
         }
     }
 
@@ -25,5 +26,5 @@ public class Application extends Controller
     {
         render();
     }
-
+    
 }
