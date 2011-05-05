@@ -75,6 +75,7 @@ public class SubmitArticle extends Controller {
 		
 		//save article
 		Article article = new Article(title, articlePdf, new Date(), null, summary, 1, 1);
+		//TODO check for submission
 		article.keywords = articleKeywords;
 		article.save();
 		
