@@ -147,8 +147,8 @@ body {
 
 #center #menu{
 	float: right;
-	width:25%;
 	text-indent:20px;
+	width: 25%;
 }
 
 #center #menu ul{
@@ -171,7 +171,7 @@ body {
 }
 
 #table{
-	width:600px;
+	width:100%;
 }
 
 #center #menu li:first-child a{
