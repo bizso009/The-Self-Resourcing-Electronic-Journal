@@ -1,7 +1,55 @@
 #{extends 'main.html' /}
-#{set title:'view.html' /}
+#{set 'moreScripts'}
+<script type="text/javascript" src="/public/javascripts/jquery.form.js"></script>
+<script type="text/javascript">
+	var timeout = 5000;
 
-<form accept-encoding="UTF-8" enctype="text/plain" action="/chat/post" method="post">
+	function refresh()
+	{
+		var listAction = #{jsAction @contents(':convID') /}
+		$('#posted_messages').load(
+		    listAction({convID: '1'}),
+		    function (){		    	
+		    	startRefreshing();
+		    }
+		);
+	}
+	
+	function startRefreshing()
+	{
+		setTimeout("refresh()",timeout);
+	}
+	
+	// wait for the DOM to be loaded 
+    $(document).ready(function(){ 
+        refresh();        
+        $('#sendMsgForm1').ajaxForm(function() {
+        	$('#sendMsgForm1').find('textarea[name="msg"]').val("");
+        	alert('Your message was sent successfully.');
+        }); 
+    }); 	
+	
+	function post()
+	{
+		var listAction = #{jsAction @contents(':convID') /}
+		$('#posted_messages').load(
+		    listAction({convID: '1'}), 
+		    function() 
+		    {
+		    	setTimeout("refresh()",timeout);
+		    }
+		);
+	}
+</script>
+#{/set}
+#{set title:'Chat' /}
+
+#{form @post(), id:('sendMsgForm'+1)}
+	<div id="posted_messages">
+	</div>
+	<input name="convID" type="hidden" value="1"/>
+	<input name="fromMsgID" type="hidden" value="0"/>
 	<textarea name="msg" style="width: 600px; height: 400px;"></textarea>
 	<input type="submit" value="send" class="button blue">
-</form>
+#{/form}
+<div id="resultdiv"></div>
