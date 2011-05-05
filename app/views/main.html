@@ -16,6 +16,12 @@
 				<div id="logo">The Journal</div>				
 				<div id="status">
 				<a href="/login">| Login |</a>
+				#{secure.check 'reader'}
+					<a href="/logout">Logout</a>
+				#{/secure.check}
+				#{secure.check 'author/reviewer'}
+					<a href="/logout">Logout</a>
+				#{/secure.check}
 				#{secure.check 'editor'}
 					<a href="/logout">Logout</a>
 				#{/secure.check}				

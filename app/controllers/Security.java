@@ -29,6 +29,11 @@ public class Security extends Secure.Security
         return false;
     }
 
+    public static boolean anon()
+    {
+        return !isConnected();
+    }
+    
     static boolean check(String profile)
     {
         if ((profile!=null))
