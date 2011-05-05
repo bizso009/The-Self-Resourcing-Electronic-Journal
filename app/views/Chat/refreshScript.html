@@ -1,0 +1,31 @@
+    var timeout${convID} = 5000;
+
+	function refresh${convID}()
+	{
+		var listAction = #{jsAction @contents(':convID',':fromMsgID') /}
+		$('#posted_messages${convID}').find("input[name=maxID]").remove();
+		$.post(
+		    listAction({convID: '${convID}', fromMsgID: ($('#sendMsgForm${convID}').find("input[name=fromMsgID]").val())}),
+		    function (data){
+		    	$('#posted_messages${convID}').append(data);
+		    	$('#sendMsgForm${convID}').find("input[name=fromMsgID]").val(
+		    		$('#posted_messages${convID}').find("input[name=maxID]").val()
+		    	);
+		    	startRefreshing${convID}();
+		    }
+		);
+	}
+	
+	function startRefreshing${convID}()
+	{
+		setTimeout("refresh${convID}()",timeout${convID});
+	}
+	
+	// wait for the DOM to be loaded 
+    $(document).ready(function(){ 
+        refresh${convID}();        
+        $('#sendMsgForm${convID}').ajaxForm(function() {
+        	$('#sendMsgForm${convID}').find('textarea[name="msg"]').val("");
+        	alert('Your message was sent successfully.');
+        }); 
+    }); 
