@@ -1,5 +1,5 @@
 import models.Article;
-import models.AuthorDetail;
+import models.PersonDetail;
 import models.Keyword;
 
 import org.junit.*;
@@ -8,21 +8,25 @@ import play.test.*;
 
 public class BasicTest extends UnitTest {
 
+	
+	public void testGetFile(){
+		Article.findById(startPlayBeforeTests)
+	}
     @Test
     public void testCreateArticle() {
         //Fixtures.loadModels("data.yml");
        
-//    	 Keyword key1 = new Keyword();
-//         key1.word = "test";
-//         key1.save();
-//         Keyword key2 = new Keyword();
-//         key2.word = "test";
-//         key2.save();
-//         
-//         List<Keyword> keywords = new ArrayList<Keyword>();
-//         keywords.add(key1);
-//         keywords.add(key2);
-//         
+    	 Keyword key1 = new Keyword();
+         key1.word = "test";
+         key1.save();
+         Keyword key2 = new Keyword();
+         key2.word = "test";
+         key2.save();
+         
+         List<Keyword> keywords = new ArrayList<Keyword>();
+         keywords.add(key1);
+         keywords.add(key2);
+         
          
     	
     	Article article = new Article();
@@ -33,16 +37,16 @@ public class BasicTest extends UnitTest {
 //        article.pdfFileLink
         article.journalNumberID = 1;
         article.submissionID = 1;
-//        article.keywords = keywords;
+        article.keywords = keywords;
         article.save();
         assertTrue(Article.count() > 1);
         
-        AuthorDetail ad1 = new AuthorDetail();
+        PersonDetail ad1 = new PersonDetail();
         ad1.firstName = "test";
         ad1.article = article;
         ad1.save();
         
-        AuthorDetail ad2 = new AuthorDetail();
+        PersonDetail ad2 = new PersonDetail();
         ad2.firstName = "test";
         ad2.article = article;
         ad2.save();
@@ -50,7 +54,7 @@ public class BasicTest extends UnitTest {
        
 
         
-        assertTrue(AuthorDetail.count() > 1);
+        assertTrue(PersonDetail.count() > 1);
 
     }
 
