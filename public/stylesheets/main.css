@@ -1,4 +1,4 @@
-﻿/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -105,12 +105,32 @@ body {
 	margin: 0px 10px 0px 10px;
 	background: url(/public/images/section_header.jpg);
 	line-height:35px;
-	width:100px;
+	padding: 0px 12px 0px 12px
 }
 
 #header #topmenu li a{
 	color:#515151;
 	text-decoration: none;
+}
+
+#messagestrip{
+	text-align:center;
+	width:100%;
+	line-height: 29px;
+	background:#4E9258;
+	color:#fff;
+	margin: 3px;
+	display: none;
+}
+
+#errorstrip{
+	text-align:center;
+	width:100%;
+	line-height: 29px;
+	background:#800517;
+	color:#fff;
+	margin: 3px;
+	display:none;
 }
 
 #center{
@@ -127,8 +147,8 @@ body {
 
 #center #menu{
 	float: right;
-	width:25%;
 	text-indent:20px;
+	width: 25%;
 }
 
 #center #menu ul{
@@ -151,7 +171,7 @@ body {
 }
 
 #table{
-	width:600px;
+	width:100%;
 }
 
 #center #menu li:first-child a{
@@ -168,6 +188,7 @@ body {
 }
 
 #footer{
+	text-align:center;
 	font-size:11px;
 }
 
@@ -289,7 +310,6 @@ td{
 
 form {
 	background:#fff;
-	padding:1em;
 	border:1px solid #eee;
 	margin:1em;
 	width:27em;
