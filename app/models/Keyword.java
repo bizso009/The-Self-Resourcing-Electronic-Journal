@@ -11,8 +11,8 @@ public class Keyword extends Model {
  
 	public String word;
 	
-//	@ManyToMany(cascade=CascadeType.ALL)
-//	public List<Article> articles;
-//  
-// 
+	@ManyToMany(cascade=CascadeType.ALL)
+	public List<Article> articles;
+  
+ 
 }
