@@ -59,7 +59,7 @@ public class SubmitArticle extends Controller {
 				user = new User();
 				user.passwordHash = Codec.hexMD5(CommonUtil.randomString()); 
 				user.personDetail = personDetail;
-				user.userRole = UserRole.findByRole(UserRole.Role.READER);
+				user.role = UserRole.findByRole(UserRole.Role.READER);
 				user.save();
 			}
 		}

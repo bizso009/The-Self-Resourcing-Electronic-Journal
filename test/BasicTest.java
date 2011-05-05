@@ -8,14 +8,9 @@ import play.test.*;
 
 public class BasicTest extends UnitTest {
 
-	
-<<<<<<< HEAD
-	
-=======
 	public void testGetFile(){
 		Article.findById(startPlayBeforeTests);
 	}
->>>>>>> 66adabad87b4039bda916ef36506249c21cfae32
     @Test
     public void testCreateArticle() {
         //Fixtures.loadModels("data.yml");
