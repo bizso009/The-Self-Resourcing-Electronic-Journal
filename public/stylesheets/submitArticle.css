@@ -1,0 +1,36 @@
+@CHARSET "ISO-8859-1";
+
+.submitForm
+{
+	width:825px !important;
+	padding:10px;
+}
+
+.formHeader
+{
+	padding: 10px;
+}
+
+.formHeader .left
+{
+	float:left;
+	width:150px !important;
+}
+
+.formHeader .right
+{
+	position:absolute;
+	float:right;
+	margin-left:20px;
+}
+
+.spacingSmall
+{
+	clear:both;
+	height:5px;
+}
+.spacingMedium
+{
+	clear:both;
+	height:10px;
+}

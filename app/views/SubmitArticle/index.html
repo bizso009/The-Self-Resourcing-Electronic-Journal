@@ -3,10 +3,13 @@
 #{set 'moreStyles'}
         #{stylesheet 'submitArticle.css' /}
 #{/set}
+#{set 'moreScripts'}
+    #{script 'submitArticle.js'/}
+#{/set}
 
-<input type="hidden" id="numberAuthors" value="1">
 <div id="form">
 	<form action="@{SubmitArticle.submit()}" class="submitForm" method="POST">
+		<input type="hidden" id="numberAuthors" value="1">
 	    <div class="formHeader">
 	    	<span class="left">Main Contact</span>
 	    	<span class="right">Authors</span>
@@ -16,23 +19,24 @@
 		<div id="authors">
 		    <div class="formHeader" id="author1">
 		    	<span class="left">
-		    		<input type="radio" name="author1" checked>
+		    		<input type="radio" name="author[]" checked>
 		    	</span>
 		    	<span class="right">
-		    		<span>
-		    			<input type="text" id="firstName1" name="firstName1" value="First Name">
-		    		</span>
-		    		<span>
-		    			<input type="text" id="lastName1" name="lastName1" value="Last Name">
-		    		</span>
-		    		<span>
-		    			<input type="text" id="email1" name="email1" value="Email Address">
-		    		</span>
-		    		<span>
-		    			<input type="button" class="button blue" name="remove1" id="remove1" value="Remove">
-		    		</span>
+		    		
+		    			<input type="text" name="firstName[]" value="First Name">
+		    		
+		    		
+		    			<input type="text" name="lastName[]" value="Last Name">
+		    		
+		    		
+		    			<input type="text" name="email[]" value="Email Address">
+		    		
+		    		
+		    			<input type="button" class="button blue" id="remove" value="Remove">
+		    		
 		    	</span>
 		    </div>
+		    <div class="spacingMedium"></div>
 	    </div>
 	    <div class="spacingMedium"></div>
 	    <div id="addButton">
