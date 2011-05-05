@@ -16,6 +16,7 @@ $(document).ready(function(){
 		$('#author'+newAuthors+' .right').append('		    			<input type="text" name="firstName[]" value="First Name">');
 		$('#author'+newAuthors+' .right').append('		    			<input type="text" name="lastName[]" value="Last Name">');
 		$('#author'+newAuthors+' .right').append('		    			<input type="text" name="email[]" value="Email Address">');
+		$('#author'+newAuthors+' .right').append('		    			<input type="text" name="affil[]" value="Affiliation">');
 		$('#author'+newAuthors+' .right').append('		    			<input type="button" class="button blue" id="remove" onClick="removeAuthor(\''+newAuthors+'\');" value="Remove">');
 		$('#author'+newAuthors+' .right').append('		    	</span>');
 		$('#authors').append('		    </div>');
