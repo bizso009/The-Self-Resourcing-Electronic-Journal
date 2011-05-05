@@ -6,12 +6,9 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 public class User extends Model
-{
-    @Id
-    public Integer ID;
-    
+{   
     @Lob
     public String Email;
     
@@ -25,4 +22,7 @@ public class User extends Model
     public String LastName;
     
     public Boolean Subscribed;
+    
+    @ManyToOne
+    public UserRole role;
 }

@@ -15,44 +15,36 @@ public class Review extends Model
     public Integer id;
     */
     
-    @Column(name="ArticleID")
+    @ManyToOne
     public Article article;
     
-    @Column(name="ReviewerID")
+    @ManyToOne
     public User reviewer;
     
-    @Column(name="MarkID")
+    @ManyToOne
     public Mark mark;
     
-    @Required
-    @Column(name="ExpertiseLevel")
-    public Integer expertiseLevel;
+    public int expertiseLevel;
     
     @Lob
-    @Column(name="ContentSummary")
     public String contentSummary;
     
     @Lob
-    @Column(name="GoodPoints")
     public String goodPoints;
     
     @Lob
-    @Column(name="BadPoints")
     public String badPoints;
     
     @Lob
-    @Column(name="DetailedErrorList")
     public String detailedErrorList;
     
-    @Column(name="AuthorConvID")
-    public Integer AuthorConvID;
+    @ManyToOne
+    public Conversation authorConversation;
     
-    @Column(name="EditorConvID")
-    public Integer EditorConvID;
+    @ManyToOne
+    public Conversation editorConversation;
     
-    @Column(name="Locked")
-    public Boolean locked;
+    public boolean locked;
     
-    @Column(name="DateSubmitted")
     public Date dateSubmitted;
 }
