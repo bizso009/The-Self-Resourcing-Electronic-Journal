@@ -11,8 +11,15 @@
 	<form action="@{SubmitArticle.submit()}" class="submitForm" method="POST">
 		<input type="hidden" id="numberAuthors" value="1">
 	    <div class="formHeader">
-	    	<span class="left">Main Contact</span>
-	    	<span class="right">Authors</span>
+	    	<div class="bold">
+	    		Author Details
+	    	</div>
+	    	<div class="spacingMedium">
+	    	</div>
+	    	<div>
+		    	<span class="left">Main Contact</span>
+		    	<span class="right">Authors</span>
+	    	</div>
 	    </div>
 	    
 	    <div class="spacingSmall"></div>
@@ -22,18 +29,10 @@
 		    		<input type="radio" name="author[]" checked>
 		    	</span>
 		    	<span class="right">
-		    		
 		    			<input type="text" name="firstName[]" value="First Name">
-		    		
-		    		
 		    			<input type="text" name="lastName[]" value="Last Name">
-		    		
-		    		
 		    			<input type="text" name="email[]" value="Email Address">
-		    		
-		    		
-		    			<input type="button" class="button blue" id="remove" value="Remove">
-		    		
+		    			<input type="button" class="button blue" id="remove" onClick="removeAuthor('author1');" value="Remove">
 		    	</span>
 		    </div>
 		    <div class="spacingMedium"></div>
