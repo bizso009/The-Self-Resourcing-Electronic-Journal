@@ -12,6 +12,14 @@ import models.*;
 
 public class Application extends Controller
 {
+    @Before
+    static void setConnectedUser()
+    {
+        if (Security.isConnected())
+        {
+            renderArgs.put("user", Security.connected());
+        }
+    }
 
     public static void index()
     {
@@ -21,7 +29,7 @@ public class Application extends Controller
         {
             Statement stmt = c.createStatement();
             ResultSet rs = stmt.executeQuery("select * from `Users` where ID = 3");
-            //ResultSet rs = stmt.executeQuery("select 'Kostadin'");
+            // ResultSet rs = stmt.executeQuery("select 'Kostadin'");
             rs.first();
             myName = rs.getString("FirstName");
         }
