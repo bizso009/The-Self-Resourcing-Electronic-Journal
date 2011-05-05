@@ -1,10 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<h1>Hello ${user ?: 'guest'}!</h1>
-The value you are seeking is ${myName ?: 'null'}
-
-#{secure.check 'editor'}
-<br/>
-<center>Secret stuff</center>
-#{/secure.check} 
+		<h1>Hello ${user ?: 'guest'}!</h1>
+		The value you are seeking is ${myName ?: 'null'}
+		
+		#{secure.check 'editor'}
+		<br/>
+		<center>Secret stuff</center>
+		#{/secure.check}
+		
