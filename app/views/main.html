@@ -10,7 +10,31 @@
         <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="utf-8"></script>
         #{get 'moreScripts' /}
     </head>
-    <body>
-        #{doLayout /}
+    <body>    	
+    	<div id="content">
+    		<div id="header"> 
+				<div id="logo">The Journal</div>				
+				<div id="status">
+				<a href="/login">| Login |</a>
+				#{secure.check 'editor'}
+					<a href="/logout">Logout</a>
+				#{/secure.check}				
+				</div>
+				<div id="topmenu"> 
+					<ul> 
+						<li class="roundtop"><a href="#">Home</a></li> 
+						<li class="roundtop"><a href="#">Browse</a></li> 
+						<li class="roundtop"><a href="#">About</a></li> 
+						<li class="roundtop"><a href="#">Contact us</a></li> 
+					</ul> 
+				</div> 
+			</div> 
+			<div class="clear"></div> 
+			<div id="body">
+				<div id="maincontent">
+        			#{doLayout /}
+        		</div> 
+			</div>
+		</div>
     </body>
 </html>
