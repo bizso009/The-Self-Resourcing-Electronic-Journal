@@ -10,7 +10,7 @@ import play.data.validation.*;
 @Entity
 public class Article extends Model {
  
-	
+
 	public String title;
 	public Blob pdfFileLink;
 	public Date dateSubmitted;
@@ -22,7 +22,7 @@ public class Article extends Model {
     @OneToMany(mappedBy="article", cascade=CascadeType.ALL)
 	public List<AuthorDetail> authorDetails; 
     
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="articles",cascade=CascadeType.ALL)
 	public List<Keyword> keywords;
 	
  
