@@ -35,6 +35,12 @@
 	height:10px;
 }
 
+.spacingLarge
+{
+	clear:both;
+	height:15px;
+}
+
 .bold
 {
 	font-weight: bold;
