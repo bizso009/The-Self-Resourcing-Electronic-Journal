@@ -9,3 +9,5 @@ Article(testArticle):
    authorDetails: test
    summary: test
    
+AuthorDetail(testAuthor1)
+   firstName: hello

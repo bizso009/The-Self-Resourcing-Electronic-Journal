@@ -1,4 +1,5 @@
 import models.Article;
+import models.AuthorDetail;
 
 import org.junit.*;
 import java.util.*;
@@ -16,6 +17,13 @@ public class BasicTest extends UnitTest {
         article.save();
         
         assertTrue(Article.count() > 1);
+        
+        AuthorDetail ad1 = new AuthorDetail();
+        ad1.firstName = "test";
+        ad1.article = article;
+        ad1.save();
+        assertTrue(AuthorDetail.count() > 1);
+
     }
 
 }
