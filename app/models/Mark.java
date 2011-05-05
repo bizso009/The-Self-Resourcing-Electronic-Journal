@@ -17,6 +17,5 @@ public class Mark extends Model
     public BigInteger id;
     */
     @Lob
-    @Column(name="Name")
     public String name;
 }

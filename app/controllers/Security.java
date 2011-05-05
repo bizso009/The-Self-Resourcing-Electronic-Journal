@@ -11,7 +11,7 @@ public class Security extends Secure.Security
         Connection c = DB.getConnection();
         try
         {
-            PreparedStatement stmt = c.prepareStatement("select ID from `Users` where ID = ? and PasswordHash=MD5(?)");
+            PreparedStatement stmt = c.prepareStatement("select ID from `Users` where id = ? and PasswordHash=MD5(?)");
             stmt.setInt(1, Integer.parseInt(username));
             stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
@@ -41,7 +41,7 @@ public class Security extends Secure.Security
             Connection c = DB.getConnection();
             try
             {
-                PreparedStatement stmt = c.prepareStatement("select U.ID from `Users` as U, `UserRoles` as UR where U.ID = ? and U.UserRoleID = UR.ID and UR.Name = ?");
+                PreparedStatement stmt = c.prepareStatement("select U.id from `Users` as U, `UserRoles` as UR where U.id = ? and U.role_id = UR.id and UR.name = ?");
                 stmt.setInt(1, Integer.parseInt(connected()));
                 stmt.setString(2, profile);
                 ResultSet rs = stmt.executeQuery();

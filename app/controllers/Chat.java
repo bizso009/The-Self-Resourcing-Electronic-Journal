@@ -2,9 +2,13 @@ package controllers;
 
 import java.sql.*;
 import java.util.*;
+import java.util.Date;
 import play.db.DB;
 import play.mvc.*;
 import misc.*;
+import models.Conversation;
+import models.Message;
+import models.User;
 
 public class Chat extends Controller
 {
@@ -23,7 +27,7 @@ public class Chat extends Controller
             this.timestamp = timestamp;
         }
     }
-    
+
     public static void contents(Integer convID, Integer fromMsgID)
     {
         if (fromMsgID == null)
@@ -34,8 +38,8 @@ public class Chat extends Controller
         try
         {
             PreparedStatement stmt = c
-                    .prepareStatement("select M.ID, U.FirstName, M.Contents, M.TimeSent from `Users` as U, `Conversations` as C, `Messages` as M "
-                            + "where C.ID=M.ConversationID and U.ID=M.UserID and C.ID = ? and M.ID>? " + "ORDER BY C.ID");
+                    .prepareStatement("select M.id, U.id, M.contents, M.timeSent from `Users` as U, `Conversations` as C, `Messages` as M "
+                            + "where C.id=M.conversation_id and U.id=M.user_id and C.id = ? and M.id>? " + "ORDER BY C.id");
             stmt.setInt(1, convID);
             stmt.setInt(2, fromMsgID);
             ResultSet rs = stmt.executeQuery();
@@ -60,7 +64,7 @@ public class Chat extends Controller
     {
         render(convID);
     }
-    
+
     public static void refreshScript(Integer convID)
     {
         Http.Header h = new Http.Header();
@@ -70,36 +74,22 @@ public class Chat extends Controller
         render(convID);
     }
 
-    public static void post(String convID, String msg)
+    public static void post(Long convID, String msg)
     {
         if ( !Security.isConnected())
             return;
-        Connection c = DB.getConnection();
-        try
+        Conversation conv = Conversation.findById(convID);
+        if (conv == null)
         {
-            PreparedStatement stmt;
-            stmt = c.prepareStatement("SELECT ID FROM `Conversations` WHERE ID=?");
-            stmt.setInt(1, Integer.parseInt(convID));
-            ResultSet rs = stmt.executeQuery();
-            rs.beforeFirst();
-            if ( !rs.next())
-            {
-                stmt.close();
-                stmt = c.prepareStatement("INSERT INTO `Conversations`(`ID`) " + "values (?)");
-                stmt.setInt(1, Integer.parseInt(convID));
-                stmt.execute();
-            }
-            stmt.close();
-            stmt = c.prepareStatement("INSERT INTO `Messages`(`ConversationID`,`Contents`,`UserID`,`TimeSent`) " + "values (?,?,?,CURRENT_TIMESTAMP)");
-            stmt.setInt(1, Integer.parseInt(convID));
-            stmt.setString(2, msg);
-            stmt.setInt(3, Integer.parseInt(Security.connected()));
-            stmt.execute();
-            stmt.close();
+            conv = new Conversation();
+            conv.id = convID;
+            conv.save();
         }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
+        Message mess = new Message();
+        mess.conversation = conv;
+        mess.user = User.findById(Long.parseLong(Security.connected()));
+        mess.contents = msg;
+        mess.timeSent = new Date();
+        mess.save();
     }
 }
