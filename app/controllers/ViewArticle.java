@@ -11,6 +11,4 @@ public class ViewArticle extends Controller {
 		render(article);
 	}
 
-	
-
 }
