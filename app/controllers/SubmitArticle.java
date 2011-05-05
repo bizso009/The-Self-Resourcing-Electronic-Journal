@@ -85,11 +85,12 @@ public class SubmitArticle extends Controller {
 		} catch (EmailException e) {
 			validation.email(user.personDetail.email);
 			Logger.error(e, "email exception");
+			e.printStackTrace();
 		}
 		render();
 	}
 
-	public static void sendEmail(String username, String pass, String toMail) throws EmailException {
+	private static void sendEmail(String username, String pass, String toMail) throws EmailException {
 		SimpleEmail email = new SimpleEmail();
 		email.setFrom("noreply@journal.org");
 		email.addTo(toMail);
