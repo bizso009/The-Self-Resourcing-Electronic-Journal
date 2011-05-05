@@ -9,6 +9,7 @@ import play.data.validation.*;
 @Entity
 public class AuthorDetail extends Model {
  
+	
 	public String firstName;
 	public String lastName;
 	public String email;

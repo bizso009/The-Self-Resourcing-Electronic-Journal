@@ -9,6 +9,7 @@ import play.data.validation.*;
 @Entity
 public class Keyword extends Model {
  
+	
 	public String word;
 	
 	@ManyToMany(cascade=CascadeType.ALL)

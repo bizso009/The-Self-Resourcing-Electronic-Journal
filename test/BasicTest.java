@@ -12,17 +12,17 @@ public class BasicTest extends UnitTest {
     public void testCreateArticle() {
         //Fixtures.loadModels("data.yml");
        
-    	 Keyword key1 = new Keyword();
-         key1.word = "test";
-         key1.save();
-         Keyword key2 = new Keyword();
-         key2.word = "test";
-         key2.save();
-         
-         List<Keyword> keywords = new ArrayList<Keyword>();
-         keywords.add(key1);
-         keywords.add(key2);
-         
+//    	 Keyword key1 = new Keyword();
+//         key1.word = "test";
+//         key1.save();
+//         Keyword key2 = new Keyword();
+//         key2.word = "test";
+//         key2.save();
+//         
+//         List<Keyword> keywords = new ArrayList<Keyword>();
+//         keywords.add(key1);
+//         keywords.add(key2);
+//         
          
     	
     	Article article = new Article();
@@ -33,7 +33,7 @@ public class BasicTest extends UnitTest {
 //        article.pdfFileLink
         article.journalNumberID = 1;
         article.submissionID = 1;
-        article.keywords = keywords;
+//        article.keywords = keywords;
         article.save();
         assertTrue(Article.count() > 1);
         
