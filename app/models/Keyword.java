@@ -10,10 +10,19 @@ import play.data.validation.*;
 public class Keyword extends Model {
  
 	
+
 	public String word;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
 	public List<Article> articles;
   
+	public Keyword(String word) {
+		super();
+		this.word = word;
+	}
+
+	public Keyword() {
+		// TODO Auto-generated constructor stub
+	}
  
 }
