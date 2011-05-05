@@ -23,22 +23,7 @@ public class Application extends Controller
 
     public static void index()
     {
-        String myName = null;
-        Connection c = DB.getConnection();
-        try
-        {
-            Statement stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from `Users` where ID = 3");
-            // ResultSet rs = stmt.executeQuery("select 'Kostadin'");
-            rs.first();
-            myName = rs.getString("FirstName");
-        }
-        catch (SQLException e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        render(myName);
+        render();
     }
 
 }
