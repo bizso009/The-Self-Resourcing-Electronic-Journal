@@ -1,3 +1,4 @@
 #{list items:msgdata, as:'msg'}
-  (${msg.name} [${msg.timestamp}]): ${msg.message} <br />
+  (${msg.name} [${msg.timestamp}]): ${msg.message} <br /><br />
 #{/list}
+<input type="hidden" name="maxID" value="${maxID}" />
