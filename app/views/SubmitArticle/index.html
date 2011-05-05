@@ -1,0 +1,47 @@
+#{extends 'main.html' /}
+#{set title:'submission.html' /}
+#{set 'moreStyles'}
+        #{stylesheet 'submitArticle.css' /}
+#{/set}
+#{set 'moreScripts'}
+    #{script 'submitArticle.js'/}
+#{/set}
+
+<div id="form">
+	<form action="@{SubmitArticle.submit()}" class="submitForm" method="POST">
+		<input type="hidden" id="numberAuthors" value="1">
+	    <div class="formHeader">
+	    	<span class="left">Main Contact</span>
+	    	<span class="right">Authors</span>
+	    </div>
+	    
+	    <div class="spacingSmall"></div>
+		<div id="authors">
+		    <div class="formHeader" id="author1">
+		    	<span class="left">
+		    		<input type="radio" name="author[]" checked>
+		    	</span>
+		    	<span class="right">
+		    		
+		    			<input type="text" name="firstName[]" value="First Name">
+		    		
+		    		
+		    			<input type="text" name="lastName[]" value="Last Name">
+		    		
+		    		
+		    			<input type="text" name="email[]" value="Email Address">
+		    		
+		    		
+		    			<input type="button" class="button blue" id="remove" value="Remove">
+		    		
+		    	</span>
+		    </div>
+		    <div class="spacingMedium"></div>
+	    </div>
+	    <div class="spacingMedium"></div>
+	    <div id="addButton">
+	    	<input type="button" id="addAuthor" class="button blue" value="Add Author">
+	    </div>
+	</form>
+</div>
+<div class="spacingSmall"></div>
