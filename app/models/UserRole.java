@@ -9,6 +9,13 @@ import java.util.*;
 @Table(name="UserRoles")
 public class UserRole extends Model
 {
+	public static enum Role {
+		READER, AUTHOR, EDITOR
+	}
     @Lob
     public String name;
+    
+    public static UserRole findByRole(Role role) {
+    	return find("byName", role.toString()).first();
+    }
 }

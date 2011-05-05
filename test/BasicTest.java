@@ -8,7 +8,6 @@ import play.test.*;
 
 public class BasicTest extends UnitTest {
 
-	
 	public void testGetFile(){
 		Article.findById(startPlayBeforeTests);
 	}

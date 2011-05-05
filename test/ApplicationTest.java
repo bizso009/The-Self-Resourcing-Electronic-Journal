@@ -1,9 +1,17 @@
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import misc.CommonUtil;
+import models.Article;
+import models.PersonDetail;
+import models.User;
+import models.UserRole;
 
 import org.junit.*;
 import play.test.*;
+import play.libs.Codec;
 import play.mvc.*;
 import play.mvc.Http.*;
 
@@ -32,11 +40,18 @@ public class ApplicationTest extends FunctionalTest {
     	paras.put("summary", "test");
     	paras.put("title", "test");
     	paras.put("keywords", "test,test,test");
-    	
+    	paras.put("author", "1");
+    	paras.put("authNumber", "1");
+
     	POST("/SubmitArticle/submit",paras,files);
     	
     	
     	
+    }
+    @Test
+    public void testSendEmail(){
+   		
+//			GET("/SubmitArticle/sendEmail?username=232424&pass=test&email=bitvaizs@gmail.com");
     }
      
 
