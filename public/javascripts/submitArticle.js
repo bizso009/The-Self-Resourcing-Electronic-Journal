@@ -13,6 +13,7 @@ $(document).ready(function(){
 		$('#author'+newAuthors+' .left').append('		    		<input type="radio" name="author[]" value="'+newAuthors+'">');
 		$('#author'+newAuthors+' .left').append('		    	</span>');
 		$('#author'+newAuthors).append('		    	<span class="right">');
+		$('#author'+newAuthors+' .right').append('		    			<input type="hidden" name="authNumber" value="'+newAuthors+'">');
 		$('#author'+newAuthors+' .right').append('		    			<input type="text" name="firstName[]" value="First Name">');
 		$('#author'+newAuthors+' .right').append('		    			<input type="text" name="lastName[]" value="Last Name">');
 		$('#author'+newAuthors+' .right').append('		    			<input type="text" name="email[]" value="Email Address">');
