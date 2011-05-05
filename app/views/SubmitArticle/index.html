@@ -5,14 +5,22 @@
 #{/set}
 #{set 'moreScripts'}
     #{script 'submitArticle.js'/}
+    #{script 'ckeditor/ckeditor.js'/}
 #{/set}
 
 <div id="form">
 	<form action="@{SubmitArticle.submit()}" class="submitForm" method="POST">
 		<input type="hidden" id="numberAuthors" value="1">
 	    <div class="formHeader">
-	    	<span class="left">Main Contact</span>
-	    	<span class="right">Authors</span>
+	    	<div class="bold">
+	    		Author Details
+	    	</div>
+	    	<div class="spacingMedium">
+	    	</div>
+	    	<div>
+		    	<span class="left">Main Contact</span>
+		    	<span class="right">Authors</span>
+	    	</div>
 	    </div>
 	    
 	    <div class="spacingSmall"></div>
@@ -22,25 +30,67 @@
 		    		<input type="radio" name="author[]" checked>
 		    	</span>
 		    	<span class="right">
-		    		
 		    			<input type="text" name="firstName[]" value="First Name">
-		    		
-		    		
 		    			<input type="text" name="lastName[]" value="Last Name">
-		    		
-		    		
 		    			<input type="text" name="email[]" value="Email Address">
-		    		
-		    		
-		    			<input type="button" class="button blue" id="remove" value="Remove">
-		    		
+		    			<input type="button" class="button blue" id="remove" onClick="removeAuthor('1');" value="Remove">
 		    	</span>
 		    </div>
-		    <div class="spacingMedium"></div>
+		    <div class="spacingMedium" id="spacing1"></div>
 	    </div>
+	    
 	    <div class="spacingMedium"></div>
 	    <div id="addButton">
 	    	<input type="button" id="addAuthor" class="button blue" value="Add Author">
+	    </div>
+	    
+	    <div class="spacingLarge"></div>
+	    <div id="form">
+	    	<div class="bold">Article Details</div>
+	    	<div class="spacingSmall"></div>
+	    	<div class="formHeader">
+	    		<span class="left">
+	    			Article Title:
+	    		</span>
+	    		<span class="right">
+	    			<input type="text" name="artileName">
+	    		</span>
+	    	</div>
+	    	
+	    	
+	    	<div class="spacingSmall"></div>
+	    	
+	    	
+	    	<div class="formHeader">
+	    		<span class="left">
+	    			Keywords:
+	    		</span>
+	    		<span class="right">
+	    			<input type="text" name="keywords">
+	    		</span>
+	    	</div>
+	    	<div class="spacingSmall"></div>
+	    	<div class="formHeader">
+	    		<span class="left">
+	    			Abstract:
+	    		</span>
+	    		<span class="right">
+	    		</span>
+	    	</div>
+	    	<div class="spacingMedium"></div>
+	    	<textarea rows="30" cols="90" name="abstract" id="editor_kama" name="abstract">
+	    	</textarea>
+	    	<script type="text/javascript">
+			//<![CDATA[
+
+				CKEDITOR.replace( 'editor_kama',
+					{
+						skin : 'kama',
+						toolbar: 'Journal'
+					});
+
+			//]]>
+			</script>
 	    </div>
 	</form>
 </div>
