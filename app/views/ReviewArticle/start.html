@@ -1,0 +1,44 @@
+#{extends 'main.html' /}
+#{set title:'Review an article' /}
+
+#{form @post()}
+	<input name="articleID" type="hidden" value="${articleID}"/>	
+	Expertise level (1 - Novice; 10 - World class expert):
+	<select name="expertiseLevel">
+    	#{list items:1..10, as:'level'}
+    	<option value="${level}">${level}</option>
+    	#{/list}
+    </select>
+    <br />
+    <br />
+    Mark:
+    <select name="mark">
+    	#{list items:possibleMarks, as:'mark'}
+    	<option value="${mark.id}">(${mark.id}) ${mark.name}</option>
+    	#{/list}
+    </select>
+    <br />
+    <br />
+    Content summary:<br/>
+	<textarea name="contentSummary" style="width: 400px; height: 300px;"></textarea>
+    <br />
+    <br />
+    Good points:<br/>
+	<textarea name="goodPoints" style="width: 400px; height: 300px;"></textarea>
+	<br />
+    <br />
+    Bad points:<br/>
+	<textarea name="badPoints" style="width: 400px; height: 300px;"></textarea>
+	<br />
+    <br />
+    Detailed error list:<br/>
+	<textarea name="detailedErrorList" style="width: 400px; height: 300px;"></textarea>
+	<input name="authorConvID" type="hidden" value="${authorConvID}"/>
+	<input name="editorConvID" type="hidden" value="${editorConvID}"/>
+	<input type="submit" class="blue button" value="Submit"/>
+#{/form}
+Communication with the author:
+#{chat.renderConversation authorConvID/}
+
+Communication with the editor:
+#{chat.renderConversation editorConvID/}
