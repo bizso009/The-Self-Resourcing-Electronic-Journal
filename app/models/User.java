@@ -6,23 +6,17 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "users")
 public class User extends Model
 {
-    @Id
-    public Integer ID;
+   
+    public String passwordHash;
     
-    @Lob
-    public String Email;
+    public boolean subscribed;
     
-    @Lob
-    public String PasswordHash;
+    @ManyToOne
+    public UserRole userRole;
     
-    @Lob
-    public String FirstName;
+    @ManyToOne
+    public PersonDetail personDetail;
     
-    @Lob
-    public String LastName;
-    
-    public Boolean Subscribed;
 }
