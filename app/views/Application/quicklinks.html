@@ -1,8 +1,19 @@
 	<div id="menu">
+	#{secure.check 'editor'}
+		<ul>
+			<li class="title"><a href="#"> Admin Quick Links</a></li>
+			<li><a href="#">Journal Settings</a></li>
+			<li><a href="#">User Management</a></li>
+			<li><a href="#">Articles</a></li>
+			<li><a href="#">Articles</a></li>
+		</ul>
+	#{/secure.check}
+	#{secure.check 'author/reviewer'}
 		<ul>
 			<li class="title"><a href="#">Quick Links</a></li>
 			<li><a href="#">Link1</a></li>
 			<li><a href="#">Link2</a></li>
 			<li><a href="#">Link3</a></li>
 		</ul>
+	#{/secure.check}
 	</div>

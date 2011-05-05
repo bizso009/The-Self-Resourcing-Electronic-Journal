@@ -6,6 +6,7 @@ import java.util.List;
 public class JournalNumber {
 	public int journalNumberID;
 	public int journalVolumeID;
+	public String journalTitle;
 	public Date publishDate;
 	public List<Article> articles;
 	
