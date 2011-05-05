@@ -16,9 +16,14 @@ public class SubmitArticle extends Controller {
         
     }
     
-	private static void displayInfo() 
+	public static void displayInfo() 
 	{
 		render();		
+	}
+	
+	public static void submit()
+	{
+		
 	}
 
 }
