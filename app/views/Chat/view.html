@@ -4,5 +4,10 @@
 	<input name="convID" type="hidden" value="${convID}"/>
 	<input name="fromMsgID" type="hidden" value="0"/>
 	<textarea name="msg" style="width: 600px; height: 400px;"></textarea>
-	<input type="submit" value="send" class="button blue">
+	#{if controllers.Secure.Security.invoke("anon")}
+	<a href="/login"><input type="button" value="Log in to write" /></a>
+	#{/if}
+	#{else}
+	<input type="submit" value="Send" class="button blue">
+	#{/else}
 #{/form}

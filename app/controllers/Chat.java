@@ -44,7 +44,7 @@ public class Chat extends Controller
             Integer maxID = fromMsgID;
             while (rs.next())
             {
-                ChatMessage msg = new ChatMessage(rs.getInt(1), rs.getString(2), CommonUtil.sanitizeForXML(rs.getString(3)), rs.getString(4));
+                ChatMessage msg = new ChatMessage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
                 maxID = Math.max(maxID, msg.id);
                 msgdata.add(msg);
             }
