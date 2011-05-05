@@ -24,7 +24,7 @@ public class SubmitArticle extends Controller {
 		render();		
 	}
 	
-	public static void submit()
+	public static void submit(String[] author, String[] firstName, String[] lastName, String[] email, String[] affil)
 	{
 		
 	}

@@ -10,7 +10,7 @@ $(document).ready(function(){
 		var newAuthors = authors+1;
 		$('#authors').append('		    <div class="formHeader" id="author'+newAuthors+'">');
 		$('#author'+newAuthors).append('		    	<span class="left">');
-		$('#author'+newAuthors+' .left').append('		    		<input type="radio" name="author[]">');
+		$('#author'+newAuthors+' .left').append('		    		<input type="radio" name="author[]" value="'+newAuthors+'">');
 		$('#author'+newAuthors+' .left').append('		    	</span>');
 		$('#author'+newAuthors).append('		    	<span class="right">');
 		$('#author'+newAuthors+' .right').append('		    			<input type="text" name="firstName[]" value="First Name">');
