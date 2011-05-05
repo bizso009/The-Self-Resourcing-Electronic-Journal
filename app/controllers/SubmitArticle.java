@@ -26,6 +26,7 @@ public class SubmitArticle extends Controller {
 	
 	public static void submit(String[] author, String[] firstName, String[] lastName, String[] email, String[] affil, String articleTitle, String keywords)
 	{
+		
 		System.out.println(String.valueOf(author.toString()));
 	}
 
