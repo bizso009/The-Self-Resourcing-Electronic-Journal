@@ -33,7 +33,6 @@ public class Article extends Model
 
     public Article(String title, Blob articlePdf, Date dateSubmitted, Date datePublished, String summary, long submissionID)
     {
-        super();
         this.title = title;
         this.articlePdf = articlePdf;
         this.dateSubmitted = dateSubmitted;

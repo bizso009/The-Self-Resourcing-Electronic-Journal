@@ -1,6 +1,7 @@
 package controllers;
 
 import java.sql.*;
+import models.User;
 import play.db.DB;
 import play.mvc.*;
 
@@ -32,6 +33,18 @@ public class Security extends Secure.Security
     public static boolean anon()
     {
         return !isConnected();
+    }
+    
+    public static User loggedUser()
+    {
+        if (isConnected())
+        {
+            return User.findById(Long.parseLong(connected()));
+        }
+        else
+        {
+            return null;
+        }
     }
     
     static boolean check(String profile)
