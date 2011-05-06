@@ -36,4 +36,15 @@ function removeAuthor(author)
 	$(spacingId).remove();
 }
 
+function validate()
+{
+	$('.submitForm').submit(function()
+	{
+		var values = $('.submitForm').serialize();
+		var newValues = values.split("&");
+		alert(newValues[0]);
+		return false;
+	});
+}
+
 

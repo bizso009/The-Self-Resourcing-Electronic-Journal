@@ -9,7 +9,7 @@
 #{/set}
 
 <div id="form">
-	<form action="@{SubmitArticle.submit()}" class="submitForm" method="POST">
+	#{form @SubmitArticle.submit() , enctype:'multipart/form-data', class:'submitForm' }
 		<input name="subID" type="hidden" value="${subID}"/> 
 		<input type="hidden" id="numberAuthors" value="1">
 	    <div class="formHeader">
@@ -97,9 +97,9 @@
 			
 			<input type="file" style="width:300px" class="button" name="articlePdf">
 			<div id="spacingMedium"></div>
-   			<input type="submit" name="submit" class="button blue" value="Submit">
+   			<input type="submit" name="submit" class="button blue" value="Submit" onclick="validate()">
 			
 	    </div>
-	</form>
+	#{/form}
 </div>
 <div class="spacingSmall"></div>
