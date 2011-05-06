@@ -3,6 +3,8 @@ package controllers;
 import java.util.List;
 
 import models.Article;
+import models.JournalNumber;
+import models.JournalVolume;
 import models.Person;
 import models.User;
 import play.mvc.Before;
@@ -23,5 +25,17 @@ public class Admin extends Controller{
 		int totalEditors = Person.find("role_id=?", 3).fetch().size();
 		int totalAuthors = Person.find("role_id=?", 2).fetch().size();
 		render(numberUsers, totalArticles, totalEditors, totalAuthors);
+	}
+	
+	public static void volumes()
+	{
+		List<JournalVolume> volumes = JournalVolume.findAll();
+		render(volumes);
+	}
+	
+	public static void numbers()
+	{
+		List<JournalNumber> numbers = JournalNumber.findAll();
+		render(numbers);
 	}
 }
