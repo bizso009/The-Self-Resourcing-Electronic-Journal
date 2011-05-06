@@ -13,12 +13,20 @@ import java.util.*;
 public class Application extends Controller
 {
     @Before
-    public static void init()
+    public static void init(String userRole)
     {
-    	renderArgs.put("loggedin", Security.isConnected());
-        if (Security.isConnected())
+    	boolean conn = Security.isConnected();
+    	renderArgs.put("loggedin", conn);
+        if (conn)
         {
-            renderArgs.put("user", Security.connected());   
+        	renderArgs.put("user", Security.connected());   
+        }
+        
+        if(userRole != null){
+        	if(!conn || !Security.check(userRole)){
+        		renderArgs.put("emsg", "You do not authorization to view this page");
+        		index();
+        	}
         }
     }
 
