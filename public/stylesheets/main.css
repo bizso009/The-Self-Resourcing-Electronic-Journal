@@ -51,7 +51,7 @@ body {
 }
 
 #content {
-	width:1048px;
+	/*width:1048px;*/
 	margin: 0px auto;
 	padding:10px;
 	background: #fff;
