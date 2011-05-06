@@ -15,7 +15,7 @@ public class ReviewDashboard extends Controller
         public String date;
         public String keywords;
     }
-    
+
     public static void index()
     {        
         User u = Security.loggedUser();
@@ -65,7 +65,42 @@ public class ReviewDashboard extends Controller
                 selectedArticles.add(selArt);
             }
         }
-        //DB.getConnection();
-        render(selectedArticles);
+        
+        Connection c = DB.getConnection();
+        try
+        {
+            PreparedStatement ps = c.prepareStatement("SELECT A.id FROM `Article` as A WHERE "+
+                    "A.journalNumber_id IS NULL "+
+                    "AND NOT EXISTS(SELECT id FROM Reviewer_for_submission WHERE submission_id=A.submission_id and reviewer_id=?) "+
+                    "AND A.id=(SELECT MAX(AA.id) FROM `Article` as AA Where AA.submission_id=A.submission_id)");
+            ps.setLong(1, u.id);
+            ResultSet rs = ps.executeQuery();
+            rs.beforeFirst();
+            while (rs.next())
+            {
+                DisplayArticle avArt = new DisplayArticle();
+                Article a = Article.findById(rs.getLong("id"));
+                avArt.title = a.title;
+                List<Keyword> keys = a.keywords;
+                StringBuilder sb = new StringBuilder();
+                if (keys!=null)
+                {
+                    for (int i=0; i<keys.size(); i++)
+                    {
+                        if (i>0) sb.append(", ");
+                        sb.append(keys.get(i));                        
+                    }
+                }
+                avArt.keywords = sb.toString();
+                avArt.date = (a.dateSubmitted.getYear()+1900)+"-"+a.dateSubmitted.getDate()+"-"+a.dateSubmitted.getDay();
+                availableArticles.add(avArt);
+            }
+            rs.close();
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        render(selectedArticles,availableArticles);
     }
 }
