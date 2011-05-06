@@ -8,14 +8,21 @@ import play.data.validation.*;
 @Entity
 public class Submission extends Model
 {
-    public boolean prioratized;
-    
-    @OneToMany(mappedBy="submission",cascade = CascadeType.ALL)
-    public List<Article> articles;
+    public boolean                  prioratized;
 
-    public static Submission newSubmission(){
-    	Submission s = new Submission();
-    	s.save();
-    	return s;
+    @ManyToOne
+    public User                     author;
+
+    @OneToMany(mappedBy = "submission", cascade = CascadeType.ALL)
+    public List<Article>            articles;
+
+    @OneToMany(mappedBy = "submission", cascade = CascadeType.ALL)
+    public List<ReviewerAssignment> reviewerAssignments;
+
+    public static Submission newSubmission()
+    {
+        Submission s = new Submission();
+        s.save();
+        return s;
     }
 }

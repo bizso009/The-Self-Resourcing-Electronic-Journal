@@ -28,11 +28,28 @@
 	<td>${article.summary}</td>
 </tr>
 <tr>
-	<td>Download:</td>
+	<td>Actions:</td>
 	<td>
-		@{ViewSubmission.download(article.articlePdf)}
+		#{if (article.journalNumber!=null)||(user.id==article.submission.author.id)}
+		<a href="@{ViewSubmission.download(article.id)}" class="blue button">Download</a><br />
+		#{/if}
+		#{else}		
+		%{ if (canDownloadForReview) { }%
+		<a href="@{ViewSubmission.downloadForReview(article.id)}" class="blue button">Download for review</a><br />		
+		%{ } else if (article.id==articles.get(articles.size()-1).id) { }%
+		<a href="@{ReviewArticle.start(article.id)}" class="blue button">Write a review</a><br />
+		%{ } }%
+		#{/else}
 	</td>
 </tr>
 </table>
+<center>
+	%{ if (canSelectForReview) { }%
+	<a href="@{ViewSubmission.selectForReview(articles.get(articles.size()-1).submission.id)}" class="blue button">Select for review</a><br />		
+	%{ } }%
+	%{ if (canCancelReview) { }%
+	<a href="@{ViewSubmission.cancelReview(articles.get(articles.size()-1).submission.id)}" class="blue button">Cancel review</a><br />		
+	%{ } }%
+</center>
 </div>
 #{/list}

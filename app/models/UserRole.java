@@ -17,7 +17,6 @@ public class UserRole extends Model implements Comparable<UserRole>
     public static final String AUTHOR_REVIEWER = "author/reviewer";
     public static final String EDITOR = "editor";
     
-
     @Lob
     public String name;
 
