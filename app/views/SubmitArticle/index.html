@@ -9,7 +9,8 @@
 #{/set}
 
 <div id="form">
-	<form action="@{SubmitArticle.submit()}" class="submitForm" method="POST">
+	#{form @SubmitArticle.submit(), enctype:'multipart/form-data', class:'submitForm'}
+<!-- 	<form action="@{SubmitArticle.submit()}" class="submitForm" method="POST"> -->
 		<input name="subID" type="hidden" value="${subID}"/> 
 		<input type="hidden" id="numberAuthors" value="1">
 	    <div class="formHeader">
@@ -100,6 +101,6 @@
    			<input type="submit" name="submit" class="button blue" value="Submit">
 			
 	    </div>
-	</form>
+	#{/form}
 </div>
 <div class="spacingSmall"></div>

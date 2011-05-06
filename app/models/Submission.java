@@ -12,4 +12,10 @@ public class Submission extends Model
     
     @OneToMany(mappedBy="submission",cascade = CascadeType.ALL)
     public List<Article> articles;
+
+    public static Submission newSubmission(){
+    	Submission s = new Submission();
+    	s.save();
+    	return s;
+    }
 }

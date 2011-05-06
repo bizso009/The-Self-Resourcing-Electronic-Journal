@@ -1,18 +1,13 @@
 package controllers;
 
-import play.*;
-import play.db.DB;
-import play.mvc.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.*;
+import play.mvc.Before;
+import play.mvc.Controller;
 
 
 public class Application extends Controller
 {
-    @Before
+    @SuppressWarnings("boxing")
+	@Before
     public static void setConnectedUser()
     {
     	renderArgs.put("loggedin", Security.isConnected());
