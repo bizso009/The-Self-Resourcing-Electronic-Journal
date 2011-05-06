@@ -25,8 +25,16 @@ $(document).ready(function(){
 		$('#numberAuthors').val(newAuthors);
 	});
 	
+	var data = $( 'textarea.editor' );
+	
 	$('.submitForm').submit(function()
 	{
+		var editor = CKEDITOR.instances.editor_kama;
+		alert(editor.getData());
+		$('.error').css("visibility", "hidden");
+		$('#authorError').html("");
+		$('#titleError').html("");
+		$('#keywordError').html("");
 		var values = $('.submitForm').serialize();
 		var newValues = values.split("&");
 		var errors = 0;
@@ -81,6 +89,16 @@ $(document).ready(function(){
 				if(value == "")
 				{
 					errors = 1;
+					$('#titleError').html("Required Field");
+				}
+			}
+			
+			if(key=="keywords")
+			{
+				if(value=="")
+				{
+					errors = 1;
+					$('#keywordError').html("Required Field");
 				}
 			}
 		}

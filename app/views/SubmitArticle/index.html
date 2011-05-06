@@ -4,8 +4,8 @@
         #{stylesheet 'submitArticle.css' /}
 #{/set}
 #{set 'moreScripts'}
-    #{script 'submitArticle.js'/}
     #{script 'ckeditor/ckeditor.js'/}
+    #{script 'submitArticle.js'/}
 #{/set}
 
 <div id="form">
@@ -63,7 +63,7 @@
 	    			Article Title:
 	    		</span>
 	    		<span class="right">
-	    			<input type="text" name="title">
+	    			<input type="text" name="title"><span class="error" id="titleError"></span>
 	    		</span>
 	    	</div>
 	    	
@@ -76,7 +76,7 @@
 	    			Keywords:
 	    		</span>
 	    		<span class="right">
-	    			<input type="text" name="keywords">
+	    			<input type="text" name="keywords"><span class="error" id="keywordError"></span>
 	    		</span>
 	    	</div>
 	    	<div class="spacingSmall"></div>
@@ -88,7 +88,7 @@
 	    		</span>
 	    	</div>
 	    	<div class="spacingMedium"></div>
-	    	<textarea rows="30" cols="90" name="summary" id="editor_kama">
+	    	<textarea rows="30" cols="90" name="summary" id="editor_kama" class="editor">
 	    	</textarea>
 	    	<script type="text/javascript">
 			//<![CDATA[
