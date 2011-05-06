@@ -5,6 +5,7 @@ import java.util.*;
 import misc.CommonUtil;
 import models.*;
 
+@SuppressWarnings("rawtypes")
 @Every("30min")
 public class GenerateNumbers extends Job
 {
@@ -14,7 +15,7 @@ public class GenerateNumbers extends Job
         n.publishDate = new Date();
         return n;
     }
-
+  
     @SuppressWarnings("deprecation")
     public void doJob()
     {

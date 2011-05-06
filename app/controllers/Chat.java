@@ -1,14 +1,18 @@
 package controllers;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
-import play.db.DB;
-import play.mvc.*;
-import misc.*;
+
 import models.Conversation;
 import models.Message;
 import models.User;
+import play.db.DB;
+import play.mvc.Controller;
+import play.mvc.Http;
 
 public class Chat extends Controller
 {

@@ -1,11 +1,12 @@
 package misc;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.*;
-import play.db.DB;
-import play.db.jpa.*;
-import models.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import models.Article;
+import models.Review;
 
 public class ComplexChecks
 {

@@ -14,7 +14,7 @@ import org.junit.Before;
 import misc.CommonUtil;
 import models.Article;
 import models.Keyword;
-import models.PersonDetail;
+import models.Person;
 import models.User;
 import models.UserRole;
 
@@ -40,25 +40,24 @@ public class SubmitArticle extends Controller {
 			String[] affiliation, String title, String keywords,
 			Blob articlePdf, String summary, Long subID) {
 		
-		User user = null;
-		String pass = null;
+		
 		//save person details
 		for (int i=0; i<firstName.length; i++) {
-			PersonDetail personDetail = new PersonDetail(
+			
+			//main contact
+			if (authNumber[i].equals(author)){
+			    User.registerUser(
+			    		email[i],
+			    		CommonUtil.randomString(), 
+			    		firstName[i], 
+			    		lastName[i],
+			    		affiliation[i]);
+			} else {
+				new Person(
 					firstName[i],
 					lastName[i],
 					email[i],
-					affiliation[i]);
-			personDetail.save();
-			
-			//is main author
-			if (authNumber[i].equals(author)){
-				user = new User();
-				user.passwordHash = Codec.hexMD5(pass = CommonUtil.randomString()); 
-				user.personDetail = personDetail;
-				user.role = UserRole.findByRole(UserRole.Role.READER);
-				user.save();
-				//TODO check for existing user
+					affiliation[i]).save();
 			}
 		}
 		
@@ -73,29 +72,11 @@ public class SubmitArticle extends Controller {
 		
 		//save article
 		Article article = new Article(title, articlePdf, new Date(), null, summary, subID);
-		//TODO check for submission
 		article.keywords = articleKeywords;
 		article.save();
-		
-		try {
-			sendEmail(user.id.toString(), pass, user.personDetail.email);
-		} catch (EmailException e) {
-			validation.email(user.personDetail.email);
-			Logger.error(e, "email exception");
-			e.printStackTrace();
-		}
+	
 		render();
 	}
 
-	private static void sendEmail(String username, String pass, String toMail) throws EmailException {
-		SimpleEmail email = new SimpleEmail();
-		email.setFrom("noreply@journal.org");
-		email.addTo(toMail);
-		email.setSubject("Registration");
-		email.setMsg("Self-Resourcing-Electronic-Journal\n" +
-						"Your username: "+username+"\n " +
-						"Your password: "+pass);
-		Mail.send(email); 
-	}
 
 }

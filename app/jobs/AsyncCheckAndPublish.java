@@ -1,8 +1,9 @@
 package jobs;
-import play.jobs.Job;
 import misc.ComplexChecks;
-import models.*;
+import models.Article;
+import play.jobs.Job;
 
+@SuppressWarnings("rawtypes")
 public class AsyncCheckAndPublish extends Job
 {
     private Article article;
@@ -12,7 +13,8 @@ public class AsyncCheckAndPublish extends Job
         this.article = a;
     }
 
-    public void doJob()
+    @Override
+	public void doJob()
     {
         ComplexChecks.publishIfNeeded(article);
     }

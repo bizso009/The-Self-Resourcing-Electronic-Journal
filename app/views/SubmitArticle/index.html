@@ -9,11 +9,16 @@
 #{/set}
 
 <div id="form">
+<<<<<<< HEAD
+	#{form @SubmitArticle.submit(), enctype:'multipart/form-data', class:'submitForm'}
+<!-- 	<form action="@{SubmitArticle.submit()}" class="submitForm" method="POST"> -->
+=======
 	#{form @SubmitArticle.submit() , enctype:'multipart/form-data', class:'submitForm' }
 		<div class="error" id="mainError">
 			Please fix the errors on this page.
 		</div>
 		<div class="spacingSmall"></div>
+>>>>>>> 3f61d287d86cb816570ef17cb576a03d003664c6
 		<input name="subID" type="hidden" value="${subID}"/> 
 		<input type="hidden" id="numberAuthors" value="1">
 	    <div class="formHeader">

@@ -1,10 +1,12 @@
 package models;
  
-import java.util.*;
-import javax.persistence.*;
- 
-import play.db.jpa.*;
-import play.data.validation.*;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
+import play.db.jpa.Model;
  
 @Entity
 public class Keyword extends Model {
@@ -22,6 +24,7 @@ public class Keyword extends Model {
 	}
 
 	public Keyword() {
+		//const
 	}
  
 }
