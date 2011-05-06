@@ -3,7 +3,7 @@
 	</div>
 	<input name="convID" type="hidden" value="${convID}"/>
 	<input name="fromMsgID" type="hidden" value="0"/>
-	<textarea name="msg" style="width: 600px; height: 400px;"></textarea>
+	<textarea name="msg" style="width: 400px; height: 400px;"></textarea>
 	#{if controllers.Secure.Security.invoke("anon")}
 	<a href="/login"><input type="button" value="Log in to write" /></a>
 	#{/if}

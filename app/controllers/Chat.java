@@ -16,12 +16,14 @@ public class Chat extends Controller
     {
         public Integer id;
         public String  name;
+        public String  role;
         public String  message;
         public String  timestamp;
 
-        public ChatMessage(Integer id, String name, String message, String timestamp)
+        public ChatMessage(Integer id, String role, String name, String message, String timestamp)
         {
             this.id = id;
+            this.role = role;
             this.name = name;
             this.message = message;
             this.timestamp = timestamp;
@@ -38,8 +40,8 @@ public class Chat extends Controller
         try
         {
             PreparedStatement stmt = c
-                    .prepareStatement("select M.id, U.id, M.contents, M.timeSent from `Users` as U, `Conversations` as C, `Messages` as M "
-                            + "where C.id=M.conversation_id and U.id=M.user_id and C.id = ? and M.id>? " + "ORDER BY C.id");
+                    .prepareStatement("select M.id, UR.name, U.id, M.contents, M.timeSent from `Users` as U, `Conversations` as C, `Messages` as M, `UserRoles` as UR "
+                            + "where UR.id = U.role_id and C.id=M.conversation_id and U.id=M.user_id and C.id = ? and M.id>? " + "ORDER BY C.id");
             stmt.setInt(1, convID);
             stmt.setInt(2, fromMsgID);
             ResultSet rs = stmt.executeQuery();
@@ -48,7 +50,12 @@ public class Chat extends Controller
             Integer maxID = fromMsgID;
             while (rs.next())
             {
-                ChatMessage msg = new ChatMessage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                ChatMessage msg = new ChatMessage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                if (msg.name.equals(Security.connected()))
+                {
+                    msg.name = "You";
+                    msg.role = "";
+                }
                 maxID = Math.max(maxID, msg.id);
                 msgdata.add(msg);
             }

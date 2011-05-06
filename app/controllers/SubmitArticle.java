@@ -40,7 +40,7 @@ public class SubmitArticle extends Controller {
 	public static void submit(String author, String[] authNumber,
 			String[] firstName, String[] lastName, String[] email,
 			String[] affiliation, String title, String keywords,
-			Blob articlePdf, String summary) {
+			Blob articlePdf, String summary, Long subID) {
 		
 		User user = null;
 		String pass = null;
@@ -74,7 +74,7 @@ public class SubmitArticle extends Controller {
 		}
 		
 		//save article
-		Article article = new Article(title, articlePdf, new Date(), null, summary, 1, 1);
+		Article article = new Article(title, articlePdf, new Date(), null, summary, subID);
 		//TODO check for submission
 		article.keywords = articleKeywords;
 		article.save();

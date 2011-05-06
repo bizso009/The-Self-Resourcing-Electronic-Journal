@@ -8,6 +8,7 @@ import models.Review;
 import models.User;
 import models.Conversation;
 import play.mvc.*;
+import jobs.*;
 
 public class ReviewArticle extends Controller
 {
@@ -25,7 +26,7 @@ public class ReviewArticle extends Controller
         }
         
         User u = User.findById(Long.parseLong(Security.connected()));
-        // Check if the reviewer is assigned to the article...
+        // TODO: Check if the reviewer is assigned to the article...
         Conversation authConv = new Conversation().save();
         Long authorConvID = authConv.id;
         Conversation editConv = new Conversation().save();
@@ -52,6 +53,7 @@ public class ReviewArticle extends Controller
         r.dateSubmitted = new Date();
         r.locked = true;
         r.save();
+        new AsyncCheckAndPublish(r.article).now();
         render();
     }
 }

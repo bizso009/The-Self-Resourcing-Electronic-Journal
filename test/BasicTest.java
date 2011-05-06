@@ -1,6 +1,7 @@
 import models.Article;
 import models.PersonDetail;
 import models.Keyword;
+import models.Submission;
 
 import org.junit.*;
 import java.util.*;
@@ -34,8 +35,10 @@ public class BasicTest extends UnitTest {
         article.datePublished=new Date();;
         article.dateSubmitted=new Date();
 //        article.pdfFileLink
-        article.journalNumberID = 1;
-        article.submissionID = 1;
+        article.journalNumber = null;
+        Submission s = new Submission();
+        s.save();
+        article.submission = s;
         article.keywords = keywords;
         article.save();
         assertTrue(Article.count() > 1);

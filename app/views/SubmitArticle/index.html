@@ -10,6 +10,7 @@
 
 <div id="form">
 	<form action="@{SubmitArticle.submit()}" class="submitForm" method="POST">
+		<input name="subID" type="hidden" value="${subID}"/> 
 		<input type="hidden" id="numberAuthors" value="1">
 	    <div class="formHeader">
 	    	<div class="bold">

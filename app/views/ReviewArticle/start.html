@@ -3,9 +3,9 @@
 
 #{form @post()}
 	<input name="articleID" type="hidden" value="${articleID}"/>	
-	Expertise level (1 - Novice; 10 - World class expert):
+	Expertise level (1 - poor; 10 - expert):
 	<select name="expertiseLevel">
-    	#{list items:1..10, as:'level'}
+    	#{list items:1..5, as:'level'}
     	<option value="${level}">${level}</option>
     	#{/list}
     </select>
@@ -35,7 +35,8 @@
 	<textarea name="detailedErrorList" style="width: 400px; height: 300px;"></textarea>
 	<input name="authorConvID" type="hidden" value="${authorConvID}"/>
 	<input name="editorConvID" type="hidden" value="${editorConvID}"/>
-	<input type="submit" class="blue button" value="Submit"/>
+	<br />
+	<input type="submit" class="blue button" value="Submit review"/>
 #{/form}
 Communication with the author:
 #{chat.renderConversation authorConvID/}
