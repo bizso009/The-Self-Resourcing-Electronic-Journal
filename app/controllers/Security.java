@@ -33,6 +33,6 @@ public class Security extends Secure.Security {
 			return false;
 		}
 		UserRole profileRole = UserRole.findByRole(profile);
-		return profileRole.compareTo(user.role) >=0 ;
+		return profileRole.compareTo(user.role) <=0 ;
 	}
 }

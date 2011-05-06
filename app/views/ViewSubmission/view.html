@@ -18,7 +18,7 @@
 <tr>
 	<td>Authors:</td>
 	<td>
-	#{list items:article.authorDetails, as:'author'}
+	#{list items:article.authors, as:'author'}
 	${author.firstName}&nbsp;${author.lastName} (${author.affiliation}) e-Mail: ${author.email}<br/>
 	#{/list}
 	</td>
@@ -36,7 +36,7 @@
 		#{else}		
 		%{ if (canDownloadForReview) { }%
 		<a href="@{ViewSubmission.downloadForReview(article.id)}" class="blue button">Download for review</a><br />				
-		   %{ if ((!canSelectForReview)&&((!canCancelReview))&&(article.id==articles.get(articles.size()-1).id)) { }%
+		   %{ if (canWriteReview&&(article.id==articles.get(articles.size()-1).id)) { }%
 			<a href="@{ReviewArticle.start(article.id)}" class="blue button">Write a review</a><br />
 		%{ 	} 
 		   }  }%

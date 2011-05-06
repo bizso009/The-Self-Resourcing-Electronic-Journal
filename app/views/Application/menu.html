@@ -1,7 +1,7 @@
 <li class="roundtop"><a href="#" onClick="javascript:browse();">Browse</a></li>
 <li class="roundtop"><a href="/SubmitArticle/index">Submit Article</a></li>
 #{secure.check 'author/reviewer'}
-	<li class="roundtop"><a href="#">Review Article</a></li>
+	<li class="roundtop"><a href="@{ReviewDashboard.index()}">Review Article</a></li>
 #{/secure.check}
 #{secure.check 'editor'}
 	<li class="roundtop"><a href="/Admin/index">Editor Panel</a></li>

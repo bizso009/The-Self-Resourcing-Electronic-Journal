@@ -34,6 +34,9 @@ public class User extends Person {
 
 	@OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
 	public List<ReviewerAssignment> assignments;
+	
+	@OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
+	public List<Review> reviews;
 
 	public User(String email, String password, String firstName,
 			String lastName, String affiliation) {

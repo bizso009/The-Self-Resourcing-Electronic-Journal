@@ -7,6 +7,7 @@ import models.Mark;
 import models.Review;
 import models.User;
 import models.Conversation;
+import models.UserRole;
 import play.mvc.*;
 import jobs.*;
 
@@ -20,7 +21,7 @@ public class ReviewArticle extends Controller
             return;
         }
         //Check authorization
-        if (Security.check("reader"))
+        if (!Security.check(UserRole.AUTHOR_REVIEWER))
         {
             return;
         }
