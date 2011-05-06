@@ -27,6 +27,17 @@ public class UserRole extends Model implements Comparable<UserRole>
 		return find("byName", role).first();
 	}
 
+	public static UserRole reader(){
+		return find("byName", READER).first();
+	}
+	
+	public static UserRole authorReviewer(){
+		return find("byName", AUTHOR_REVIEWER).first();
+	}
+	
+	public static UserRole editor(){
+		return find("byName", EDITOR).first();
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

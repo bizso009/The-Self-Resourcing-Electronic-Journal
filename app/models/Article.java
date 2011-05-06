@@ -30,7 +30,7 @@ public class Article extends Model {
 	public Submission submission;
 
 	@ManyToMany(mappedBy = "articles", cascade = CascadeType.ALL)
-	public List<Person> authors;
+	public List<User> authors;
 
 	@ManyToMany(mappedBy = "articles", cascade = CascadeType.ALL)
 	public List<Keyword> keywords;

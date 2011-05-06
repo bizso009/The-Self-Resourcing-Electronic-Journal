@@ -1,36 +1,23 @@
 package controllers;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
-import org.junit.Before;
-
-import misc.CommonUtil;
 import models.Article;
 import models.Keyword;
-import models.Person;
 import models.Submission;
 import models.User;
-import models.UserRole;
+
+import org.apache.commons.mail.EmailException;
 
 import play.Logger;
 import play.db.jpa.Blob;
-import play.libs.Codec;
-import play.libs.Mail;
 import play.mvc.Controller;
 
 public class SubmitArticle extends Controller {
 
-	@Before
-	public static void init() {
-		Application.init(null);
-	}
+
 	public static void index() {
 		Application.init(null);
 		render();
@@ -42,27 +29,28 @@ public class SubmitArticle extends Controller {
 			Blob articlePdf, String summary, Long subID) {
 
 		User mainAuth = null;
-		List<Person> authors = new ArrayList<Person>();
+		List<User> authors = new ArrayList<User>();
 		// iterate over parameters
 		for (int i = 0; i < firstName.length; i++) {
-			Person currPerson = Person.find("byEmail", email[i]).first();
+			User currPerson = User.find("byEmail", email[i]).first();
 			//if main author
 			if (authNumber[i].equals(author)) {
 				//main author doesn't exist
 				if (currPerson == null) {
-					User user = new User(email[i], CommonUtil.randomString(),
+					User user = new User(email[i],
 							firstName[i], lastName[i], affiliation[i]);
-					user.role = UserRole.findByRole(UserRole.AUTHOR_REVIEWER);
-					user.save();
+					user.convertToAuthor();
 					currPerson = user;
-					mainAuth = user;
 				} else {
-					mainAuth = (User) currPerson;
+					if (!currPerson.isAuthor()){
+						currPerson.convertToAuthor();
+					}
 				} 
+				mainAuth = currPerson;
 			//ordinary person
 			} else {
 				if (currPerson == null){
-					currPerson = new Person(firstName[i], lastName[i],
+					currPerson = new User(firstName[i], lastName[i],
 							email[i], affiliation[i]);
 					currPerson.save();
 				}

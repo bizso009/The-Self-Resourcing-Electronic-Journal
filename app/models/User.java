@@ -7,11 +7,16 @@ import javax.persistence.*;
 import controllers.Secure.Security;
 import java.util.*;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import misc.CommonUtil;
+
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 import play.Logger;
@@ -23,7 +28,7 @@ import play.libs.Mail;
 
 @SuppressWarnings("serial")
 @Entity
-public class User extends Person {
+public class User extends Model {
 
 	public String password;
 
@@ -32,29 +37,34 @@ public class User extends Person {
 	@ManyToOne
 	public UserRole role;
 
+	public String firstName;
+	public String lastName;
+	public String affiliation;
+	
+	@Column(unique = true)
+	@Required
+	public String email;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	public List<Article> articles;
+
 	@OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
 	public List<ReviewerAssignment> assignments;
+	
+	public User(String email,String firstName, String lastName, 
+			String affiliation) {
+	}
 
-	public User(String email, String password, String firstName,
-			String lastName, String affiliation) {
-		super(firstName, lastName, email, affiliation);
+
+	public User(String email, String firstName,
+			String lastName, String affiliation, String password, UserRole role) {
+		this(email, firstName, lastName, affiliation);
 		setPassword(password);
+		this.role = role;		
 	}
-
-	public static User registerUser(String email, String password,
-			String firstName, String lastName, String affiliation) {
-		User user = new User(email, password, firstName, lastName, affiliation);
-		user.role = UserRole.findByRole(UserRole.READER);
-		user.save();
-
-		try {
-			user.sendConfirmationEmail();
-		} catch (EmailException e) {
-			Logger.error(e, "email exception");
-			e.printStackTrace();
-		}
-		return user;
-	}
+	
+	
+	
 
 	public void sendConfirmationEmail() throws EmailException {
 		String emailFrom = (String) Play.configuration.get("mail.smtp.user");
@@ -86,5 +96,15 @@ public class User extends Person {
 			throw new IllegalStateException("Cannot delete last editor in database");
 		}
 		super._delete();
+	}
+
+
+	public void convertToAuthor() {
+		this.password = CommonUtil.randomString();
+		this.role = UserRole.findByRole(UserRole.AUTHOR_REVIEWER);
+		this.save();
+	}
+	public boolean isAuthor() {
+		return this.password != null && this.role.equals(UserRole.authorReviewer());
 	}
 }
