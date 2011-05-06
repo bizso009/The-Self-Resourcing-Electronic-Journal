@@ -19,6 +19,6 @@ public class UserRole extends Model
 
     public static UserRole findByRole(Role role)
     {
-        return find("byName", role.toString()).first();
+        return find("byName", role.toString().toLowerCase()).first();
     }
 }

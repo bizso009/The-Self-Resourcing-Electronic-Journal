@@ -10,6 +10,6 @@ public class Submission extends Model
 {
     public boolean prioratized;
     
-    @ManyToOne(mappedBy="submission",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="submission",cascade = CascadeType.ALL)
     public List<Article> articles;
 }

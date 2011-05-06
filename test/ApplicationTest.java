@@ -35,7 +35,7 @@ public class ApplicationTest extends FunctionalTest {
     	Map<String,String> paras = new HashMap<String,String>();
     	paras.put("firstName", "testtest");
     	paras.put("lastName", "testtest");
-    	paras.put("email", "test");
+    	paras.put("email", "ejournalself@gmail.com");
     	paras.put("affiliation", "test");
     	paras.put("summary", "test");
     	paras.put("title", "test");
