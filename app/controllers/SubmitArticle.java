@@ -28,10 +28,10 @@ import play.mvc.Controller;
 public class SubmitArticle extends Controller {
 
 	@Before
-	public static void init(){
+	public static void init() {
 		Application.init(null);
 	}
-	
+
 	public static void index() {
 		render();
 	}
@@ -40,47 +40,57 @@ public class SubmitArticle extends Controller {
 			String[] firstName, String[] lastName, String[] email,
 			String[] affiliation, String title, String keywords,
 			Blob articlePdf, String summary, Long subID) {
-		
-		
-		//save person details
-		for (int i=0; i<firstName.length; i++) {
-			
-			//main contact
-			if (authNumber[i].equals(author)){
-			    User.registerUser(
-			    		email[i],
-			    		CommonUtil.randomString(), 
-			    		firstName[i], 
-			    		lastName[i],
-			    		affiliation[i]);
+
+		User mainAuth = null;
+		List<Person> authors = new ArrayList<Person>();
+		// save person details
+		for (int i = 0; i < firstName.length; i++) {
+			Person currPerson = Person.find("byEmail", email[i]).first();
+			if (authNumber[i].equals(author)) {
+				if (currPerson == null) {
+					User user = new User(email[i], CommonUtil.randomString(),
+							firstName[i], lastName[i], affiliation[i]);
+					user.role = UserRole.findByRole(UserRole.AUTHOR_REVIEWER);
+					user.save();
+					currPerson = user;
+					mainAuth = user;
+				} else {
+					mainAuth = (User) currPerson;
+				} 
 			} else {
-				new Person(
-					firstName[i],
-					lastName[i],
-					email[i],
-					affiliation[i]).save();
+				if (currPerson == null){
+					currPerson = new Person(firstName[i], lastName[i],
+							email[i], affiliation[i]);
+					currPerson.save();
+				}
 			}
+			authors.add(currPerson);
 		}
-		//check submission
+
+		// check submission
 		Submission submission = Submission.getSubmission(subID);
-		
-		//save keywords
+		if (submission.author == null) {
+			submission.author = mainAuth;
+		}
+
+		// save keywords
 		String[] keys = keywords.split(",");
 		List<Keyword> articleKeywords = new ArrayList<Keyword>();
-		for (String key : keys){
+		for (String key : keys) {
 			Keyword currKey = new Keyword(key);
 			articleKeywords.add(currKey);
 			currKey.save();
 		}
-		
-		//save article
-		Article article = new Article(title, articlePdf, new Date(), null, summary, subID);
+
+		// save article
+		Article article = new Article(title, articlePdf, new Date(), null,
+				summary, subID);
 		article.keywords = articleKeywords;
+		article.authors = authors;
 		article.submission = submission;
 		article.save();
-	
+
 		render();
 	}
-
 
 }
