@@ -4,4 +4,8 @@ $(document).ready(function() {
             return data;  
         }
     });
+	
+	$("#browseButton").click(function(){
+		browse();
+	});
 });

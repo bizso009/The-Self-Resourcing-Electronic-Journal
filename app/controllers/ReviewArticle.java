@@ -7,6 +7,7 @@ import models.Mark;
 import models.Review;
 import models.User;
 import models.Conversation;
+import models.UserRole;
 import play.mvc.*;
 import jobs.*;
 
@@ -20,12 +21,12 @@ public class ReviewArticle extends Controller
             return;
         }
         //Check authorization
-        if (Security.check("reader"))
+        if (!Security.check(UserRole.AUTHOR_REVIEWER))
         {
             return;
         }
         
-        User u = User.findById(Long.parseLong(Security.connected()));
+        User u = Security.loggedUser();
         // TODO: Check if the reviewer is assigned to the article...
         Conversation authConv = new Conversation().save();
         Long authorConvID = authConv.id;
@@ -41,7 +42,7 @@ public class ReviewArticle extends Controller
     {
         Review r = new Review();
         r.article = Article.findById(articleID);
-        r.reviewer = User.findById(Long.parseLong(Security.connected()));
+        r.reviewer = Security.loggedUser();
         r.expertiseLevel = expertiseLevel;
         r.mark = Mark.findById(mark);
         r.contentSummary = contentSummary;

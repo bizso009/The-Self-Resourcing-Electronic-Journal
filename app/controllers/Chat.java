@@ -44,8 +44,8 @@ public class Chat extends Controller
         try
         {
             PreparedStatement stmt = c
-                    .prepareStatement("select M.id, UR.name, U.id, M.contents, M.timeSent from `Users` as U, `Conversations` as C, `Messages` as M, `UserRoles` as UR "
-                            + "where UR.id = U.role_id and C.id=M.conversation_id and U.id=M.user_id and C.id = ? and M.id>? " + "ORDER BY C.id");
+                    .prepareStatement("select M.id, UR.name, U.id, M.contents, M.timeSent from `Person` as U, `Conversations` as C, `Messages` as M, `UserRoles` as UR "
+                            + "where UR.id = U.role_id and C.id=M.conversation_id and U.id=M.user_id and C.id = ? and M.id>? " + "ORDER BY M.id");
             stmt.setInt(1, convID);
             stmt.setInt(2, fromMsgID);
             ResultSet rs = stmt.executeQuery();
@@ -98,7 +98,7 @@ public class Chat extends Controller
         }
         Message mess = new Message();
         mess.conversation = conv;
-        mess.user = User.findById(Long.parseLong(Security.connected()));
+        mess.user = Security.loggedUser();
         mess.contents = msg;
         mess.timeSent = new Date();
         mess.save();

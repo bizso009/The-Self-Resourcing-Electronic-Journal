@@ -15,13 +15,15 @@ public class ViewSubmission extends Controller
         boolean canSelectForReview = false;
         boolean canDownloadForReview = false;
         boolean canCancelReview = false;
+        boolean canWriteReview = false;
+        Submission s = Submission.findById(subID);
         if (articles != null)
         {
             if (articles.size() > 0)
             {
                 canSelectForReview = ComplexChecks.canUserSelectArticleForReview(user, articles.get(articles.size() - 1));
                 canDownloadForReview = ComplexChecks.isUserReviewingArticle(user, articles.get(articles.size() - 1));
-                Submission s = Submission.findById(subID);
+                
                 ReviewerAssignment ra = ComplexChecks.getReviewerAssignmentForSubmission(user, s);
                 if (ra!=null)
                 {
@@ -32,7 +34,16 @@ public class ViewSubmission extends Controller
                 }
             }
         }
-        render(user, canSelectForReview, canDownloadForReview, canCancelReview, articles);
+        canWriteReview = canDownloadForReview && (!canSelectForReview)&&(!canCancelReview);
+        if (user.reviews!=null)
+        {
+            for (int i=0; i<user.reviews.size(); i++)
+            {
+                Review r = user.reviews.get(i);
+                //if (r.article.submission.id == )
+            }
+        }
+        render(user, canSelectForReview, canDownloadForReview, canCancelReview, canWriteReview, articles);
     }
 
     public static void download(Long id)
