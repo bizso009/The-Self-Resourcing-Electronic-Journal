@@ -36,29 +36,9 @@ public class Application extends Controller
     	 render(volumes);
     }
     
-    public static String getJournalNumbers(int volume_id)
+    public static void getJournalNumbers(int volume_id)
     {
     	List<JournalNumber> numbers = JournalNumber.getJournalNumbeByVolume(volume_id);
-    	Iterator it = numbers.iterator();
-    	String html = "<div class=\"browseHeader\">";
-		html +="Journal Numbers";
-		html +="</div>";
-    	html += "<ul>";
-    	while(it.hasNext())
-    	{
-    		JournalNumber journalNumber = (JournalNumber) it.next();
-    		Long journalNumberId = journalNumber.id;
-    		Date publishDate = journalNumber.publishDate;
-    		html += "<li>";
-    		html += "<div class=\"title\">";
-    		html += journalNumberId.toString();
-    		html += "</div>";
-    		html += "<div class=\"year\">";
-    		html += publishDate.toString();
-    		html += "</div>";
-    		html += "</li>";
-    	}
-    	html += "</ul>";
-    	return html;
+    	render(numbers);
     }
 }
