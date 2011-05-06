@@ -45,3 +45,10 @@
 {
 	font-weight: bold;
 }
+
+.error
+{
+	visibility: hidden;
+	font-weight:bolder;
+	color: #F00E0E;
+}
