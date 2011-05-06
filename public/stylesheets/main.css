@@ -408,22 +408,23 @@ input.default {
 	display:none;
 }
 
-.volumes
+.browserPanel
 {
-	position:absolute;
-}
-
-.title
-{
-	font-weight:bold;
+	position:relative;
+	float:left;
 }
 
 .volumeData
 {
-	position:absolute;
-	float:right;
-	margin-left:250px;
+	position:relative;
+	top:0px;
 	display:none;
+}
+
+
+.title
+{
+	font-weight:bold;
 }
 
 .browseHeader
