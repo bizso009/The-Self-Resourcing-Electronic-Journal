@@ -39,13 +39,20 @@ public class Article extends Model
         this.dateSubmitted = dateSubmitted;
         this.datePublished = datePublished;
         this.summary = summary;
-        Submission s = Submission.findById(submissionID);
-        if (s == null)
+        try
         {
-            s = new Submission();
-            s.save();
+            Submission s = Submission.findById(submissionID);
+            if (s == null)
+            {
+                s = new Submission();
+                s.save();
+            }
+            this.submission = s;
         }
-        this.submission = s;
+        catch (NullPointerException ex)
+        {
+
+        }        
         this.journalNumber = null;
     }
 
