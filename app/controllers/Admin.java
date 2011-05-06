@@ -10,6 +10,5 @@ public class Admin extends CRUD{
 	public static void init()
     {
 		Application.init("editor");
-    }
-    
+    }    
 }
