@@ -10,6 +10,12 @@ public class Submission extends Model
 {
     public boolean prioratized;
     
+    @ManyToOne
+    public User author;
+    
     @OneToMany(mappedBy="submission",cascade = CascadeType.ALL)
     public List<Article> articles;
+    
+    @OneToMany(mappedBy="submission", cascade = CascadeType.ALL)
+    public List<ReviewerAssignment> reviewerAssignments;
 }

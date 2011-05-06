@@ -22,5 +22,5 @@ public class User extends Model
     public UserRole role;
     
     @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
-    public List<ReviewerAssignment> assignments;
+    public List<ReviewerAssignment> assignments;   
 }
