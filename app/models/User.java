@@ -6,17 +6,14 @@ import play.db.jpa.*;
 import javax.persistence.*;
 import controllers.Secure.Security;
 import java.util.*;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
-
 import play.Logger;
 import play.Play;
 import play.data.validation.Required;
@@ -27,6 +24,7 @@ import play.libs.Mail;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Users")
+<<<<<<< HEAD
 public class User extends Person {
 
 	public String password;
@@ -101,4 +99,89 @@ public class User extends Person {
 		}
 		super._delete();
 	}
+=======
+public class User extends Person
+{
+
+    public String                   password;
+
+    public boolean                  subscribed;
+
+    @ManyToOne
+    public UserRole                 role;
+
+    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
+    public List<ReviewerAssignment> assignments;
+
+    public User(String email, String password, String firstName, String lastName, String affiliation)
+    {
+        super(firstName, lastName, email, affiliation);
+        this.password = password;
+
+    }
+
+    public static User registerUser(String email, String password, String firstName, String lastName, String affiliation)
+    {
+        User user = new User(email, password, firstName, lastName, affiliation);
+        user.role = UserRole.findByRole(UserRole.READER);
+        user.save();
+
+        try
+        {
+            user.sendConfirmationEmail();
+        }
+        catch (EmailException e)
+        {
+            Logger.error(e, "email exception");
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    public void sendConfirmationEmail() throws EmailException
+    {
+        String emailFrom = (String)Play.configuration.get("mail.smtp.user");
+
+        SimpleEmail email = new SimpleEmail();
+        email.setFrom(emailFrom);
+        email.addTo(this.email);
+        email.setSubject("Registration");
+        email.setMsg("Self-Resourcing-Electronic-Journal\n" + "Your username: " + this.email + "\n " + "Your password: " + this.password);
+        Mail.send(email);
+    }
+
+    public static User connect(String email, String password)
+    {
+        return find("byEmailAndPassword", email, password).first();
+    }
+
+    public String getPassword()
+    {
+        return Crypto.decryptAES(this.password);
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = Crypto.encryptAES(password);
+    }
+
+    // public String getEmail(){
+    // return personDetail.email;
+    // }
+    // public void setEmail(String email){
+    // this.personDetail.email = email;
+    // }
+
+    @Override
+    public void _delete()
+    {
+        UserRole editor = UserRole.findByRole(UserRole.EDITOR);
+        if (role.equals(editor) && editor.users.size() == 1)
+        {
+            throw new IllegalStateException("Cannot delete last editor in database");
+        }
+        super._delete();
+    }
+
+>>>>>>> 481fd032befbd7779e0ffecff3e62f055ff1e80f
 }

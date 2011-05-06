@@ -403,3 +403,7 @@ fieldset {
 input.default {
 	color:#bbb;
 }
+
+.browser{
+	display:none;
+}

@@ -34,6 +34,7 @@ public class ReviewDashboard extends Controller
                 Submission s = ra.submission;
                 DisplayArticle selArt = new DisplayArticle();
                 selArt.status = "Selected";
+                selArt.link = "/viewSubmission/view?subID="+ra.submission.id;
                 if (ra.assigned)
                 {
                     selArt.status = "Downloaded";
@@ -82,6 +83,7 @@ public class ReviewDashboard extends Controller
                 DisplayArticle avArt = new DisplayArticle();
                 Article a = Article.findById(rs.getLong("id"));
                 avArt.title = a.title;
+                avArt.link = "/viewSubmission/view?subID="+a.submission.id;
                 List<Keyword> keys = a.keywords;
                 StringBuilder sb = new StringBuilder();
                 if (keys!=null)

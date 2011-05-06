@@ -1,0 +1,17 @@
+<div class="browseContent">
+	<span class="volumes">
+	<div class="browseHeader">
+		Journal Volumes
+	</div>
+		<ul>
+		    #{list items:volumes, as:'volume' }
+		        <li>
+		        	<div class="title">${volume.title}</div>
+		        	<div class="year">${volume.publishYear}</div> 
+		        	<input type="button" class="button blue volume" id="n${volume.id}" value="View Volume" onClick="showNumbers();"></li>
+		    #{/list}
+		</ul>
+	</span>
+	<span class="volumeData">
+	</span>
+</div>
