@@ -1,16 +1,18 @@
 package controllers;
 
+import models.User;
 import play.mvc.Before;
 import play.mvc.Controller;
 
-public class Admin extends Controller{
-	@Before
+@CRUD.For(User.class)
+public class Admin extends CRUD{
+	/*@Before
 	public static void init()
     {
 		Application.init("editor");
     }
     
-	public static void index() {
+	 public static void index() {
 		render();
-	}
+	}*/
 }
