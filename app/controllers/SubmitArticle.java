@@ -27,6 +27,7 @@ import play.mvc.Controller;
 
 public class SubmitArticle extends Controller {
 
+	@Before
 	public static void index() {
 		Application.init(null);
 		render();
@@ -39,10 +40,12 @@ public class SubmitArticle extends Controller {
 
 		User mainAuth = null;
 		List<Person> authors = new ArrayList<Person>();
-		// save person details
+		// iterate over parameters
 		for (int i = 0; i < firstName.length; i++) {
 			Person currPerson = Person.find("byEmail", email[i]).first();
+			//if main author
 			if (authNumber[i].equals(author)) {
+				//main author doesn't exist
 				if (currPerson == null) {
 					User user = new User(email[i], CommonUtil.randomString(),
 							firstName[i], lastName[i], affiliation[i]);
@@ -53,6 +56,7 @@ public class SubmitArticle extends Controller {
 				} else {
 					mainAuth = (User) currPerson;
 				} 
+			//ordinary person
 			} else {
 				if (currPerson == null){
 					currPerson = new Person(firstName[i], lastName[i],
@@ -67,6 +71,7 @@ public class SubmitArticle extends Controller {
 		Submission submission = Submission.getSubmission(subID);
 		if (submission.author == null) {
 			submission.author = mainAuth;
+			submission.save();
 		}
 
 		// save keywords
@@ -86,6 +91,14 @@ public class SubmitArticle extends Controller {
 		article.submission = submission;
 		article.save();
 
+		//send email
+		try {
+			mainAuth.sendConfirmationEmail();
+		} catch (EmailException e) {
+			Logger.error(e, "email exception");
+			e.printStackTrace();
+		}
+		
 		render();
 	}
 
