@@ -71,6 +71,7 @@ public class SubmitArticle extends Controller {
 		Submission submission = Submission.getSubmission(subID);
 		if (submission.author == null) {
 			submission.author = mainAuth;
+			submission.save();
 		}
 
 		// save keywords
