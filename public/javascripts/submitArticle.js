@@ -39,87 +39,44 @@ $(document).ready(function(){
 	
 	$('.submitForm').submit(function()
 	{
-		var editor = CKEDITOR.instances.editor_kama;
-		var summary = editor.getData();
 		$('#authorError').html("");
 		$('#titleError').html("");
 		$('#keywordError').html("");
 		$('#summaryError').html("");
 		$('#fileError').html("");
-		var values = $('.submitForm').serialize();
-		var newValues = values.split("&");
+		
 		var errors = 0;
 		var authorErrors = 0;
 		var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-		for(var field in newValues)
-		{
-			var pair = newValues[field];
-			var pairArray = pair.split("=");
-			var key = "";
-			var value = "";
-			key = pairArray[0];
-			value = pairArray[1];
-			var html = "";
-			if(key == "firstName")
-			{
-				if(value == "" || value == "First+Name")
-				{
-					errors = 1;
-					authorErrors = 1;
-				}
+		
+		$("#authors input[type=text]").each(function (){
+			var ivalue = $(this).val();
+			if(ivalue == "" || ivalue == this.defaultValue){
+				errors = 1;
+				authorErrors = 1;
 			}
-			
-			if(key == "lastName")
-			{
-				if(value == "" || value == "Last+Name")
-				{
-					errors = 1;
-					authorErrors = 1;
-				}
+			if(this.name == "email" && !pattern.test(ivalue)){
+				errors = 1;
+				authorErrors = 1;
 			}
-			
-			if(key == "email")
-			{
-				if(value == "" || value == "Email+Address")
-				{
-					errors = 1;
-					authorErrors = 1;
-				}
-				
-				if(!pattern.test(value))
-				{
-					errors = 1;
-					authorErrors = 1;
-				}
-			}
-			
-			if(key == "affiliation")
-			{
-				if(value == "" || value=="Affiliation")
-				{
-					errors = 1;
-					authorErrors = 1;
-				}
-			}
-			
-			if(key == "title")
-			{
-				if(value == "")
-				{
-					errors = 1;
+		});
+		
+		$("#form #form input[type=text]").each(function (){
+			var ivalue = $(this).val();
+			if(ivalue == "" || ivalue == this.defaultValue){
+				if(this.name == "title"){
 					$('#titleError').html("Required Field");
-				}
-			}
-			
-			if(key=="keywords")
-			{
-				if(value=="")
-				{
 					errors = 1;
+				}
+				if(this.name == "keywords"){
 					$('#keywordError').html("Required Field");
+					errors = 1;
 				}
 			}
-		}
+		});
+		
+		var editor = CKEDITOR.instances.editor_kama;
+		var summary = editor.getData();
 		
 		if(summary == "")
 		{

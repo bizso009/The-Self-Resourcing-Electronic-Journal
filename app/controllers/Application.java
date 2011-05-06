@@ -25,8 +25,7 @@ public class Application extends Controller
         
         if(userRole != null){
         	if(!conn || !Security.check(userRole)){
-        		renderArgs.put("emsg", "You do not authorization to view this page");
-        		index();
+        		renderArgs.put("err", "You do not authorization to view this page");
         	}
         }
     }
