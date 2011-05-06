@@ -28,7 +28,7 @@ public class PersonDetail extends Model {
 	}
 
 	public PersonDetail() {
-		// TODO Auto-generated constructor stub
+		
 	}
   
 }

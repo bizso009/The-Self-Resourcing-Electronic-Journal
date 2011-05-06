@@ -22,7 +22,6 @@ public class Keyword extends Model {
 	}
 
 	public Keyword() {
-		// TODO Auto-generated constructor stub
 	}
  
 }
