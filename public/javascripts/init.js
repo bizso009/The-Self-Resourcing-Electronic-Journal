@@ -1,11 +1,15 @@
-jQuery.ajaxSetup({
-            dataFilter: function(data, dataType) {
-                return data;  
-            }
-        });
-
 $(document).ready(function() {
+	jQuery.ajaxSetup({
+        dataFilter: function(data, dataType) {
+            return data;  
+        }
+    });
 	
+	$("input").focus(function () {
+		if($(this).val() == this.defaultValue) $(this).val("");
+	}).blur(function(){
+		if($(this).val() == "") $(this).val(this.defaultValue);
+	});
 });
 
 function showMessage(msg) {
