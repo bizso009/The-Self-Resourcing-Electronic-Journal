@@ -28,7 +28,7 @@
 		$('.volumeData').slideUp("slow");
 		if(type == "n")
 		{
-			var journalNumber = #{jsAction @getJournalNumbers(':volume_id') /}
+			var journalNumber = #{jsAction @Application.getJournalNumbers(':volume_id') /}
 			$.post(journalNumber({volume_id: id}), function(data){
 				$('.volumeData').html(data);
 				$('.volumeData').slideDown("slow");
