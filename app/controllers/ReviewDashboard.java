@@ -10,6 +10,7 @@ public class ReviewDashboard extends Controller
 {
     public static class DisplayArticle
     {
+        public String link;
         public String title;
         public String status;
         public String date;
@@ -88,7 +89,7 @@ public class ReviewDashboard extends Controller
                     for (int i=0; i<keys.size(); i++)
                     {
                         if (i>0) sb.append(", ");
-                        sb.append(keys.get(i));                        
+                        sb.append(keys.get(i).word);                        
                     }
                 }
                 avArt.keywords = sb.toString();

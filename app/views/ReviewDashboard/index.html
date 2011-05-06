@@ -13,7 +13,7 @@
   	  	</tr>
   	  	#{list items:selectedArticles, as:'sa'}
 		<tr>
-			<td>${sa.title}</td>
+			<td><a href="${sa.link}">${sa.title}</a></td>
 			<td>${sa.status}</td>
 		</tr>  	  
   	  	#{/list}
@@ -31,7 +31,7 @@
   	  	</tr>
   	  	#{list items:availableArticles, as:'aa'}
 		<tr>
-			<td>${aa.title}</td>
+			<td><a href="${aa.link}">${aa.title}</a></td>
 			<td>${aa.date}</td>
 			<td>${aa.keywords}</td>
 		</tr>  	  

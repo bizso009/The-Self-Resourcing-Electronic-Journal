@@ -12,7 +12,6 @@ public class User extends Model
 {
    
     public String passwordHash;
-    
     public boolean subscribed;
 
     @ManyToOne
