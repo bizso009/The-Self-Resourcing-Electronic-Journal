@@ -35,7 +35,7 @@ public class BasicTest extends UnitTest {
         article.datePublished=new Date();;
         article.dateSubmitted=new Date();
 //        article.pdfFileLink
-        article.journalNumber = null;
+        //article.journalNumber = null;
         Submission s = new Submission();
         s.save();
         article.submission = s;

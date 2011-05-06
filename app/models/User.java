@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
+@Table(name = "Users")
 public class User extends Model
 {
    
@@ -18,4 +19,7 @@ public class User extends Model
     
     @ManyToOne
     public UserRole role;
+    
+    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
+    public List<ReviewerAssignment> assignments;
 }
