@@ -1,16 +1,19 @@
 package models;
  
-import java.util.*;
-import javax.persistence.*;
- 
-import play.db.jpa.*;
-import play.data.validation.*;
+import javax.persistence.Entity;
+
+import play.db.jpa.Model;
  
 @Entity
 public class SubmissionStatus extends Model {
  
-	public static enum Status {
-		SELECTED, DOWNLOADED, REVIEW 
-	}
+	public String name;
+	
+	
+	
+	public static final String SELECTED = "selected";
+	public static final String DOWNLOADED = "downloaded";
+	public static final String REVIEWED = "reviewed";
+	
  
 }

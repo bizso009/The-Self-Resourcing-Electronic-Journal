@@ -5,7 +5,7 @@ import java.util.Map;
 
 import misc.CommonUtil;
 import models.Article;
-import models.PersonDetail;
+import models.Person;
 import models.User;
 import models.UserRole;
 

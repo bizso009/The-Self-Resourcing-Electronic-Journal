@@ -1,17 +1,18 @@
 package controllers;
 
-import play.*;
-import play.db.DB;
-import play.mvc.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.*;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import models.JournalNumber;
+import models.JournalVolume;
+import play.mvc.Before;
+import play.mvc.Controller;
 
 
 public class Application extends Controller
 {
+    @SuppressWarnings("boxing")
     @Before
     public static void init(String userRole)
     {
@@ -24,14 +25,20 @@ public class Application extends Controller
         
         if(userRole != null){
         	if(!conn || !Security.check(userRole)){
-        		renderArgs.put("emsg", "You do not authorization to view this page");
-        		index();
+        		renderArgs.put("err", "You do not authorization to view this page");
         	}
         }
     }
 
     public static void index()
     {
-        render();
+    	 List<JournalVolume> volumes = JournalVolume.findAll();
+    	 render(volumes);
+    }
+    
+    public static void getJournalNumbers(int volume_id)
+    {
+    	List<JournalNumber> numbers = JournalNumber.getJournalNumbeByVolume(volume_id);
+    	render(numbers);
     }
 }

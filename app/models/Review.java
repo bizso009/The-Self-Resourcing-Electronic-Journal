@@ -1,9 +1,13 @@
 package models;
 
 import java.util.Date;
-import play.data.validation.Required;
+
+import javax.persistence.Entity;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import play.db.jpa.Model;
-import javax.persistence.*;
 
 @Entity
 @Table(name="Reviews")

@@ -1,74 +1,39 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
-
-<div id="trace">Home :: Page</div>
-<div class="line"></div>
-<div id="maincontent">
-	<h2>Journal Database</h2>
-	<div id="table">
-		<table>
-		<tr class="title">
-				<td>Journal Volumes</td>
-			</tr>
-			<tr>
-				<td>Row 1</td>
-			</tr>
-			<tr>
-				<td>Row 2</td>
-			</tr>
-			<tr>
-				<td>Row 3</td>
-			</tr>
-			<tr>
-				<td>Row 4</td>
-			</tr><tr class="title">
-				<td>Journal Volumes</td>
-			</tr>
-			<tr>
-				<td>Row 1</td>
-			</tr>
-			<tr>
-				<td>Row 2</td>
-			</tr>
-			<tr>
-				<td>Row 3</td>
-			</tr>
-			<tr>
-				<td>Row 4</td>
-			</tr>
-		</table>
-		<table>
-		<tr class="title">
-				<td>Journal Volumes</td>
-			</tr>
-			<tr>
-				<td>Row 1</td>
-			</tr>
-			<tr>
-				<td>Row 2</td>
-			</tr>
-			<tr>
-				<td>Row 3</td>
-			</tr>
-			<tr>
-				<td>Row 4</td>
-			</tr><tr class="title">
-				<td>Journal Volumes</td>
-			</tr>
-			<tr>
-				<td>Row 1</td>
-			</tr>
-			<tr>
-				<td>Row 2</td>
-			</tr>
-			<tr>
-				<td>Row 3</td>
-			</tr>
-			<tr>
-				<td>Row 4</td>
-			</tr>
-		</table>
+#{set 'moreStyles'}
+        #{stylesheet 'home.css' /}
+#{/set}
+#{set 'moreScripts'}
+	<script type="text/javascript">
+	    $('document').ready(function(){
+		$('.volumes').slideDown("slow");
+		
+		$('.button').click(function(){
+			var volumeId = $(this).attr("id");
+			$('.volumeData').slideUp("slow");
+			var journalNumber = #{jsAction @getJournalNumbers(':volume_id') /}
+			$.post(journalNumber({volume_id: volumeId}), function(data){
+				$('.volumeData').html(data);
+				$('.volumeData').slideDown("slow");
+			});
+		});
+	});
+	</script>
+#{/set}
+<div class="content">
+	<span class="volumes">
+	<div class="browseHeader">
+		Journal Volumes
 	</div>
-	<a href="#" class="button blue">BUTTON1</a>
-	<a href="#" class="button blue">BUTTON2</a>
+		<ul>
+		    #{list items:volumes, as:'volume' }
+		        <li>
+		        	<div class="title">${volume.title}</div>
+		        	<div class="year">${volume.publishYear}</div> 
+		        	<input type="button" class="button blue volume" id="${volume.id}" value="View Volume"></li>
+		    #{/list}
+		</ul>
+	</span>
+	<span class="volumeData">
+	</span>
 </div>

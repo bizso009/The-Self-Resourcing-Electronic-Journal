@@ -4,6 +4,7 @@ import play.jobs.*;
 import play.test.*;
 import models.*;
 
+@SuppressWarnings("rawtypes")
 @OnApplicationStart
 public class Bootstrap extends Job
 {

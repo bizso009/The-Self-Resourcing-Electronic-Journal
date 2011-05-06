@@ -1,10 +1,10 @@
 package misc;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.*;
-import play.db.DB;
-import play.db.jpa.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 import models.*;
 
 public class ComplexChecks
@@ -105,7 +105,7 @@ public class ComplexChecks
     public static boolean canUserSelectArticleForReview(User u, Article a)
     {
         // Reviewers and editors only
-        if (u.role.id <= 1)
+        if (u.role.name == UserRole.READER)
             return false;
         if (u.assignments != null)
         {

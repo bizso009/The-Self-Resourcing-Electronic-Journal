@@ -1,10 +1,12 @@
 package jobs;
-import play.*;
-import play.jobs.*;
-import java.util.*;
+import java.util.Date;
+
 import misc.CommonUtil;
 import models.JournalVolume;
+import play.jobs.Every;
+import play.jobs.Job;
 
+@SuppressWarnings("rawtypes")
 @Every("1h")
 public class GenerateVolumes extends Job
 {
@@ -17,7 +19,8 @@ public class GenerateVolumes extends Job
         return v;
     }
 
-    @SuppressWarnings("deprecation")
+    @Override
+	@SuppressWarnings("deprecation")
     public void doJob()
     {
         JournalVolume latestVolume = CommonUtil.getLatestVolume();
