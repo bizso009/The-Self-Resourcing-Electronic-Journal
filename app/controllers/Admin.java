@@ -7,10 +7,10 @@ public class Admin extends Controller{
 	@Before
 	public static void init()
     {
-		Application.init();
+		Application.init("editor");
     }
     
 	public static void index() {
 		render();
-	}//FIXME when logged in still displays guest in header
+	}
 }
