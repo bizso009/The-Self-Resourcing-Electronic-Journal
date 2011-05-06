@@ -60,13 +60,13 @@ public class BasicTest extends UnitTest {
 
 	@Test
 	public void testRegisterUser() {
-		User u = User.find("byEmail", "ejournalself@gmail.com").first();
+		User u = User.find("byEmail", "bizso09@gmail.com").first();
 		if (u != null)
 			u.delete();
 
-		User.registerUser("ejournalself@gmail.com", "test", "test", "test",
+		User.registerUser("bizso09@gmail.com", "test", "test", "test",
 				"test");
-		User user = User.find("byEmail", "ejournalself@gmail.com").first();
+		User user = User.find("byEmail", "bizso09@gmail.com").first();
 		assertNotNull(user);
 	}
 

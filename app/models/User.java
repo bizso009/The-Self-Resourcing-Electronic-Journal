@@ -74,21 +74,11 @@ public class User extends Person {
 
 	public String getPassword() {
 		return Crypto.decryptAES(this.password);
-//		 return this.password;
 	}
 
 	public void setPassword(String password) {
 		this.password = Crypto.encryptAES(password);
-//		this.password = password;
 	}
-
-	// public String getEmail(){
-	// return personDetail.email;
-	// }
-	// public void setEmail(String email){
-	// this.personDetail.email = email;
-	// }
-
 	@Override
 	public void _delete() {
 		UserRole editor = UserRole.findByRole(UserRole.EDITOR);
