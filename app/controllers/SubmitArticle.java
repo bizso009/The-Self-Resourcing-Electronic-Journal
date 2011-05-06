@@ -26,13 +26,18 @@ import play.libs.Mail;
 import play.mvc.Controller;
 
 public class SubmitArticle extends Controller {
+<<<<<<< HEAD
+	
+=======
 
 	@Before
 	public static void init() {
 		Application.init(null);
 	}
 
+>>>>>>> 34adacfec42fef45a1f50b73ddb995522739a4a1
 	public static void index() {
+		Application.init(null);
 		render();
 	}
 
