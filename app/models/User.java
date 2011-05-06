@@ -3,6 +3,7 @@ package models;
 import play.*;
 import play.db.jpa.*;
 import javax.persistence.*;
+import controllers.Secure.Security;
 import java.util.*;
 
 @Entity
