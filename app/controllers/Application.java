@@ -15,13 +15,8 @@ import play.mvc.Controller;
 
 public class Application extends Controller
 {
-
-<<<<<<< HEAD
     @SuppressWarnings("boxing")
     @Before
-=======
-	@Before
->>>>>>> f9f3dd96f9f99f0a0e5ed39dd2934d365b4dea12
     public static void init(String userRole)
     {
     	boolean conn = Security.isConnected();
