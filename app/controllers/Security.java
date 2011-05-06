@@ -21,7 +21,7 @@ public class Security extends Secure.Security {
 
 	public static User loggedUser() {
 		if (isConnected()) {
-			return User.findById(Long.parseLong(connected()));
+			return User.find("byEmail",connected()).first();
 		} else {
 			return null;
 		}

@@ -25,7 +25,7 @@ public class ReviewArticle extends Controller
             return;
         }
         
-        User u = User.findById(Long.parseLong(Security.connected()));
+        User u = Security.loggedUser();
         // TODO: Check if the reviewer is assigned to the article...
         Conversation authConv = new Conversation().save();
         Long authorConvID = authConv.id;
@@ -41,7 +41,7 @@ public class ReviewArticle extends Controller
     {
         Review r = new Review();
         r.article = Article.findById(articleID);
-        r.reviewer = User.findById(Long.parseLong(Security.connected()));
+        r.reviewer = Security.loggedUser();
         r.expertiseLevel = expertiseLevel;
         r.mark = Mark.findById(mark);
         r.contentSummary = contentSummary;

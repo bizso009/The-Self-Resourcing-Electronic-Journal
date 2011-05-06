@@ -73,11 +73,12 @@ public class User extends Person {
 	}
 
 	public String getPassword() {
-		return Crypto.decryptAES(this.password);
+		//return Crypto.decryptAES(this.password);
+	    return this.password;
 	}
 
 	public void setPassword(String password) {
-		this.password = Crypto.encryptAES(password);
+		this.password = password;//Crypto.encryptAES(password);
 	}
 	@Override
 	public void _delete() {

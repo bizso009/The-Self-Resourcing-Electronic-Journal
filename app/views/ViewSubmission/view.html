@@ -35,10 +35,11 @@
 		#{/if}
 		#{else}		
 		%{ if (canDownloadForReview) { }%
-		<a href="@{ViewSubmission.downloadForReview(article.id)}" class="blue button">Download for review</a><br />		
-		%{ } else if (article.id==articles.get(articles.size()-1).id) { }%
-		<a href="@{ReviewArticle.start(article.id)}" class="blue button">Write a review</a><br />
-		%{ } }%
+		<a href="@{ViewSubmission.downloadForReview(article.id)}" class="blue button">Download for review</a><br />				
+		   %{ if ((!canSelectForReview)&&((!canCancelReview))&&(article.id==articles.get(articles.size()-1).id)) { }%
+			<a href="@{ReviewArticle.start(article.id)}" class="blue button">Write a review</a><br />
+		%{ 	} 
+		   }  }%
 		#{/else}
 	</td>
 </tr>
