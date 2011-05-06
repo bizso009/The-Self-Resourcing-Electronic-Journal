@@ -29,11 +29,15 @@ public class Application extends Controller
         	}
         }
     }
-
     public static void index()
     {
-    	 List<JournalVolume> volumes = JournalVolume.findAll();
-    	 render(volumes);
+    	render();
+    }
+    
+    public static void getJournalVolumes()
+    {
+    	List<JournalVolume> volumes = JournalVolume.findAll();
+   	 	render(volumes);
     }
     
     public static void getJournalNumbers(int volume_id)

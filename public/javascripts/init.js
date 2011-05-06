@@ -5,11 +5,3 @@ $(document).ready(function() {
         }
     });
 });
-
-function showMessage(msg) {
-	$("#messagestrip").html(msg).fadeIn(2000).fadeOut(400);
-}
-
-function showError(msg) {
-	$("#errorstrip").html(msg).fadeIn(2000).fadeOut(400);
-}
