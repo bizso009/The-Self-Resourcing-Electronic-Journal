@@ -8,7 +8,7 @@
 		        <li>
 		        	<div class="title">${volume.title}</div>
 		        	<div class="year">${volume.publishYear}</div> 
-		        	<input type="button" class="button blue volume" id="n${volume.id}" value="View Volume" onClick="showNumbers();"></li>
+		        	<input type="button" class="button blue volume" id="${volume.id}" value="View Volume" onClick='showNumbers(this);'></li>
 		    #{/list}
 		</ul>
 	</span>

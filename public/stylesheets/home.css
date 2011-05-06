@@ -1,28 +1,4 @@
 @CHARSET "ISO-8859-1";
 
-.volumes
-{
-	position:absolute;
-	display:none;
-}
 
-.title
-{
-	font-weight:bold;
-}
-
-.volumeData
-{
-	position:absolute;
-	float:right;
-	margin-left:250px;
-	display:none;
-}
-
-.browseHeader
-{
-	font-weight: bolder;
-	font-size: 20px;
-	padding-bottom: 10px;
-}
 
