@@ -9,5 +9,10 @@ public class Admin extends Controller{
 	public static void init()
     {
 		Application.init("editor");
-    }    
+    }
+	
+	public static void index()
+	{
+		
+	}
 }
