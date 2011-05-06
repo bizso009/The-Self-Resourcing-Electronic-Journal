@@ -4,12 +4,6 @@ $(document).ready(function() {
             return data;  
         }
     });
-	
-	$("input").focus(function () {
-		if($(this).val() == this.defaultValue) $(this).val("");
-	}).blur(function(){
-		if($(this).val() == "") $(this).val(this.defaultValue);
-	});
 });
 
 function showMessage(msg) {
