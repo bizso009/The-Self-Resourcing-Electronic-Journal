@@ -10,7 +10,6 @@ import play.data.validation.Required;
 import play.db.jpa.Model;
  
 @Entity
-@Table(name = "PersonDetail" )
 public class Person extends Model {
  
 	

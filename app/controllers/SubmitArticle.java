@@ -15,6 +15,7 @@ import misc.CommonUtil;
 import models.Article;
 import models.Keyword;
 import models.Person;
+import models.Submission;
 import models.User;
 import models.UserRole;
 
@@ -60,6 +61,8 @@ public class SubmitArticle extends Controller {
 					affiliation[i]).save();
 			}
 		}
+		//check submission
+		Submission submission = Submission.getSubmission(subID);
 		
 		//save keywords
 		String[] keys = keywords.split(",");
@@ -73,6 +76,7 @@ public class SubmitArticle extends Controller {
 		//save article
 		Article article = new Article(title, articlePdf, new Date(), null, summary, subID);
 		article.keywords = articleKeywords;
+		article.submission = submission;
 		article.save();
 	
 		render();

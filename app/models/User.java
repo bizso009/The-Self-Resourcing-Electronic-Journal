@@ -42,8 +42,7 @@ public class User extends Person {
 	public User(String email, String password, String firstName,
 			String lastName, String affiliation) {
 		super(firstName, lastName, email, affiliation);
-		this.password = password;
-
+		setPassword(password);
 	}
 
 	public static User registerUser(String email, String password,
@@ -78,11 +77,13 @@ public class User extends Person {
 	}
 
 	public String getPassword() {
-		return Crypto.decryptAES(this.password);
+//		return Crypto.decryptAES(this.password);
+		 return this.password;
 	}
 
 	public void setPassword(String password) {
-		this.password = Crypto.encryptAES(password);
+//		this.password = Crypto.encryptAES(password);
+		this.password = password;
 	}
 
 	// public String getEmail(){

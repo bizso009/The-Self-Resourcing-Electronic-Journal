@@ -47,23 +47,10 @@ public class Article extends Model {
 		this.datePublished = datePublished;
 		this.summary = summary;
 
-		// check for submission
-		initSubmission(submissionID);
 
 	}
 
-	private void initSubmission(Long submissionID) {
-		if (submissionID == null) {
-			this.submission = Submission.newSubmission();
-		} else {
-			Submission s = Submission.findById(submissionID);
-			if (s == null) {
-				this.submission = Submission.newSubmission();
-			} else {
-				this.submission = s;
-			}
-		}
-	}
+	
 
 	public Article() {
 		//const
