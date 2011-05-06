@@ -8,6 +8,7 @@ import models.Review;
 import models.User;
 import models.Conversation;
 import play.mvc.*;
+import jobs.*;
 
 public class ReviewArticle extends Controller
 {
@@ -52,6 +53,7 @@ public class ReviewArticle extends Controller
         r.dateSubmitted = new Date();
         r.locked = true;
         r.save();
+        new AsyncCheckAndPublish(r.article).now();
         render();
     }
 }

@@ -28,6 +28,9 @@ public class Article extends Model
     @ManyToMany(mappedBy = "articles", cascade = CascadeType.ALL)
     public List<Keyword>      keywords;
 
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    public List<Review>       reviews;
+
     public Article(String title, Blob articlePdf, Date dateSubmitted, Date datePublished, String summary, long submissionID)
     {
         super();
