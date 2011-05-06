@@ -25,6 +25,80 @@ $(document).ready(function(){
 		$('#numberAuthors').val(newAuthors);
 	});
 	
+	$('.submitForm').submit(function()
+	{
+		var values = $('.submitForm').serialize();
+		var newValues = values.split("&");
+		var errors = 0;
+		var authorErrors = 0;
+		for(var field in newValues)
+		{
+			var pair = newValues[field];
+			var pairArray = pair.split("=");
+			var key = "";
+			var value = "";
+			key = pairArray[0];
+			value = pairArray[1];
+			var html = "";
+			if(key == "firstName")
+			{
+				if(value == "" || value == "First+Name")
+				{
+					errors = 1;
+					authorErrors = 1;
+				}
+			}
+			
+			if(key == "lastName")
+			{
+				if(value == "" || value == "Last+Name")
+				{
+					errors = 1;
+					authorErrors = 1;
+				}
+			}
+			
+			if(key == "email")
+			{
+				if(value == "" || value == "Email+Address")
+				{
+					errors = 1;
+					authorErrors = 1;
+				}
+			}
+			
+			if(key == "affiliation")
+			{
+				if(value == "" || value=="Affiliation")
+				{
+					errors = 1;
+					authorErrors = 1;
+				}
+			}
+			
+			if(key == "title")
+			{
+				if(value == "")
+				{
+					errors = 1;
+				}
+			}
+		}
+		
+		if(errors == 1)
+		{
+			if(authorErrors == 1)
+			{
+				$('#authorError').html("One of the above author details is invalid. Please correct this before continuing.");
+			}
+			$('.error').css("visibility", "visible");
+			return false;
+		}else
+		{
+		
+		}
+	});
+	
 	
 });
 
@@ -36,15 +110,5 @@ function removeAuthor(author)
 	$(spacingId).remove();
 }
 
-function validate()
-{
-	$('.submitForm').submit(function()
-	{
-		var values = $('.submitForm').serialize();
-		var newValues = values.split("&");
-		alert(newValues[0]);
-		return false;
-	});
-}
 
 
