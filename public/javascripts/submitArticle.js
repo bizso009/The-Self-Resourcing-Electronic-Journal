@@ -30,8 +30,7 @@ $(document).ready(function(){
 	$('.submitForm').submit(function()
 	{
 		var editor = CKEDITOR.instances.editor_kama;
-		alert(editor.getData());
-		$('.error').css("visibility", "hidden");
+		var summary = editor.getData();
 		$('#authorError').html("");
 		$('#titleError').html("");
 		$('#keywordError').html("");
@@ -103,13 +102,19 @@ $(document).ready(function(){
 			}
 		}
 		
+		if(summary == "")
+		{
+			errors = 1;
+			$('#summaryError').html("Summary cannot be empty.")
+		}
+		
 		if(errors == 1)
 		{
 			if(authorErrors == 1)
 			{
 				$('#authorError').html("One of the above author details is invalid. Please correct this before continuing.");
 			}
-			$('.error').css("visibility", "visible");
+			$('.error').toggle("slow");
 			return false;
 		}else
 		{

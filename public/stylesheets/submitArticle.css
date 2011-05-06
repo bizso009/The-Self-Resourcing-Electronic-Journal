@@ -48,7 +48,7 @@
 
 .error
 {
-	visibility: hidden;
+	display:none;
 	font-weight:bolder;
 	color: #F00E0E;
 }
