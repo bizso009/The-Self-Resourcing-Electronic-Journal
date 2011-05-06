@@ -46,12 +46,12 @@ public class BasicTest extends UnitTest {
 
 		Person ad1 = new Person();
 		ad1.firstName = "test";
-		ad1.article = article;
+//		ad1.article = article;
 		ad1.save();
 
 		Person ad2 = new Person();
 		ad2.firstName = "test";
-		ad2.article = article;
+//		ad2.article = article;
 		ad2.save();
 
 		assertTrue(Person.count() > 1);

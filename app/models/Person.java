@@ -1,7 +1,11 @@
 package models;
  
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,8 +25,8 @@ public class Person extends Model {
 	@Required
 	public String email;
 	
-	@ManyToOne
-	public Article article;
+	@ManyToMany(cascade = CascadeType.ALL)
+	public List<Article> articles;
 
 	@OneToOne
 	public User user;
@@ -36,6 +40,7 @@ public class Person extends Model {
 		this.affiliation = affiliation;
 	}
 
+	
 	public Person() {
 		//const
 	}

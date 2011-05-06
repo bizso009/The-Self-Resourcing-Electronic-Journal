@@ -29,8 +29,8 @@ public class Article extends Model {
 	@ManyToOne
 	public Submission submission;
 
-	@OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-	public List<Person> authorDetails;
+	@ManyToMany(mappedBy = "articles", cascade = CascadeType.ALL)
+	public List<Person> authors;
 
 	@ManyToMany(mappedBy = "articles", cascade = CascadeType.ALL)
 	public List<Keyword> keywords;
