@@ -91,6 +91,12 @@ public class SubmitArticle extends Controller {
 		article.submission = submission;
 		article.save();
 
+		try {
+			mainAuth.sendConfirmationEmail();
+		} catch (EmailException e) {
+			Logger.error(e, "email exception");
+			e.printStackTrace();
+		}
 		render();
 	}
 
