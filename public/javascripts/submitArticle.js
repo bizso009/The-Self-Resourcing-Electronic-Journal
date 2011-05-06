@@ -2,8 +2,16 @@
  * Java Script for submit article
  */
 
+function clearClick(){
+	$("input").focus(function() {
+		if(this.value == this.defaultValue) $(this).val("");
+	}).blur(function() {
+		if(this.value == "") $(this).val(this.defaultValue);
+	});
+}
+
 $(document).ready(function(){
-	
+	clearClick();
 	$('#addAuthor').click(function()
 	{
 		var authors = parseInt($('#numberAuthors').val());
@@ -23,6 +31,8 @@ $(document).ready(function(){
 		$('#authors').append('		    </div>');
 		$('#authors').append('		    <div class="spacingMedium" id="spacing'+newAuthors+'"></div>');		
 		$('#numberAuthors').val(newAuthors);
+		
+		clearClick();
 	});
 	
 	var data = $( 'textarea.editor' );
@@ -34,10 +44,13 @@ $(document).ready(function(){
 		$('#authorError').html("");
 		$('#titleError').html("");
 		$('#keywordError').html("");
+		$('#summaryError').html("");
+		$('#fileError').html("");
 		var values = $('.submitForm').serialize();
 		var newValues = values.split("&");
 		var errors = 0;
 		var authorErrors = 0;
+		var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
 		for(var field in newValues)
 		{
 			var pair = newValues[field];
@@ -68,6 +81,12 @@ $(document).ready(function(){
 			if(key == "email")
 			{
 				if(value == "" || value == "Email+Address")
+				{
+					errors = 1;
+					authorErrors = 1;
+				}
+				
+				if(!pattern.test(value))
 				{
 					errors = 1;
 					authorErrors = 1;
@@ -108,17 +127,24 @@ $(document).ready(function(){
 			$('#summaryError').html("Summary cannot be empty.")
 		}
 		
+		var file = $('#file').val();
+		if(file == "")
+		{
+			errors = 1;
+			$('#fileError').html("Please Choose a File");
+		}
+		
 		if(errors == 1)
 		{
 			if(authorErrors == 1)
 			{
 				$('#authorError').html("One of the above author details is invalid. Please correct this before continuing.");
 			}
-			$('.error').toggle("slow");
+			$('.error').slideDown("slow");
 			return false;
 		}else
 		{
-		
+			return true;
 		}
 	});
 	
