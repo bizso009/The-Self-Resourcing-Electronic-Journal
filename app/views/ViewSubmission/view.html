@@ -1,0 +1,38 @@
+#{extends 'main.html' /}
+#{set title:'View submission' /}
+<center><h3>Submission history</h3></center>
+#{list items:articles, as:'article'}
+<div>
+<table>
+<tr>
+	<td style="width: 200px">Title:</td><td>${article.title}</td>
+</tr>
+<tr>
+	<td>Keywords:</td>
+	<td>
+	#{list items:article.keywords, as:'keyword'}
+	${keyword.word};&nbsp;
+	#{/list}
+	</td>
+</tr>
+<tr>
+	<td>Authors:</td>
+	<td>
+	#{list items:article.authorDetails, as:'author'}
+	${author.firstName}&nbsp;${author.lastName} (${author.affiliation}) e-Mail: ${author.email}<br/>
+	#{/list}
+	</td>
+</tr>
+<tr>
+	<td>Abstract:</td>
+	<td>${article.summary}</td>
+</tr>
+<tr>
+	<td>Download:</td>
+	<td>
+		@{ViewSubmission.download(article.articlePdf)}
+	</td>
+</tr>
+</table>
+</div>
+#{/list}
