@@ -38,4 +38,10 @@ public class Admin extends Controller{
 		List<JournalNumber> numbers = JournalNumber.findAll();
 		render(numbers);
 	}
+	
+	public static void articles()
+	{
+		List<Article> articles = Article.findAll();
+		render(articles);
+	}
 }
