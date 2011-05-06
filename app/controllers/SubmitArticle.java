@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
+import org.junit.Before;
 
 import misc.CommonUtil;
 import models.Article;
@@ -25,15 +26,12 @@ import play.mvc.Controller;
 
 public class SubmitArticle extends Controller {
 
-	public static void index() {
-		if (Security.isConnected()) {
-			render();
-		} else {
-			redirect("../displayInfo");
-		}
+	@Before
+	public static void init(){
+		Application.init(null);
 	}
-
-	public static void displayInfo() {
+	
+	public static void index() {
 		render();
 	}
 

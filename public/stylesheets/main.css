@@ -263,7 +263,7 @@ td{
 	text-align: center;
 	text-decoration: none;
 	font: 14px/100% Arial, Helvetica, sans-serif;
-	padding: .5em 2em .55em 2em;
+	padding: .5em 1em .55em 1em;
 	text-shadow: 0 1px 1px rgba(0,0,0,.3);
 	-webkit-border-radius: .5em; 
 	-moz-border-radius: .5em;
@@ -304,7 +304,6 @@ td{
 }
 
 form {
-	background:#fff;
 	margin:1em;
 	width:27em;
 }

@@ -14,4 +14,9 @@ public class JournalNumber extends Model
 
     @OneToMany(mappedBy = "journalNumber", cascade = CascadeType.ALL)
     public List<Article> articles;
+    
+    public static List<JournalNumber> getJournalNumbeByVolume(int volume_id)
+    {
+    	return JournalNumber.find("volume_id =?", volume_id).fetch();
+    }
 }
