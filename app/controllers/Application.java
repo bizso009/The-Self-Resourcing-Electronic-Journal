@@ -13,7 +13,7 @@ import play.mvc.Controller;
 
 public class Application extends Controller
 {
-   @SuppressWarnings("boxing")
+    @SuppressWarnings("boxing")
     @Before
     public static void init(String userRole)
     {
