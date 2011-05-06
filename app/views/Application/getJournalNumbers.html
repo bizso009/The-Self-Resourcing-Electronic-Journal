@@ -1,0 +1,9 @@
+<div class="browseHeader">Journal Numbers</div>
+<ul>
+	#{list items:numbers, as:'number' }
+		        <li>
+		        	<div class="title">${number.id}</div>
+		        	<div class="year">${number.publishDate}</div> 
+		        	<input type="button" class="button blue volume" id="${number.id}" value="View Article"></li>
+    #{/list}
+</ul>

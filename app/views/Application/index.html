@@ -9,13 +9,18 @@
 		$('.volumes').slideDown("slow");
 		
 		$('.button').click(function(){
-			var volumeId = $(this).attr("id");
+			var string = $(this).attr("id");
+			var type = string[0];
+			var id = string.substr(1);
 			$('.volumeData').slideUp("slow");
-			var journalNumber = #{jsAction @getJournalNumbers(':volume_id') /}
-			$.post(journalNumber({volume_id: volumeId}), function(data){
-				$('.volumeData').html(data);
-				$('.volumeData').slideDown("slow");
-			});
+			if(type == "n")
+			{
+				var journalNumber = #{jsAction @getJournalNumbers(':volume_id') /}
+				$.post(journalNumber({volume_id: id}), function(data){
+					$('.volumeData').html(data);
+					$('.volumeData').slideDown("slow");
+				});
+			}
 		});
 	});
 	</script>
@@ -30,7 +35,7 @@
 		        <li>
 		        	<div class="title">${volume.title}</div>
 		        	<div class="year">${volume.publishYear}</div> 
-		        	<input type="button" class="button blue volume" id="${volume.id}" value="View Volume"></li>
+		        	<input type="button" class="button blue volume" id="n${volume.id}" value="View Volume" onClick="showNumbers();"></li>
 		    #{/list}
 		</ul>
 	</span>
