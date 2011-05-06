@@ -1,16 +1,16 @@
 package models;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import javax.persistence.*;
+import play.db.jpa.*;
 
-public class JournalVolume {
-	public int journalVolumeID;
-	public Date publishYear;
-	public List<JournalNumber> journalNumbers;
-	
-	public JournalVolume(Date pubDate, List journalNumbers){
-		super();
-		this.publishYear = pubDate;
-		this.journalNumbers = journalNumbers;
-	}
+@Entity
+@Table(name = "JournalVolumes")
+public class JournalVolume extends Model
+{
+    public String              title;
+    public Date                publishYear;
+
+    @OneToMany(mappedBy = "volume", cascade = CascadeType.ALL)
+    public List<JournalNumber> numbers;
 }

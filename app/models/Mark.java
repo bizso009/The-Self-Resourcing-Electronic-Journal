@@ -2,14 +2,13 @@ package models;
 
 import play.*;
 import play.db.jpa.*;
-
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.*;
 
 @Entity
-@Table(name="Marks")
-public class Mark extends Model 
+@Table(name = "Marks")
+public class Mark extends Model
 {
     /*
     @Id

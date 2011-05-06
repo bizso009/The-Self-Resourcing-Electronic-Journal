@@ -25,7 +25,7 @@ public class ReviewArticle extends Controller
         }
         
         User u = User.findById(Long.parseLong(Security.connected()));
-        // Check if the reviewer is assigned to the article...
+        // TODO: Check if the reviewer is assigned to the article...
         Conversation authConv = new Conversation().save();
         Long authorConvID = authConv.id;
         Conversation editConv = new Conversation().save();
