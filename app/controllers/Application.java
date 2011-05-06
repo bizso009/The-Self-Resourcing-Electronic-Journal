@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.JournalNumber;
 import models.JournalVolume;
+import models.Person;
 
 import play.mvc.Before;
 import play.mvc.Controller;
