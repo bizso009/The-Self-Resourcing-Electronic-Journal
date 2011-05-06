@@ -34,6 +34,8 @@ $(document).ready(function(){
 		$('#authorError').html("");
 		$('#titleError').html("");
 		$('#keywordError').html("");
+		$('#summaryError').html("");
+		$('#fileError').html("");
 		var values = $('.submitForm').serialize();
 		var newValues = values.split("&");
 		var errors = 0;
@@ -108,13 +110,20 @@ $(document).ready(function(){
 			$('#summaryError').html("Summary cannot be empty.")
 		}
 		
+		var file = $('#file').val();
+		if(file == "")
+		{
+			errors = 1;
+			$('#fileError').html("Please Choose a File");
+		}
+		
 		if(errors == 1)
 		{
 			if(authorErrors == 1)
 			{
 				$('#authorError').html("One of the above author details is invalid. Please correct this before continuing.");
 			}
-			$('.error').toggle("slow");
+			$('.error').slideDown("slow");
 			return false;
 		}else
 		{
