@@ -1,11 +1,9 @@
-jQuery.ajaxSetup({
-            dataFilter: function(data, dataType) {
-                return data;  
-            }
-        });
-
 $(document).ready(function() {
-	
+	jQuery.ajaxSetup({
+        dataFilter: function(data, dataType) {
+            return data;  
+        }
+    });
 });
 
 function showMessage(msg) {
