@@ -1,10 +1,15 @@
 package controllers;
 
+<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+=======
+import java.sql.*;
+import models.User;
+>>>>>>> 3f61d287d86cb816570ef17cb576a03d003664c6
 import play.db.DB;
 
 public class Security extends Secure.Security
@@ -35,6 +40,18 @@ public class Security extends Secure.Security
     public static boolean anon()
     {
         return !isConnected();
+    }
+    
+    public static User loggedUser()
+    {
+        if (isConnected())
+        {
+            return User.findById(Long.parseLong(connected()));
+        }
+        else
+        {
+            return null;
+        }
     }
     
     static boolean check(String profile)

@@ -1,9 +1,14 @@
 package controllers;
 
+import models.User;
+import play.mvc.Before;
 import play.mvc.Controller;
 
-public class Admin extends Controller{
-	public static void index() {
-		render();
-	}//FIXME when logged in still displays guest in header
+@CRUD.For(User.class)
+public class Admin extends CRUD{
+	@Before
+	public static void init()
+    {
+		Application.init("editor");
+    }    
 }

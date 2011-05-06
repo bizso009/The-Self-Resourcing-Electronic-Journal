@@ -1,0 +1,43 @@
+#{extends 'main.html' /}
+#{set title:'index.html' /}
+
+<table>
+  <tr>
+  	<td>
+  	  <div style="width: 300px">
+  	  Selected articles:
+  	  <table>
+  	  	<tr class="title">
+  	  		<td>Article</td>
+  	  		<td>Status</td>
+  	  	</tr>
+  	  	#{list items:selectedArticles, as:'sa'}
+		<tr>
+			<td><a href="${sa.link}">${sa.title}</a></td>
+			<td>${sa.status}</td>
+		</tr>  	  
+  	  	#{/list}
+  	  </table>
+  	  </div>
+  	</td>
+  	<td>
+  	  <div style="width: 500px">
+  	  Available articles for selection:
+  	  <table>
+  	  	<tr class="title">
+  	  		<td>Article</td>
+  	  		<td>Date submitted</td>
+  	  		<td>Keywords</td>
+  	  	</tr>
+  	  	#{list items:availableArticles, as:'aa'}
+		<tr>
+			<td><a href="${aa.link}">${aa.title}</a></td>
+			<td>${aa.date}</td>
+			<td>${aa.keywords}</td>
+		</tr>  	  
+  	  	#{/list}
+  	  </table>
+  	  </div>
+  	</td>
+  </tr>
+</table>

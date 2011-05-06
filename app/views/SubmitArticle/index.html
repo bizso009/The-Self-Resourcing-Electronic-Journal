@@ -4,13 +4,21 @@
         #{stylesheet 'submitArticle.css' /}
 #{/set}
 #{set 'moreScripts'}
-    #{script 'submitArticle.js'/}
     #{script 'ckeditor/ckeditor.js'/}
+    #{script 'submitArticle.js'/}
 #{/set}
 
 <div id="form">
+<<<<<<< HEAD
 	#{form @SubmitArticle.submit(), enctype:'multipart/form-data', class:'submitForm'}
 <!-- 	<form action="@{SubmitArticle.submit()}" class="submitForm" method="POST"> -->
+=======
+	#{form @SubmitArticle.submit() , enctype:'multipart/form-data', class:'submitForm' }
+		<div class="error" id="mainError">
+			Please fix the errors on this page.
+		</div>
+		<div class="spacingSmall"></div>
+>>>>>>> 3f61d287d86cb816570ef17cb576a03d003664c6
 		<input name="subID" type="hidden" value="${subID}"/> 
 		<input type="hidden" id="numberAuthors" value="1">
 	    <div class="formHeader">
@@ -42,7 +50,10 @@
 		    </div>
 		    <div class="spacingMedium" id="spacing1"></div>
 	    </div>
-	    
+	    <div class="spacingSmall"></div>
+	    <div class="error" id="authorError">
+	    	
+	    </div>
 	    <div class="spacingMedium"></div>
 	    <div id="addButton">
 	    	<input type="button" id="addAuthor" class="button blue" value="Add Author">
@@ -57,7 +68,7 @@
 	    			Article Title:
 	    		</span>
 	    		<span class="right">
-	    			<input type="text" name="title">
+	    			<input type="text" name="title"><span class="error" id="titleError"></span>
 	    		</span>
 	    	</div>
 	    	
@@ -70,7 +81,7 @@
 	    			Keywords:
 	    		</span>
 	    		<span class="right">
-	    			<input type="text" name="keywords">
+	    			<input type="text" name="keywords"><span class="error" id="keywordError"></span>
 	    		</span>
 	    	</div>
 	    	<div class="spacingSmall"></div>
@@ -82,7 +93,7 @@
 	    		</span>
 	    	</div>
 	    	<div class="spacingMedium"></div>
-	    	<textarea rows="30" cols="90" name="summary" id="editor_kama">
+	    	<textarea rows="30" cols="90" name="summary" id="editor_kama" class="editor">
 	    	</textarea>
 	    	<script type="text/javascript">
 			//<![CDATA[
@@ -95,9 +106,14 @@
 
 			//]]>
 			</script>
-			
-			<input type="file" style="width:300px" class="button" name="articlePdf">
+			<div class="error" id="summaryError">
+			</div>
+			<div class="spacingSmall">
+			</div>
+			<input type="file" style="width:300px" class="button" id="file" name="articlePdf">
 			<div id="spacingMedium"></div>
+			<span class="error" id="fileError"></span>
+			<div class="spacingSmall"></div>
    			<input type="submit" name="submit" class="button blue" value="Submit">
 			
 	    </div>

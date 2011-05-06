@@ -51,7 +51,7 @@ body {
 }
 
 #content {
-	width:1048px;
+	/*width:1048px;*/
 	margin: 0px auto;
 	padding:10px;
 	background: #fff;
@@ -120,7 +120,6 @@ body {
 	background:#4E9258;
 	color:#fff;
 	margin: 3px;
-	display: none;
 }
 
 #errorstrip{
@@ -130,7 +129,6 @@ body {
 	background:#800517;
 	color:#fff;
 	margin: 3px;
-	display:none;
 }
 
 #center{
@@ -168,10 +166,6 @@ body {
 	background:#333;
 	height:25px;
 	padding-top:9px;
-}
-
-#table{
-	width:100%;
 }
 
 #center #menu li:first-child a{
@@ -269,7 +263,7 @@ td{
 	text-align: center;
 	text-decoration: none;
 	font: 14px/100% Arial, Helvetica, sans-serif;
-	padding: .5em 2em .55em;
+	padding: .5em 2em .55em 2em;
 	text-shadow: 0 1px 1px rgba(0,0,0,.3);
 	-webkit-border-radius: .5em; 
 	-moz-border-radius: .5em;
@@ -277,6 +271,7 @@ td{
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
 	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	text-indent: 0px;
 }
 .button:hover {
 	text-decoration: none;
@@ -310,7 +305,6 @@ td{
 
 form {
 	background:#fff;
-	border:1px solid #eee;
 	margin:1em;
 	width:27em;
 }

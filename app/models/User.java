@@ -1,6 +1,14 @@
 package models;
 
+<<<<<<< HEAD
 import java.util.List;
+=======
+import play.*;
+import play.db.jpa.*;
+import javax.persistence.*;
+import controllers.Secure.Security;
+import java.util.*;
+>>>>>>> 3f61d287d86cb816570ef17cb576a03d003664c6
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -22,6 +30,7 @@ import play.libs.Mail;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Users")
+<<<<<<< HEAD
 public class User extends Person {
 
 	public String password;
@@ -141,3 +150,20 @@ public class User extends Person {
 		// TODO check for last editor
 	}
 }
+=======
+public class User extends Model
+{
+   
+    public String passwordHash;
+    public boolean subscribed;
+
+    @ManyToOne
+    public PersonDetail personDetail;
+    
+    @ManyToOne
+    public UserRole role;
+    
+    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
+    public List<ReviewerAssignment> assignments;
+}
+>>>>>>> 3f61d287d86cb816570ef17cb576a03d003664c6
