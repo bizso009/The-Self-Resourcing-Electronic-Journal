@@ -1,14 +1,11 @@
 package models;
 
-<<<<<<< HEAD
 import java.util.List;
-=======
 import play.*;
 import play.db.jpa.*;
 import javax.persistence.*;
 import controllers.Secure.Security;
 import java.util.*;
->>>>>>> 3f61d287d86cb816570ef17cb576a03d003664c6
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -30,54 +27,12 @@ import play.libs.Mail;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Users")
-<<<<<<< HEAD
 public class User extends Person {
 
 	public String password;
 
 	public boolean subscribed;
 
-	// /**
-	// * @return the firstName
-	// */
-	// public String getFirstName() {
-	// return this.personDetail.firstName;
-	// }
-	// /**
-	// * @return the lastName
-	// */
-	// public String getLastName() {
-	// return this.personDetail.lastName;
-	// }
-	// /**
-	// * @return the affiliation
-	// */
-	// public String getAffiliation() {
-	// return this.personDetail.affiliation;
-	// }
-	// /**
-	// * @param firstName the firstName to set
-	// */
-	// public void setFirstName(String firstName) {
-	// this.personDetail.firstName = firstName;
-	// }
-	// /**
-	// * @param lastName the lastName to set
-	// */
-	// public void setLastName(String lastName) {
-	// this.personDetail.lastName = lastName;
-	// }
-	// /**
-	// * @param affiliation the affiliation to set
-	// */
-	// public void setAffiliation(String affiliation) {
-	// this.personDetail.affiliation = affiliation;
-	// }
-	//
-	// @Required
-	// @OneToOne
-	// public Person personDetail;
-	//
 	@ManyToOne
 	public UserRole role;
 
@@ -88,13 +43,6 @@ public class User extends Person {
 			String lastName, String affiliation) {
 		super(firstName, lastName, email, affiliation);
 		this.password = password;
-		// this.personDetail = new Person();
-		// setEmail(email);
-		// setPassword(password);
-		// setFirstName(firstName);
-		// setLastName(lastName);
-		// setAffiliation(affiliation);
-		// this.personDetail.save();
 
 	}
 
@@ -146,24 +94,10 @@ public class User extends Person {
 
 	@Override
 	public void _delete() {
+		UserRole editor = UserRole.findByRole(UserRole.EDITOR);
+		if (role.equals(editor) && editor.users.size() == 1) {
+			throw new IllegalStateException("Cannot delete last editor in database");
+		}
 		super._delete();
-		// TODO check for last editor
 	}
 }
-=======
-public class User extends Model
-{
-   
-    public String passwordHash;
-    public boolean subscribed;
-
-    @ManyToOne
-    public PersonDetail personDetail;
-    
-    @ManyToOne
-    public UserRole role;
-    
-    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
-    public List<ReviewerAssignment> assignments;
-}
->>>>>>> 3f61d287d86cb816570ef17cb576a03d003664c6

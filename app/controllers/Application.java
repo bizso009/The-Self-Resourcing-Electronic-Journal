@@ -6,14 +6,10 @@ import play.mvc.Controller;
 
 public class Application extends Controller
 {
-<<<<<<< HEAD
+
     @SuppressWarnings("boxing")
-	@Before
-    public static void setConnectedUser()
-=======
     @Before
     public static void init(String userRole)
->>>>>>> 3f61d287d86cb816570ef17cb576a03d003664c6
     {
     	boolean conn = Security.isConnected();
     	renderArgs.put("loggedin", conn);
