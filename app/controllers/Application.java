@@ -1,26 +1,18 @@
 package controllers;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 481fd032befbd7779e0ffecff3e62f055ff1e80f
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import models.JournalNumber;
 import models.JournalVolume;
+
 import play.mvc.Before;
 import play.mvc.Controller;
 
 
+
 public class Application extends Controller
 {
-<<<<<<< HEAD
-
-=======
->>>>>>> 481fd032befbd7779e0ffecff3e62f055ff1e80f
-    @SuppressWarnings("boxing")
+   @SuppressWarnings("boxing")
     @Before
     public static void init(String userRole)
     {
