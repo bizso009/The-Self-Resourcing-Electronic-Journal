@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.JournalNumber;
 import models.JournalVolume;
+import models.Person;
 
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -12,7 +13,7 @@ import play.mvc.Controller;
 
 public class Application extends Controller
 {
-   @SuppressWarnings("boxing")
+    @SuppressWarnings("boxing")
     @Before
     public static void init(String userRole)
     {
@@ -25,7 +26,7 @@ public class Application extends Controller
         
         if(userRole != null){
         	if(!conn || !Security.check(userRole)){
-        		renderArgs.put("err", "You do not authorization to view this page");
+        		renderArgs.put("err", "AUTH FAIL : You do not authorised to view this page");
         	}
         }
     }
