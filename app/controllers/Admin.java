@@ -6,6 +6,7 @@ import java.util.Map;
 import org.omg.Dynamic.Parameter;
 
 import models.Article;
+import models.JournalDetails;
 import models.JournalNumber;
 import models.JournalVolume;
 import models.User;
@@ -75,5 +76,20 @@ public class Admin extends Controller{
 		
 		List<User> userslist = User.findAll();
 		render(renderArgs, userslist);
+	}
+	
+	public static void site(){
+		render();
+	}
+	
+	public static void updateSettings(String journalTitle, String journalInfo, String journalTemplate){
+		JournalDetails journalDetails = JournalDetails.findById((long)1);
+		if(journalDetails != null && journalInfo != null && journalTemplate != null){
+			journalDetails.title = journalTitle;
+			journalDetails.info = journalInfo;
+			journalDetails.templateLocation = journalTemplate;
+			journalDetails.save();
+			site();
+		}
 	}
 }
