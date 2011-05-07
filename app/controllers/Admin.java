@@ -1,18 +1,19 @@
 package controllers;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
-import org.omg.Dynamic.Parameter;
-
+import misc.ComplexChecks;
 import models.Article;
+import models.JournalDetails;
 import models.JournalNumber;
 import models.JournalVolume;
+import models.ReviewerAssignment;
 import models.User;
-import models.UserRole;
+import play.db.jpa.Blob;
 import play.mvc.Before;
 import play.mvc.Controller;
-import sun.security.krb5.Config;
+import play.mvc.Http;
 
 public class Admin extends Controller{
 	@Before
@@ -75,5 +76,33 @@ public class Admin extends Controller{
 		
 		List<User> userslist = User.findAll();
 		render(renderArgs, userslist);
+	}
+	
+	public static void site(){
+		render();
+	}
+	
+	public static void updateSettings(String journalTitle, String journalInfo, Blob journalTemplate){
+		JournalDetails journalDetails = JournalDetails.findById((long)1);
+		if(journalDetails != null && journalInfo != null && journalTemplate != null){
+			journalDetails.title = journalTitle;
+			journalDetails.info = journalInfo;
+			journalDetails.templateLocation = journalTemplate;
+			journalDetails.save();
+			site();
+		}
+	}
+	
+	public static void downloadTemplate(Long id)
+	{
+		JournalDetails j = JournalDetails.findById(id);
+        if (j == null)
+            return;
+        // TODO: Enable later
+        Http.Header h = new Http.Header();
+        h.name = "Content-Type";
+        h.values.add("application/octet-stream");
+        ViewSubmission.response.headers.put("Content-Type", h);
+        renderBinary(j.templateLocation.get());
 	}
 }

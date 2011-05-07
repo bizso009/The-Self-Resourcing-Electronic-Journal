@@ -1,7 +1,6 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<div id="trace">Home :: Page</div>
 <div class="line"></div>
 <div id="maincontent">
 	<h2>Editor Control Panel</h2>
@@ -25,7 +24,7 @@
 						<a class="blue button" href="users?act=e&id=${cuser.id}">+ Editor</a>
 					#{/if}
 					#{else}
-						#{if ( id != cuser.id.toString() )}
+						#{if ( userid != cuser.id.toString() )}
 							<a class="blue button" href="users?act=a&id=${cuser.id}">- Editor</a>
 						#{/if}
 					#{/else}
