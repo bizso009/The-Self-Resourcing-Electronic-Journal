@@ -17,6 +17,10 @@
 				<td>${article.title}</td>
 				<td>${article.dateSubmitted}</td>
 				<td>${article.datePublished}</td>
+				<td>
+					<a class="button blue" href="/viewsubmission/view?subID=${article.id}">View</a>
+					<a class="button blue" href="/Admin/unpublishedarticles?pubid=${article.id}">Publish</a>
+				</td>
 			</tr>
 			#{/list}
 		</table>

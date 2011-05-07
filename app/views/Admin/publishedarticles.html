@@ -14,9 +14,10 @@
 			</tr>
 			#{list items:articles, as:'article' }
 			<tr>
-				<td>${article.title}</td>
+				<td>${article.title}</a></td>
 				<td>${article.dateSubmitted}</td>
 				<td>${article.datePublished}</td>
+				<td><a class="button blue" href="/viewsubmission/view?subID=${article.id}">View</a></td>
 			</tr>
 			#{/list}
 		</table>
