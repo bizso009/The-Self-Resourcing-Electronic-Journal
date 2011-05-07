@@ -66,6 +66,9 @@ public class User extends Model {
 
 	@OneToMany(mappedBy = "reviewer")
 	public List<Review> reviews;
+	
+	@OneToMany(mappedBy = "author")
+	public List<Submission> submissions;
 
 	public User(String email, String firstName, String lastName,
 			String affiliation, String password, UserRole role) {

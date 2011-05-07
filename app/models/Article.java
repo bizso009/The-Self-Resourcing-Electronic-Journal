@@ -13,8 +13,10 @@ import javax.persistence.OneToMany;
 
 import jobs.NotifyKeywordSubscriptions;
 import misc.CommonUtil;
+import jobs.NotifyKeywordSubscriptions;
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
+import jobs.*;
 
 @Entity
 public class Article extends Model {

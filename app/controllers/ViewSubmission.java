@@ -11,9 +11,9 @@ public class ViewSubmission extends Controller
     public static class ChatSettings
     {
         public boolean showAuthorConv;
-        public int authorRO;
+        public int     authorRO;
         public boolean showEditorConv;
-        public int editorRO;
+        public int     editorRO;
     }
 
     public static void view(Long subID)
@@ -23,14 +23,14 @@ public class ViewSubmission extends Controller
         boolean canSelectForReview = false;
         boolean canDownloadForReview = false;
         boolean canCancelReview = false;
-        boolean canWriteReview = false;        
+        boolean canWriteReview = false;
         Submission s = Submission.findById(subID);
         boolean isPublished = s.isPublished();
         if (articles != null)
         {
             if (articles.size() > 0)
             {
-                canSelectForReview = (!isPublished)&&ComplexChecks.canUserSelectArticleForReview(user, articles.get(articles.size() - 1));
+                canSelectForReview = ( !isPublished) && ComplexChecks.canUserSelectArticleForReview(user, articles.get(articles.size() - 1));
                 canDownloadForReview = ComplexChecks.isUserReviewingArticle(user, articles.get(articles.size() - 1));
 
                 ReviewerAssignment ra = ComplexChecks.getReviewerAssignmentForSubmission(user, s);
@@ -44,19 +44,22 @@ public class ViewSubmission extends Controller
             }
         }
         canWriteReview = canDownloadForReview && ( !canCancelReview);
-        if (user.reviews != null)
+        if (user != null)
         {
-            for (int i = 0; i < user.reviews.size(); i++ )
+            if (user.reviews != null)
             {
-                Review r = user.reviews.get(i);
-                if (r.article.submission.id == s.id)
+                for (int i = 0; i < user.reviews.size(); i++ )
                 {
-                    if (r.article.id == s.articles.get(s.articles.size() - 1).id)
+                    Review r = user.reviews.get(i);
+                    if (r.article.submission.id == s.id)
                     {
-                        if ((r.locked)&&(!r.rejected))
+                        if (r.article.id == s.articles.get(s.articles.size() - 1).id)
                         {
-                            canWriteReview = false;
-                            break;
+                            if ((r.locked) && ( !r.rejected))
+                            {
+                                canWriteReview = false;
+                                break;
+                            }
                         }
                     }
                 }
@@ -92,24 +95,25 @@ public class ViewSubmission extends Controller
                                 {
                                     cs.showAuthorConv = true;
                                     cs.authorRO = 0;
-                                    cs.showEditorConv = true;                                    
+                                    cs.showEditorConv = true;
                                 }
                                 chatMap.put(r.id, cs);
                             }
                         }
                         else
                         {
-                            if ((r.reviewer.id == user.id)||(r.locked&&(a.submission.author.id == user.id)))
+                            if ((r.reviewer.id == user.id) || (r.locked && (a.submission.author.id == user.id)))
                             {
-                                if (r.rejected) break;
+                                if (r.rejected)
+                                    break;
                                 showReviews.add(r);
                                 cs.showAuthorConv = r.locked;
                                 if (r.reviewer.id == user.id)
                                 {
                                     cs.showAuthorConv = true;
-                                    cs.showEditorConv = true;                                    
+                                    cs.showEditorConv = true;
                                 }
-                                if (!Security.isConnected())
+                                if ( !Security.isConnected())
                                 {
                                     cs.authorRO = 1;
                                 }
@@ -122,26 +126,41 @@ public class ViewSubmission extends Controller
                 reviewMap.put(a.id, showReviews);
             }
         }
-        boolean canReject = isEditor&&!isPublished;
-        render(user, subID, isPublished, canSelectForReview, canDownloadForReview, canCancelReview, canWriteReview, articles, reviewMap, chatMap, canReject);
+        boolean canReject = isEditor && !isPublished;
+        render(user, isEditor, subID, isPublished, canSelectForReview, canDownloadForReview, canCancelReview, canWriteReview, articles, reviewMap, chatMap, canReject);
     }
 
     public static void reject(Long id)
     {
-        //Rejects a review
-        if (!Security.check(UserRole.EDITOR))
+        // Rejects a review
+        if ( !Security.check(UserRole.EDITOR))
             return;
         Review r = Review.findById(id);
         r.rejected = true;
         r.save();
         render();
     }
-    
+
     public static void download(Long id)
     {
         Article a = Article.findById(id);
+        User u = Security.loggedUser();
+
         if (a.journalNumber == null)
-            return;
+        {
+            if ((u != null) && (u.id == a.submission.author.id))
+            {
+                // OK
+            }
+            else
+            {
+                return;
+            }
+        }
+        Http.Header h = new Http.Header();
+        h.name = "Content-Type";
+        h.values.add("application/octet-stream");
+        ViewSubmission.response.headers.put("Content-Type", h);
         renderBinary(a.articlePdf.get());
     }
 
@@ -188,6 +207,10 @@ public class ViewSubmission extends Controller
         ra.dateAssigned = new Date();
         ra.save();
         // TODO: Enable later
-        // renderBinary(a.articlePdf.get());
+        Http.Header h = new Http.Header();
+        h.name = "Content-Type";
+        h.values.add("application/octet-stream");
+        ViewSubmission.response.headers.put("Content-Type", h);
+        renderBinary(a.articlePdf.get());
     }
 }

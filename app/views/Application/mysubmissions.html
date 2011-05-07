@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div id="trace">Home :: Page</div>
+<div class="line"></div>
+<div id="maincontent">
+	<h2>My Articles</h2>
+	<div id="table">
+		<table>
+			<tr class="title">
+				<td>Article Title</td>
+				<td>Date Submitted</td>
+				<td>Date Published</td>
+			</tr>
+			#{list items:articles, as:'article'}
+			<tr>
+				<td>${article.title}</td>
+				<td>${article.dateSubmitted}</td>
+				<td>${article.datePublished}</td>
+				<td><a href="/viewSubmission/view?subID=${article.id}" class="button blue">View</a></td>
+			</tr>
+			#{/list}
+		</table>
+	</div>
+</div>

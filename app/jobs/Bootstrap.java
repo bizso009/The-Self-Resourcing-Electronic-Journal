@@ -13,6 +13,7 @@ public class Bootstrap extends Job
     {
         new GenerateVolumes().doJob();
         new GenerateNumbers().doJob();
+        new MassPublishChecks().now();
         /*	Article article = new Article();
             article.title = "test";
             article.journalNumberID = 1;
