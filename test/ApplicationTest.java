@@ -1,16 +1,11 @@
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import misc.CommonUtil;
-import models.*;
+import org.junit.Test;
 
-import org.junit.*;
-import play.test.*;
-import play.libs.Codec;
-import play.mvc.*;
-import play.mvc.Http.*;
+import play.mvc.Http.Response;
+import play.test.FunctionalTest;
 
 public class ApplicationTest extends FunctionalTest {
 
@@ -32,7 +27,7 @@ public class ApplicationTest extends FunctionalTest {
     	Map<String,String> paras = new HashMap<String,String>();
     	paras.put("firstName", "testtest");
     	paras.put("lastName", "testtest");
-    	paras.put("email", "ejournalself@gmail.com");
+    	paras.put("email", "bizso09@gmail.com");
     	paras.put("affiliation", "test");
     	paras.put("summary", "test");
     	paras.put("title", "test");

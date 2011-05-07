@@ -35,4 +35,14 @@ public class Security extends Secure.Security {
 		UserRole profileRole = UserRole.findByRole(profile);
 		return profileRole.compareTo(user.role) <=0 ;
 	}
+	
+	static boolean checkeq(String profile){
+		User user = User.find("byEmail", connected()).first();
+		if (user == null) {
+			return false;
+		}
+		UserRole profileRole = UserRole.findByRole(profile);
+		System.out.println(profileRole.name.equals(profile));
+		return profileRole.equals(user.role);
+	}
 }

@@ -4,7 +4,7 @@
 		        <li>
 		        	<div class="title">${number.id}</div>
 		        	<div class="year">${number.publishDate}</div> 
-		        	<input type="button" class="button blue volume" id="a${number.id}" value="View Article"></li>
+		        	<input type="button" class="button blue volume" id="${number.id}" onClick="getArticles(this)" value="View Articles"></li>
 		        </li>
     #{/list}
 </ul>

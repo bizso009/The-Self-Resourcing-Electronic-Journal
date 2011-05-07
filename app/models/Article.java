@@ -54,4 +54,10 @@ public class Article extends Model {
 		//const
 	}
 
+
+
+	public static List<Article> getArticleByJournal(int journalNumber_id) {
+		return Article.find("journalNumber_id=?", journalNumber_id).fetch();
+	}
+
 }
