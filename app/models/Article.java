@@ -3,6 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import notifiers.Mails;
 
 import jobs.NotifyKeywordSubscriptions;
 import misc.CommonUtil;
@@ -34,6 +37,10 @@ public class Article extends Model {
 
 	public void setJournalNumber(JournalNumber journalNumber){
 		this.journalNumber = journalNumber;
+		
+		//LaziyIntialization exception
+		
+		//
 		new NotifyKeywordSubscriptions(this).now();
 	}
 	@ManyToOne

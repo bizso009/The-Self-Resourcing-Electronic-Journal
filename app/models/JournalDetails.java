@@ -3,6 +3,7 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import play.db.jpa.Blob;
 import play.db.jpa.Model;
 
 @Entity
@@ -11,6 +12,6 @@ public class JournalDetails extends Model{
 	
 	public String title;
 	public String info;
-	public String templateLocation;
+	public Blob templateLocation;
 
 }

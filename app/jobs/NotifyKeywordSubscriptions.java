@@ -2,6 +2,7 @@ package jobs;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import notifiers.Mails;
 
@@ -24,8 +25,10 @@ public class NotifyKeywordSubscriptions extends Job
 	@Override
     public void doJob()
     {
-        for (Keyword key : article.keywords){
-        	for (User user : key.users){
+		List<Keyword> keys = article.keywords;
+        for (Keyword key : keys){
+        	Set<User> users = key.users;
+        	for (User user : users){
         		Mails.subscriptionArticle(user,article);
         	}
         }

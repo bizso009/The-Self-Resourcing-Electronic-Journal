@@ -8,6 +8,11 @@ import java.util.*;
 
 public class ViewSubmission extends Controller
 {
+	@Before
+	public static void init(){
+		Application.init(null);
+	}
+	
     public static class ChatSettings
     {
         public boolean showAuthorConv;
