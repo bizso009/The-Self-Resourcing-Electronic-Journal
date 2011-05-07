@@ -127,7 +127,7 @@ public class ViewSubmission extends Controller
             }
         }
         boolean canReject = isEditor && !isPublished;
-        render(user, subID, isPublished, canSelectForReview, canDownloadForReview, canCancelReview, canWriteReview, articles, reviewMap, chatMap, canReject);
+        render(user, isEditor, subID, isPublished, canSelectForReview, canDownloadForReview, canCancelReview, canWriteReview, articles, reviewMap, chatMap, canReject);
     }
 
     public static void reject(Long id)
