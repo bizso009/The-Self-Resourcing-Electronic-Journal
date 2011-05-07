@@ -9,9 +9,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import jobs.NotifyKeywordSubscriptions;
-
+import misc.CommonUtil;
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
 
@@ -54,18 +52,20 @@ public class Article extends Model {
 		this.summary = summary;
 	}
 
-	
-
 	public Article() {
 		//const
 	}
-
-
 
 	public static List<Article> getArticleByJournal(long journalNumber_id) {
 		JournalNumber number = JournalNumber.findById(journalNumber_id);
 		List<Article> articles = number.articles;
 		return articles;
+	}
+	
+	public void publish(){
+		 this.journalNumber = CommonUtil.getLatestNumberFromVolume(CommonUtil.getLatestVolume());
+         this.datePublished = new Date();
+         this.save();
 	}
 
 }

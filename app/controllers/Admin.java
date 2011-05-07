@@ -12,6 +12,7 @@ import models.User;
 import models.UserRole;
 import play.mvc.Before;
 import play.mvc.Controller;
+import sun.security.krb5.Config;
 
 public class Admin extends Controller{
 	@Before
@@ -49,8 +50,12 @@ public class Admin extends Controller{
 		render(articles);
 	}
 	
-	public static void unpublishedarticles()
+	public static void unpublishedarticles(long pubid)
 	{
+		if(pubid != 0){
+			Article art = Article.findById(pubid);
+			art.publish();
+		}
 		List<Article> articles = Article.find("journalNumber_id is null").fetch();
 		render(articles);
 	}
