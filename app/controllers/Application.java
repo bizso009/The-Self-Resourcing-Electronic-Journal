@@ -5,6 +5,7 @@ import java.util.List;
 import models.Article;
 import models.JournalNumber;
 import models.JournalVolume;
+import models.User;
 import play.mvc.Before;
 import play.mvc.Controller;
 
@@ -20,7 +21,14 @@ public class Application extends Controller
     	renderArgs.put("loggedin", conn);
         if (conn)
         {
-        	renderArgs.put("user", Security.connected());   
+        	if(!session.contains("firstname") || !session.contains("id")){
+        		User user = (User)User.find("byEmail", Security.connected()).first();
+        		session.put("id", user.id);
+        		session.put("firstname", user.firstName);
+        	}
+        	
+        	renderArgs.put("user", session.get("firstname"));
+        	renderArgs.put("id", session.get("id"));
         }
         
         if(userRole != null){
@@ -46,7 +54,7 @@ public class Application extends Controller
     	render(numbers);
     }
     
-    public static void getArticles(int journalNumber_id)
+    public static void getArticles(long journalNumber_id)
     {
     	List<Article> articles = Article.getArticleByJournal(journalNumber_id);
     	render(articles);

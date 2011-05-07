@@ -62,8 +62,10 @@ public class Article extends Model {
 
 
 
-	public static List<Article> getArticleByJournal(int journalNumber_id) {
-		return Article.find("journalNumber_id=?", journalNumber_id).fetch();
+	public static List<Article> getArticleByJournal(long journalNumber_id) {
+		JournalNumber number = JournalNumber.findById(journalNumber_id);
+		List<Article> articles = number.articles;
+		return articles;
 	}
 
 }

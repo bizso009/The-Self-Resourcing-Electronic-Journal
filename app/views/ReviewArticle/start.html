@@ -39,7 +39,7 @@
 	<input type="submit" class="blue button" value="Submit review"/>
 #{/form}
 Communication with the author:
-#{chat.renderConversation authorConvID/}
+#{chat.renderConversation convID:authorConvID, readOnly:0 /}
 
 Communication with the editor:
-#{chat.renderConversation editorConvID/}
+#{chat.renderConversation convID:editorConvID, readOnly:0 /}

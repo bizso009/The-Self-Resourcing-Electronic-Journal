@@ -4,12 +4,12 @@
 	<input name="convID" type="hidden" value="${convID}"/>
 	<input name="fromMsgID" type="hidden" value="0"/>
 	%{if ((readOnly==null)||(!readOnly)) { }%
-	<textarea name="msg" style="width: 400px; height: 400px;"></textarea>	
+	<textarea name="msg" style="width: 400px; height: 200px;"></textarea>	
 	#{if controllers.Secure.Security.invoke("anon")}
 	<a href="/login"><input type="button" value="Log in to write" /></a>
 	#{/if}
 	#{else}
-	<input type="submit" value="Send" class="button blue">
+	<input type="submit" value="Send message" class="button blue">
 	#{/else}
 	%{ } }%
 #{/form}

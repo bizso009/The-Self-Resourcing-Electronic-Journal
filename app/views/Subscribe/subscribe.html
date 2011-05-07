@@ -1,0 +1,9 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+#{set 'moreStyles'}
+        #{stylesheet 'subscribe.css' /}
+#{/set}
+<div class="success">
+	${firstName} ${lastName}, You have successfully subscribed to this Journal with the following email address:
+	${email}
+</div>

@@ -18,9 +18,9 @@ import play.mvc.Controller;
 
 public class SubmitArticle extends Controller {
 
-	public static void index() {
+	public static void index(Long subID) {
 		Application.init(null);
-		render();
+		render(subID);
 	}
 
 	public static void submit(String author, String[] authNumber,
