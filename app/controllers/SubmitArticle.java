@@ -50,8 +50,8 @@ public class SubmitArticle extends Controller {
 			//ordinary person
 			} else {
 				if (currPerson == null){
-					currPerson = new User(firstName[i], lastName[i],
-							email[i], affiliation[i]);
+					currPerson = new User(email[i], firstName[i], lastName[i],
+							 affiliation[i]);
 					currPerson.save();
 				}
 			}
