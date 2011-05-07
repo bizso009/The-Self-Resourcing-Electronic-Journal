@@ -48,7 +48,33 @@
 #{list items:reviewMap.get(article.id), as:'review'}
 <table>
 	<tr>
-		<td>Abstract</td>
+		<td>Expertise level</td>
+		<td>${review.expertiseLevel}</td>
+	</tr>
+	<tr>
+		<td>Mark</td>
+		<td>${review.mark.name}</td>
+	</tr>
+	<tr>
+		<td>Review status</td>
+		<td>
+		#{if (!review.locked)&&(!review.rejected)}
+		Not locked
+		#{/if}
+		#{if (review.locked)&&(!review.rejected)}
+		Locked
+		#{/if}
+		#{if review.rejected}
+		Review rejected by editor
+		#{/if}
+		</td>
+	</tr>
+	<tr>
+		<td>Time submitted</td>
+		<td>${review.dateSubmitted}</td>
+	</tr>
+	<tr>
+		<td>Content summary</td>
 		<td>${review.contentSummary}</td>
 	</tr>
 	<tr>
@@ -67,14 +93,24 @@
 		<td>Detailed error list</td>
 		<td>${review.detailedErrorList}</td>
 	</tr>
+	#{if chatMap.get(review.id).showAuthorConv}
 	<tr>
 		<td>Communication with author:</td>
-		<td>#{chat.renderConversation convID:review.authorConversation.id, readOnly:1 /}</td>
+		<td>#{chat.renderConversation convID:review.authorConversation.id, readOnly:chatMap.get(review.id).authorRO /}</td>
 	</tr>
+	#{/if}
+	#{if chatMap.get(review.id).showEditorConv}
 	<tr>
 		<td>Communication with editor:</td>
-		<td>#{chat.renderConversation convID:review.editorConversation.id, readOnly:1 /}</td>
+		<td>#{chat.renderConversation convID:review.editorConversation.id, readOnly:chatMap.get(review.id).editorRO /}</td>
 	</tr>
+	#{/if}
+	#{if canReject}
+	<tr>
+		<td>Actions:</td>
+		<td><a class="blue button" href="@{ViewSubmission.reject(review.id)}">Reject the review</a></td>
+	</tr>
+	#{/if}
 </table>
 #{/list}
 <center>
@@ -84,6 +120,9 @@
 	%{ if (canCancelReview) { }%
 	<a href="@{ViewSubmission.cancelReview(articles.get(articles.size()-1).submission.id)}" class="blue button">Cancel review</a><br />		
 	%{ } }%
+	%{if ((!isPublished)&&(article.submission.author.id==user.id)) { }%
+	<a href="@{SubmitArticle.index(subID)}">Submit new version</a>
+	%{}}%
 </center>
 </div>
 #{/list}

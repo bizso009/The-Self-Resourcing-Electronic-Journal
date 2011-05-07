@@ -1,0 +1,25 @@
+@CHARSET "ISO-8859-1";
+.container
+{
+	width:600px;
+}
+
+.container .left
+{
+	float:left;
+	width: 150px;
+	text-align: right;
+}
+
+.container .right
+{
+	position:absolute;
+	float:right;
+	margin-left:20px;
+}
+
+.spacingSmall
+{
+	clear:both;
+	height:20px;
+}

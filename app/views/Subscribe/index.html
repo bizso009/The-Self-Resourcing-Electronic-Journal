@@ -1,0 +1,40 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+#{set 'moreStyles'}
+        #{stylesheet 'subscribe.css' /}
+#{/set}
+
+<div class="subscribeContent">
+	<div class="title">Please in in the form to subscribe:</div>
+	#{form @Subscribe.subscribe() , class:'subscribeForm' }
+		<div class="container">
+			<span class="left">First Name:</span>
+			<span class="right"><input type="text" name="firstName" class="firstName"></span>
+		</div>
+		<div class="spacingSmall"></div>
+		<div class="container">
+			<span class="left">Last Name:</span>
+			<span class="right"><input type="text" name="lastName" class="lastName"></span>
+		</div>
+		<div class="spacingSmall"></div>
+		<div class="container">
+			<span class="left">Email:</span>
+			<span class="right"><input type="text" name="email" class="email"></span>
+		</div>
+		<div class="spacingSmall"></div>
+		<div class="container">
+			<span class="left">Keywords:</span>
+			<span class="right"><input type="text" name="keywords" class="keywords"></span>
+		</div>
+		<div class="spacingSmall"></div>
+		<div class="container">
+			<input type="checkbox" name="subscription" value="yes"> I wish to subscribe for future journal volumes.
+		</div>
+		<div class="spacingSmalll"></div>
+		<div class="container">
+			<span class="right">
+				<input type="submit" class="button blue" value="Subscribe">
+			</span>
+		</div>
+	#{/form}
+</div>
