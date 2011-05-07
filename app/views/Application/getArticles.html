@@ -1,0 +1,10 @@
+<div class="browseHeader">Articles</div>
+<ul>
+	#{list items:articles, as:'article' }
+		        <li>
+		        	<div class="title">${article.title}</div>
+		        	<div class="year">${article.dateSubmitted}</div> 
+		        	<input type="button" class="button blue volume" id="${article.id}" value="Read more"></li>
+		        </li>
+    #{/list}
+</ul>

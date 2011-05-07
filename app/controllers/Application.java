@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import models.Article;
 import models.JournalNumber;
 import models.JournalVolume;
 import play.mvc.Before;
@@ -43,5 +44,11 @@ public class Application extends Controller
     {
     	List<JournalNumber> numbers = JournalNumber.getJournalNumbeByVolume(volume_id);
     	render(numbers);
+    }
+    
+    public static void getArticles(int journalNumber_id)
+    {
+    	List<Article> articles = Article.getArticleByJournal(journalNumber_id);
+    	render(articles);
     }
 }
