@@ -8,13 +8,15 @@
 	<div id="table">
 		<table>
 			<tr class="title">
-				<td>Volume Title</td>
-				<td>Publish Year</td>
+				<td>Title</td>
+				<td>Date Submitted</td>
+				<td>Date Published</td>
 			</tr>
-			#{list items:volumes, as:'volume' }
+			#{list items:articles, as:'article' }
 			<tr>
-				<td>${volume.title}</td>
-				<td>${volume.publishYear}</td>
+				<td>${article.title}</td>
+				<td>${artcile.dateSubmitted}</td>
+				<td>${artcile.datePublished}</td>
 			</tr>
 			#{/list}
 		</table>
