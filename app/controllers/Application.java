@@ -28,7 +28,7 @@ public class Application extends Controller
         		session.put("firstname", user.firstName);
         	}
         	
-        	renderArgs.put("user", session.get("firstname"));
+        	renderArgs.put("firstname", session.get("firstname"));
         	renderArgs.put("id", session.get("userid"));
         }
         

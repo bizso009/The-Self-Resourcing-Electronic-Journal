@@ -1,5 +1,6 @@
 <li class="roundtop"><a href="#" id="browseButton">Browse</a></li>
 <li class="roundtop"><a href="@{SubmitArticle.index()}">Submit Article</a></li>
+<li class="roundtop"><a href="@{Subscribe.index()}">Subscription</a></li>
 #{secure.check 'author/reviewer'}
 	<li class="roundtop"><a href="@{ReviewDashboard.index()}">Review Dashboard</a></li>
 #{/secure.check}
