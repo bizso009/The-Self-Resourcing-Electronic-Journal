@@ -1,11 +1,16 @@
 #{extends 'main.html' /}
 #{set title:'View submission' /}
+#{if ((user!=null)&&(user.role.id>1))||(isPublished)}
 <center><h3>Submission history</h3></center>
 #{list items:articles, as:'article'}
 <div>
 <table>
 <tr>
-	<td style="width: 200px">Title:</td><td>${article.title}</td>
+	<td style="width: 200px">Article #</td>
+	<td>${article.id}</td>
+</tr>
+<tr>
+	<td>Title:</td><td>${article.title}</td>
 </tr>
 <tr>
 	<td>Keywords:</td>
@@ -30,23 +35,27 @@
 <tr>
 	<td>Actions:</td>
 	<td>
-		#{if (article.journalNumber!=null)||(user.id==article.submission.author.id)}
+		#{if (isEditor)||(article.journalNumber!=null)||((user!=null)&&(user.id==article.submission.author.id))}
 		<a href="@{ViewSubmission.download(article.id)}" class="blue button">Download</a><br />
 		#{/if}
-		#{else}		
-		%{ if (canDownloadForReview||isEditor) { }%
+				
+		%{ if (canDownloadForReview) { }%
 		<a href="@{ViewSubmission.downloadForReview(article.id)}" class="blue button">Download for review</a><br />				
 		   %{ if (canWriteReview&&(article.id==articles.get(articles.size()-1).id)) { }%
 			<a href="@{ReviewArticle.start(article.id)}" class="blue button">Write a review</a><br />
 		%{ 	} 
 		   }  }%
-		#{/else}
+		
 	</td>
 </tr>
 </table>
-<center><h4>Reviews</h4></center><br />
+<center><h4>Reviews for Article # ${article.id}</h4></center><br />
 #{list items:reviewMap.get(article.id), as:'review'}
 <table>
+	<tr>
+		<td style="width: 200px">Review #</td>
+		<td>${review.id}</td>
+	</tr>
 	<tr>
 		<td>Expertise level</td>
 		<td>${review.expertiseLevel}</td>
@@ -113,6 +122,9 @@
 	#{/if}
 </table>
 #{/list}
+</div>
+<div class="line"></div><br/><br/><br/><br/>
+#{/list}
 <center>
 	%{ if (canSelectForReview) { }%
 	<a href="@{ViewSubmission.selectForReview(articles.get(articles.size()-1).submission.id)}" class="blue button">Select for review</a><br />		
@@ -120,10 +132,11 @@
 	%{ if (canCancelReview) { }%
 	<a href="@{ViewSubmission.cancelReview(articles.get(articles.size()-1).submission.id)}" class="blue button">Cancel review</a><br />		
 	%{ } }%
-	
-</center>
-</div>
-#{/list}
-%{if ((!isPublished)&&(article.submission.author.id==user.id)) { }%
+	%{if ((!isPublished)&&(user!=null)&&(article.submission.author.id==user.id)) { }%
 	<a href="@{SubmitArticle.index(subID)}" class="blue button">Submit new version</a>
-%{}}%
+    %{}}%
+</center>
+#{/if}
+#{else}
+This information is accessible only to registered authors/reviewers.
+#{/else}

@@ -152,6 +152,7 @@ public class ComplexChecks
     public static boolean canUserSelectArticleForReview(User u, Article a)
     {
         // Reviewers and editors only
+        if (u==null) return false;
         if (u.role.name == UserRole.READER)
             return false;
         if (u.assignments != null)
