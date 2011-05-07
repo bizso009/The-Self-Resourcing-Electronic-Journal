@@ -1,5 +1,9 @@
 package controllers;
 
+import java.util.List;
+import java.util.Set;
+
+import notifiers.Mails;
 import models.Article;
 import models.JournalNumber;
 import models.Keyword;
@@ -40,15 +44,18 @@ public class Subscribe extends Controller{
 			user.save();
 			
 			//TEST
-			User u2 = User.findById(user.id);
-			System.out.println("SIZES SIZE SZIES::::: "+u2.keywords.size());
-			Article article = Article.<Article>findAll().get(0);
-			Keyword key = Keyword.getKeyword("test");
-			article.keywords.add(key);
-			article.save();
-			article.journalNumber = new JournalNumber();;
-			article.save();
-			
+//			User u2 = User.findById(user.id);
+//			System.out.println("SIZES SIZE SZIES::::: "+u2.keywords.size());
+//			Article article = Article.<Article>findAll().get(0);
+//			article.journalNumber = new JournalNumber().save();;
+//			
+////			
+////			Keyword key = Keyword.getKeyword("test");
+////			article.keywords.add(key);
+////			article.save();
+////			article = Article.<Article>findAll().get(0);
+////			article.save();
+////			
 			render(user);
 		}
 	}
