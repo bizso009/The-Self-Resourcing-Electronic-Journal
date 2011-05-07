@@ -23,13 +23,14 @@ public class ViewSubmission extends Controller
         boolean canSelectForReview = false;
         boolean canDownloadForReview = false;
         boolean canCancelReview = false;
-        boolean canWriteReview = false;
+        boolean canWriteReview = false;        
         Submission s = Submission.findById(subID);
+        boolean isPublished = s.isPublished();
         if (articles != null)
         {
             if (articles.size() > 0)
             {
-                canSelectForReview = ComplexChecks.canUserSelectArticleForReview(user, articles.get(articles.size() - 1));
+                canSelectForReview = (!isPublished)&&ComplexChecks.canUserSelectArticleForReview(user, articles.get(articles.size() - 1));
                 canDownloadForReview = ComplexChecks.isUserReviewingArticle(user, articles.get(articles.size() - 1));
 
                 ReviewerAssignment ra = ComplexChecks.getReviewerAssignmentForSubmission(user, s);
@@ -65,7 +66,6 @@ public class ViewSubmission extends Controller
         boolean isEditor = Security.check(UserRole.EDITOR);
         if (articles != null)
         {
-            boolean isPublished = s.isPublished();
             for (int i = 0; i < articles.size(); i++ )
             {
                 Article a = articles.get(i);
