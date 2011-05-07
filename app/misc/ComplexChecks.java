@@ -118,7 +118,7 @@ public class ComplexChecks
 
     public static void publishIfNeeded(Article a)
     {
-        if (checkForPublication(a)&&(getUserReviewBalance(a.submission.author)>0))
+        if (checkForPublication(a)&&(getUserReviewBalance(a.submission.author)>=0))
         {
             a.journalNumber = CommonUtil.getLatestNumberFromVolume(CommonUtil.getLatestVolume());
             a.datePublished = new Date();

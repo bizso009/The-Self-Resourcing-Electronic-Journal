@@ -6,7 +6,7 @@ import misc.ComplexChecks;
 import models.*;
 import java.util.*;
 
-@Every("5min")
+@Every("1min")
 public class MassLocking extends Job
 {
     @Override
@@ -26,12 +26,12 @@ public class MassLocking extends Job
                     Review review = reviews.get(j);
                     if ( !review.locked)
                     {
-                        if ((review.dateSubmitted.getYear() * 12 + review.dateSubmitted.getDate()) > (1 + article.dateSubmitted.getYear() * 12 + article.dateSubmitted
+                        /*if ((review.dateSubmitted.getYear() * 12 + review.dateSubmitted.getDate()) > (1 + article.dateSubmitted.getYear() * 12 + article.dateSubmitted
                                 .getDate()))
-                        {
+                        {*/
                             review.locked = true;
                             review.save();
-                        }
+                        /*}*/
                     }
                 }
             }

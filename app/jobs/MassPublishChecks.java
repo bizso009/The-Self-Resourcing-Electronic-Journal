@@ -6,7 +6,7 @@ import misc.ComplexChecks;
 import models.*;
 import java.util.*;
 
-@Every("5min")
+@Every("1min")
 public class MassPublishChecks extends Job
 {
     @Override
@@ -16,7 +16,7 @@ public class MassPublishChecks extends Job
         if (articles==null) return;
         for (Article article: articles)
         {
-            ComplexChecks.publishIfNeeded(article);
+             ComplexChecks.publishIfNeeded(article);
         }
     }    
 }
