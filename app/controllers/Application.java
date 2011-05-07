@@ -30,6 +30,8 @@ public class Application extends Controller
         	
         	renderArgs.put("firstname", session.get("firstname"));
         	renderArgs.put("id", session.get("userid"));
+        }else{
+        	session.clear();
         }
         
         if(userRole != null){
@@ -68,6 +70,7 @@ public class Application extends Controller
     
     public static void mysubmissions(){
     	List <Submission> submissions = Submission.find("byAuthor_id", session.get("userid")).fetch();
+    	
     	List <Article> articles = new ArrayList<Article>();
     	for(Submission sub: submissions){
     		articles.add((Article)Article.find("bySubmission_id", sub.id).first());
