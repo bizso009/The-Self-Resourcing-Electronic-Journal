@@ -105,7 +105,11 @@ body {
 	margin: 0px 10px 0px 10px;
 	background: url(/public/images/section_header.jpg);
 	line-height:35px;
-	padding: 0px 12px 0px 12px
+	padding: 0px 12px 0px 12px;
+}
+
+#header #topmenu li:hover{
+	background: url(/public/images/section_header_inv.jpg);
 }
 
 #header #topmenu li a{
@@ -207,13 +211,6 @@ table{
 	width:100%;
 }
 
-tr.title{
-	background: url(/public/images/section_header.jpg);
-	height:35px;
-	font-size:15px;
-	padding-top:20px;
-}
-
 tr{
 	text-indent:20px;
 }
@@ -225,6 +222,14 @@ tr:nth-child(odd){
 tr:nth-child(even){
 	background-color:#fff;
 }
+
+tr.title{
+	background: url(/public/images/section_header.jpg);
+	height:35px;
+	font-size:15px;
+	padding-top:20px;
+}
+
 
 td{
 	line-height:35px;
