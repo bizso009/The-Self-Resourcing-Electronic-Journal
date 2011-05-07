@@ -2,7 +2,12 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import models.Article;
+import models.JournalNumber;
+
 import org.junit.Test;
+
+import controllers.Subscribe;
 
 import play.mvc.Http.Response;
 import play.test.FunctionalTest;
@@ -44,6 +49,27 @@ public class ApplicationTest extends FunctionalTest {
    		
 //			GET("/SubmitArticle/sendEmail?username=232424&pass=test&email=bitvaizs@gmail.com");
     }
+    
+    @Test
+	  public void testSubscribe(){
+    	Map<String,String> paras = new HashMap<String,String>();
+    	paras.put("firstName", "testtest");
+    	paras.put("lastName", "testtest");
+    	paras.put("email", "bitvaizs@gmail.com");
+    	paras.put("affiliation", "test");
+    	paras.put("summary", "test");
+    	paras.put("title", "test");
+    	paras.put("keywords", "test,test,test");
+    	paras.put("author", "1");
+    	paras.put("authNumber", "1");
+    	paras.put("subscription", "true");
+		POST("Subscribe/subscribe",paras);
+	    	Article a = new Article();
+	    	JournalNumber jn = new JournalNumber();
+	    	jn.save();
+	    	a.journalNumber = jn;
+	    	a.save();
+	    }
      
 
     

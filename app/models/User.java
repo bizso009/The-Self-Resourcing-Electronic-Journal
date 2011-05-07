@@ -51,7 +51,7 @@ public class User extends Model {
 	public List<Article> articles;
 
 	@ManyToMany(mappedBy = "users")
-	public List<Keyword> keywords;
+	public Set<Keyword> keywords;
 	
 	@OneToMany(mappedBy = "reviewer")
 	public List<ReviewerAssignment> assignments;
@@ -61,6 +61,7 @@ public class User extends Model {
 		this.lastName = lastName;
 		this.affiliation = affiliation;
 		this.email = email;
+		this.keywords = new HashSet<Keyword>();
 	}
 
 	@OneToMany(mappedBy = "reviewer")
@@ -122,5 +123,11 @@ public class User extends Model {
 	public boolean isAuthor() {
 		return this.password != null
 				&& (this.role.compareTo(UserRole.authorReviewer()) >=0);
+	}
+
+	public void addKeyword(String key) {
+		Keyword keyword = Keyword.getKeyword(key);
+		this.keywords.add(keyword);
+		
 	}
 }

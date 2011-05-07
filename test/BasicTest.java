@@ -5,12 +5,15 @@ import java.util.List;
 import jobs.NotifyKeywordSubscriptions;
 
 import models.Article;
+import models.JournalNumber;
 import models.Keyword;
 import models.Submission;
 import models.User;
 import notifiers.Mails;
 
 import org.junit.Test;
+
+import controllers.Subscribe;
 
 import play.test.UnitTest;
 
@@ -79,7 +82,7 @@ public class BasicTest extends UnitTest {
 //		assertNotNull(user);*/
 //	}
 
-	@Test
+//	@Test
 	public void testNotifyKeywordSubscriptions(){
 		User user = new User("bizso09@gmail.com","test","test","test");
 		Article article = new Article();
@@ -88,4 +91,14 @@ public class BasicTest extends UnitTest {
 		Mails.subscriptionArticle(user, article);
 		
 	}
+	
+	@Test
+	  public void testSubscribe(){
+		Subscribe.subscribe("test", "test", "bitvaizs@gmail.com", "test",true);
+	    	Article a = new Article();
+	    	JournalNumber jn = new JournalNumber();
+	    	jn.save();
+	    	a.journalNumber = jn;
+	    	a.save();
+	    }
 }

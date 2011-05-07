@@ -1,6 +1,7 @@
 package models;
  
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ public class Keyword extends Model {
 	public List<Article> articles;
   
 	@ManyToMany
-	public List<User> users;
+	public Set<User> users;
 	
 	public Keyword(String word) {
 		super();
