@@ -36,4 +36,16 @@ public class Submission extends Model {
 			}
 		}
 	}
+	
+	public boolean isPublished()
+	{
+	    if (articles==null)
+	    {
+	        return false;
+	    }
+	    else
+	    {
+	        return (articles.get(articles.size()-1).journalNumber!=null);
+	    }
+	}
 }

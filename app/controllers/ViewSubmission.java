@@ -56,19 +56,35 @@ public class ViewSubmission extends Controller
         boolean isEditor = Security.check(UserRole.EDITOR);
         if (articles != null)
         {
+            boolean isPublished = s.isPublished();
             for (int i = 0; i < articles.size(); i++ )
             {
                 Article a = articles.get(i);
                 ArrayList<Review> showReviews = new ArrayList<Review>();
                 List<Review> dbReviews = a.reviews;
-                if (dbReviews!=null)
+                if (dbReviews != null)
                 {
-                    for (int j = 0; j<dbReviews.size();j++)
+                    for (int j = dbReviews.size() - 1; j >= 0; j-- )
                     {
-                        
+                        Review r = dbReviews.get(i);
+                        if (isEditor || isPublished)
+                        {
+                            if (r.locked)
+                            {
+                                showReviews.add(r);
+                            }
+                        }
+                        else
+                        {
+                            if (r.reviewer.id == user.id)
+                            {
+                                showReviews.add(r);
+                                break;
+                            }
+                        }
                     }
                 }
-                //reviewMap.put(a.id, )
+                reviewMap.put(a.id, showReviews);
             }
         }
         render(user, canSelectForReview, canDownloadForReview, canCancelReview, canWriteReview, articles, reviewMap);
