@@ -8,5 +8,10 @@ public class Subscribe extends Controller{
 	{
 		render();
 	}
+	
+	public static void subscribe()
+	{
+		
+	}
 
 }
