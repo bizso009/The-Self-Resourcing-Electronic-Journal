@@ -22,10 +22,9 @@ public class Application extends Controller
         if (conn)
         {
         	String firstname;
-        	session.remove("firstname");
         	if(!session.contains("firstname")){
-        		firstname = User.find("byEmail", Security.connected()).fetch().get(0).toString();
-        		System.out.println(firstname);
+        		User user = (User)User.find("byEmail", Security.connected()).first();
+        		firstname = user.firstName;
         		session.put("firstname", firstname);
         	}else{
         		firstname = session.get("firstname");
