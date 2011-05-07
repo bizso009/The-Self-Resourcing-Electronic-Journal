@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import jobs.NotifyKeywordSubscriptions;
 import misc.CommonUtil;
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
@@ -44,12 +47,12 @@ public class Article extends Model {
 
 	public Article(String title, Blob articlePdf, Date dateSubmitted,
 			Date datePublished, String summary, Long submissionID) {
-		super();
 		this.title = title;
 		this.articlePdf = articlePdf;
 		this.dateSubmitted = dateSubmitted;
 		this.datePublished = datePublished;
 		this.summary = summary;
+		this.keywords = new ArrayList<Keyword>();
 	}
 
 	public Article() {

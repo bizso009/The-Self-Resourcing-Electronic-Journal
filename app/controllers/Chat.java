@@ -9,7 +9,6 @@ import java.util.Date;
 
 import models.Conversation;
 import models.Message;
-import models.User;
 import play.db.DB;
 import play.mvc.Controller;
 import play.mvc.Http;
