@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
@@ -20,10 +21,10 @@ public class Keyword extends Model {
 	@Column(unique = true)
 	public String word;
 	
-	@ManyToMany(mappedBy = "keywords")
+	@ManyToMany(mappedBy = "keywords",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	public List<Article> articles;
   
-	@ManyToMany(mappedBy = "keywords")
+	@ManyToMany(mappedBy = "keywords",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	public Set<User> users;
 	
 	public Keyword(String word) {
