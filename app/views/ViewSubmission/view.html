@@ -48,7 +48,15 @@
 #{list items:reviewMap.get(article.id), as:'review'}
 <table>
 	<tr>
-		<td>Abstract</td>
+		<td>Expertise level</td>
+		<td>${review.expertiseLevel}</td>
+	</tr>
+	<tr>
+		<td>Mark</td>
+		<td>${review.mark.name}</td>
+	</tr>
+	<tr>
+		<td>Content summary</td>
 		<td>${review.contentSummary}</td>
 	</tr>
 	<tr>
@@ -67,14 +75,18 @@
 		<td>Detailed error list</td>
 		<td>${review.detailedErrorList}</td>
 	</tr>
+	#{if chatMap.get(review.id).showAuthorConv}
 	<tr>
 		<td>Communication with author:</td>
-		<td>#{chat.renderConversation convID:review.authorConversation.id, readOnly:1 /}</td>
+		<td>#{chat.renderConversation convID:review.authorConversation.id, readOnly:chatMap.get(review.id).authorRO /}</td>
 	</tr>
+	#{/if}
+	#{if chatMap.get(review.id).showEditorConv}
 	<tr>
 		<td>Communication with editor:</td>
-		<td>#{chat.renderConversation convID:review.editorConversation.id, readOnly:1 /}</td>
+		<td>#{chat.renderConversation convID:review.editorConversation.id, readOnly:chatMap.get(review.id).editorRO /}</td>
 	</tr>
+	#{/if}
 </table>
 #{/list}
 <center>
