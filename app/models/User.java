@@ -28,6 +28,7 @@ import play.libs.Mail;
 
 @SuppressWarnings("serial")
 @Entity
+@Table(name = "Person")
 public class User extends Model {
 
 	public String password;
