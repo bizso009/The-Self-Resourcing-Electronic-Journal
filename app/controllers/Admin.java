@@ -1,15 +1,19 @@
 package controllers;
 
+import java.util.Date;
 import java.util.List;
 
+import misc.ComplexChecks;
 import models.Article;
 import models.JournalDetails;
 import models.JournalNumber;
 import models.JournalVolume;
+import models.ReviewerAssignment;
 import models.User;
 import play.db.jpa.Blob;
 import play.mvc.Before;
 import play.mvc.Controller;
+import play.mvc.Http;
 
 public class Admin extends Controller{
 	@Before
@@ -87,5 +91,18 @@ public class Admin extends Controller{
 			journalDetails.save();
 			site();
 		}
+	}
+	
+	public static void downloadTemplate(Long id)
+	{
+		JournalDetails j = JournalDetails.findById(id);
+        if (j == null)
+            return;
+        // TODO: Enable later
+        Http.Header h = new Http.Header();
+        h.name = "Content-Type";
+        h.values.add("application/octet-stream");
+        ViewSubmission.response.headers.put("Content-Type", h);
+        renderBinary(j.templateLocation.get());
 	}
 }
