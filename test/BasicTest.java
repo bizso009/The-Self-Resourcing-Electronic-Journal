@@ -1,5 +1,4 @@
 import models.Article;
-import models.Person;
 import models.Keyword;
 import models.Submission;
 import models.User;
@@ -44,17 +43,17 @@ public class BasicTest extends UnitTest {
 		article.save();
 		assertTrue(Article.count() > 1);
 
-		Person ad1 = new Person();
+		/*User ad1 = new User();
 		ad1.firstName = "test";
 //		ad1.article = article;
 		ad1.save();
 
-		Person ad2 = new Person();
+		User ad2 = new User();
 		ad2.firstName = "test";
 //		ad2.article = article;
-		ad2.save();
+		ad2.save();*/
 
-		assertTrue(Person.count() > 1);
+		assertTrue(User.count() > 1);
 
 	}
 
@@ -64,10 +63,10 @@ public class BasicTest extends UnitTest {
 		if (u != null)
 			u.delete();
 
-		User.registerUser("bizso09@gmail.com", "test", "test", "test",
+		/*User.registerUser("bizso09@gmail.com", "test", "test", "test",
 				"test");
 		User user = User.find("byEmail", "bizso09@gmail.com").first();
-		assertNotNull(user);
+		assertNotNull(user);*/
 	}
 
 }
