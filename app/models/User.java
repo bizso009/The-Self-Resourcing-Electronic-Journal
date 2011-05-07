@@ -49,7 +49,7 @@ public class User extends Model {
 	@ManyToMany
 	public List<Article> articles;
 
-	@OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "reviewer")
 	public List<ReviewerAssignment> assignments;
 	
 
@@ -60,7 +60,7 @@ public class User extends Model {
 		this.affiliation = affiliation;
 		this.email = email;
 	}
-	@OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "reviewer")
 	public List<Review> reviews;
 
 	
