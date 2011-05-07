@@ -1,17 +1,20 @@
-<div id="chat${_arg}"></div>
+<div id="chat${_convID}"></div>
 <script type="text/javascript" />
-function setup${_arg}()
-{            
-    $('#sendMsgForm${_arg}').ajaxForm(function() {
-     	$('#sendMsgForm${_arg}').find('textarea[name="msg"]').val("");
+function setup${_convID}()
+{
+	if (${_readOnly}!=1)
+	{            
+    $('#sendMsgForm${_convID}').ajaxForm(function() {
+     	$('#sendMsgForm${_convID}').find('textarea[name="msg"]').val("");
        	alert('Your message was sent successfully.');
     });
-    //refresh${_arg}();
+    //refresh${_convID}();
+    }
 }
-$('#chat${_arg}').load('/chat/view?convID=${_arg}',
+$('#chat${_convID}').load('/chat/view?convID=${_convID}&readOnly=${_readOnly}',
 function ()
 {
-	setTimeout(setup${_arg}(),100);	
+	setTimeout(setup${_convID}(),100);	
 });
 </script>
-<script type="text/javascript" src="/chat/refreshScript?convID=${_arg}"></script>
+<script type="text/javascript" src="/chat/refreshScript?convID=${_convID}&readOnly=${_readOnly}"></script>

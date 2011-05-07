@@ -69,7 +69,7 @@ public class ViewSubmission extends Controller
                         Review r = dbReviews.get(i);
                         if (isEditor || isPublished)
                         {
-                            if (r.locked)
+                            if (isEditor||(isPublished&&r.locked))
                             {
                                 showReviews.add(r);
                             }
@@ -140,6 +140,6 @@ public class ViewSubmission extends Controller
         ra.assigned = true;
         ra.dateAssigned = new Date();
         ra.save();
-        renderBinary(a.articlePdf.get());
+        //renderBinary(a.articlePdf.get());
     }
 }

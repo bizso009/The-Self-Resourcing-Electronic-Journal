@@ -86,7 +86,11 @@ public class User extends Model {
 	}
 
 	public static User connect(String email, String password) {
-		return find("byEmailAndPassword", email, password).first();
+		User user = find("byEmail", email).first();
+		if (user != null && user.password != null && user.password.equals(password)){
+			return user;
+		}
+		return null;
 	}
 
 	public String getPassword() {
@@ -117,6 +121,6 @@ public class User extends Model {
 
 	public boolean isAuthor() {
 		return this.password != null
-				&& this.role.equals(UserRole.authorReviewer());
+				&& (this.role.compareTo(UserRole.authorReviewer()) >=0);
 	}
 }

@@ -71,18 +71,18 @@ public class Chat extends Controller
         }
     }
 
-    public static void view(Integer convID)
+    public static void view(Integer convID, Boolean readOnly)
     {
-        render(convID);
+        render(convID, readOnly);
     }
 
-    public static void refreshScript(Integer convID)
+    public static void refreshScript(Integer convID, Boolean readOnly)
     {
         Http.Header h = new Http.Header();
         h.name = "Content-Type";
         h.values.add("text/javascript");
         Chat.response.headers.put("Content-Type", h);
-        render(convID);
+        render(convID, readOnly);
     }
 
     public static void post(Long convID, String msg)
