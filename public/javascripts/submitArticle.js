@@ -3,7 +3,7 @@
  */
 
 function clearClick(){
-	$("input").focus(function() {
+	$("input[type=text]").focus(function() {
 		if(this.value == this.defaultValue) $(this).val("");
 	}).blur(function() {
 		if(this.value == "") $(this).val(this.defaultValue);
