@@ -19,7 +19,8 @@ public class ReviewDashboard extends Controller
 
     @SuppressWarnings("deprecation")
     public static void index()
-    {        
+    {   
+    	Application.init("author/reviewer");
         User u = Security.loggedUser();
         if (u == null)
         {

@@ -10,6 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import misc.CommonUtil;
+import jobs.NotifyKeywordSubscriptions;
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
 import jobs.*;

@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 
 import models.Article;
+import models.JournalDetails;
 import models.JournalNumber;
 import models.JournalVolume;
 import models.User;
@@ -36,6 +37,11 @@ public class Application extends Controller
         		renderArgs.put("err", "AUTH FAIL : You do not authorised to view this page");
         	}
         }
+        
+        JournalDetails journalDetails = JournalDetails.findById((long)1);
+        renderArgs.put("journalTitle",journalDetails.title );
+        renderArgs.put("journalInfo", journalDetails.info);
+        renderArgs.put("journalTemplate", journalDetails.templateLocation);
     }
     public static void index()
     {
