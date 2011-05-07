@@ -10,7 +10,7 @@
 				<td>Setting name</td>
 				<td>Value</td>
 			</tr>
-			<form action="@{Admin.updateSettings()}" method="GET">
+			#{form @Admin.updateSettings() , enctype:'multipart/form-data'}
 				<tr>
 					<td>Site Title</td>
 					<td><input type="text" value="${journalTitle}" name="journalTitle"></a></td>
@@ -21,11 +21,11 @@
 				</tr>
 				<tr>
 					<td>Template Link</td>
-					<td><input type="text" value="${journalTemplate}" name="journalTemplate"></a></td>
+					<td><input type="file"  name="journalTemplate"></a></td>
 				</tr>
 					<td><input type="submit" class="button blue" value ="Save Settings"></td>
 				</tr>
-			</form>
+			#{/form}
 		</table>
 	</div>
 </div>
