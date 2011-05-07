@@ -120,9 +120,10 @@
 	%{ if (canCancelReview) { }%
 	<a href="@{ViewSubmission.cancelReview(articles.get(articles.size()-1).submission.id)}" class="blue button">Cancel review</a><br />		
 	%{ } }%
-	%{if ((!isPublished)&&(article.submission.author.id==user.id)) { }%
-	<a href="@{SubmitArticle.index(subID)}">Submit new version</a>
-	%{}}%
+	
 </center>
 </div>
 #{/list}
+%{if ((!isPublished)&&(article.submission.author.id==user.id)) { }%
+	<a href="@{SubmitArticle.index(subID)}" class="blue button">Submit new version</a>
+%{}}%
