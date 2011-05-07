@@ -9,6 +9,7 @@ import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -49,8 +50,9 @@ public class User extends Model {
 
 	@ManyToMany(mappedBy = "authors")
 	public List<Article> articles;
-
-	@ManyToMany(mappedBy = "users")
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Keyword_Person")
 	public Set<Keyword> keywords;
 	
 	@OneToMany(mappedBy = "reviewer")

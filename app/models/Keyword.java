@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import play.data.validation.Required;
@@ -22,7 +23,7 @@ public class Keyword extends Model {
 	@ManyToMany(mappedBy = "keywords")
 	public List<Article> articles;
   
-	@ManyToMany
+	@ManyToMany(mappedBy = "keywords")
 	public Set<User> users;
 	
 	public Keyword(String word) {
