@@ -35,7 +35,7 @@ public class ComplexChecks
     public static int getUserReviewBalance(User u)
     {
         int reviewed = 0;
-        int assigned = 0;
+        int submissions = 0;
         if (u.assignments!=null)
         {
             for (int i=0;i<u.assignments.size();i++)
@@ -43,12 +43,15 @@ public class ComplexChecks
                 ReviewerAssignment ra = u.assignments.get(i);
                 if (ra.assigned)
                 {
-                    assigned++;
                     reviewed+=getUserReviewCountForSubmission(u, ra.submission);
                 }
             }
         }
-        return reviewed-(assigned*3);
+        if (u.submissions!=null)
+        {
+            submissions = u.submissions.size();
+        }
+        return reviewed-(submissions*3);
     }
     
     public static boolean checkForPublication(Article a)
@@ -125,6 +128,8 @@ public class ComplexChecks
 
     public static ReviewerAssignment getReviewerAssignmentForSubmission(User u, Submission s)
     {
+        if (u==null)
+            return null;
         if (u.assignments != null)
         {
             for (int i = 0; i < u.assignments.size(); i++ )

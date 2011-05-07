@@ -142,6 +142,10 @@ public class ViewSubmission extends Controller
         Article a = Article.findById(id);
         if (a.journalNumber == null)
             return;
+        Http.Header h = new Http.Header();
+        h.name = "Content-Type";
+        h.values.add("application/octet-stream");
+        ViewSubmission.response.headers.put("Content-Type", h);
         renderBinary(a.articlePdf.get());
     }
 
@@ -188,6 +192,10 @@ public class ViewSubmission extends Controller
         ra.dateAssigned = new Date();
         ra.save();
         // TODO: Enable later
-        // renderBinary(a.articlePdf.get());
+        Http.Header h = new Http.Header();
+        h.name = "Content-Type";
+        h.values.add("application/octet-stream");
+        ViewSubmission.response.headers.put("Content-Type", h);
+        renderBinary(a.articlePdf.get());
     }
 }

@@ -17,6 +17,7 @@ public class ReviewDashboard extends Controller
         public String keywords;
     }
 
+    @SuppressWarnings("deprecation")
     public static void index()
     {        
         User u = Security.loggedUser();

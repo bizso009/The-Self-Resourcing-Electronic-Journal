@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import misc.CommonUtil;
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
+import jobs.*;
 
 @Entity
 public class Article extends Model {

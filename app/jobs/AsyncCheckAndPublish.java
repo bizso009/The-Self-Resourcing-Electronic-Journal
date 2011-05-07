@@ -17,7 +17,5 @@ public class AsyncCheckAndPublish extends Job
 	public void doJob()
     {
         ComplexChecks.publishIfNeeded(article);
-    }
-    
-    
+    }      
 }
