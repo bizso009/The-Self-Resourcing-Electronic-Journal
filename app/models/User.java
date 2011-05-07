@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import misc.CommonUtil;
+import notifiers.Mails;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
@@ -49,6 +50,9 @@ public class User extends Model {
 	@ManyToMany
 	public List<Article> articles;
 
+	@ManyToMany(mappedBy = "users")
+	public List<Keyword> keywords;
+	
 	@OneToMany(mappedBy = "reviewer")
 	public List<ReviewerAssignment> assignments;
 
@@ -72,17 +76,10 @@ public class User extends Model {
 	public User() {
 		// const
 	}
-
+	
+	
 	public void sendConfirmationEmail() throws EmailException {
-		String emailFrom = (String) Play.configuration.get("mail.smtp.user");
-
-		SimpleEmail email = new SimpleEmail();
-		email.setFrom(emailFrom);
-		email.addTo(this.email);
-		email.setSubject("Registration");
-		email.setMsg("Self-Resourcing-Electronic-Journal\n" + "Your username: "
-				+ this.email + "\n " + "Your password: " + this.password);
-		Mail.send(email);
+		Mails.welcome(this);
 	}
 
 	public static User connect(String email, String password) {

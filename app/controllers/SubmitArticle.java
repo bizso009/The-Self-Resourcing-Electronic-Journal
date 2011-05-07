@@ -69,9 +69,8 @@ public class SubmitArticle extends Controller {
 		String[] keys = keywords.split(",");
 		List<Keyword> articleKeywords = new ArrayList<Keyword>();
 		for (String key : keys) {
-			Keyword currKey = new Keyword(key);
+			Keyword currKey = Keyword.getKeyword(key);
 			articleKeywords.add(currKey);
-			currKey.save();
 		}
 
 		// save article
