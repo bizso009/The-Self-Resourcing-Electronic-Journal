@@ -410,31 +410,33 @@ input.default {
 
 .browser{
 	display:none;
-	width:600px;
+	min-height:220px;
 }
 
-.browserPanel
-{
-	position:relative;
+.volumes{
 	float:left;
 }
 
 .volumeData
 {
+	float:left;
 	position:relative;
-	float:right;
-	top:-95px;
-	left: -175px;
 	display:none;
+	height:200px;
+	margin-bottom:-100px;
+	overflow-y:scroll;
+	margin-left:30px;
 }
 
 .articleData
 {
 	position:relative;
-	float:right;
-	top:-95px;
+	float:left;
 	display:none;
-	left:250px;
+	height:200px;
+	margin-bottom:-100px;
+	overflow-y:scroll;
+	margin-left:30px;
 }
 
 .title
