@@ -42,7 +42,6 @@ public class Security extends Secure.Security {
 			return false;
 		}
 		UserRole profileRole = UserRole.findByRole(profile);
-		System.out.println(profileRole.name.equals(profile));
 		return profileRole.equals(user.role);
 	}
 }
