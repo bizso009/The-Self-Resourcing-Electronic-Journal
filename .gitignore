@@ -10,11 +10,10 @@
 /eclipse
 /tmp
 /data
-<<<<<<< HEAD
+
 /test-result/BasicTest.class.passed.html
 /test-result/TEST-ApplicationTest.xml
 /test-result/TEST-BasicTest.xml
 /test-result/application.log
-=======
+
 /test-result
->>>>>>> 85348beac13250ea2135a3ba28d230a876f7e2dc
