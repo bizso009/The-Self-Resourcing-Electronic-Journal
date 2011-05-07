@@ -2,10 +2,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import jobs.NotifyKeywordSubscriptions;
+
 import models.Article;
 import models.Keyword;
 import models.Submission;
 import models.User;
+import notifiers.Mails;
 
 import org.junit.Test;
 
@@ -63,17 +66,26 @@ public class BasicTest extends UnitTest {
 
 	}
 
+//	@Test
+//	public void testRegisterUser() {
+//		User u = User.find("byEmail", "bizso09@gmail.com").first();
+//		if (u != null)
+//			u.delete();
+//
+//		/*User.registerUser("bizso09@gmail.com", "test", "test", "test",
+//				"test");
+//>>>>>>> 1b69be0a72867cfcc5590cbe05f17738393e545e
+//		User user = User.find("byEmail", "bizso09@gmail.com").first();
+//		assertNotNull(user);*/
+//	}
+
 	@Test
-	public void testRegisterUser() {
-		User u = User.find("byEmail", "bizso09@gmail.com").first();
-		if (u != null)
-			u.delete();
-
-		/*User.registerUser("bizso09@gmail.com", "test", "test", "test",
-				"test");
->>>>>>> 1b69be0a72867cfcc5590cbe05f17738393e545e
-		User user = User.find("byEmail", "bizso09@gmail.com").first();
-		assertNotNull(user);*/
+	public void testNotifyKeywordSubscriptions(){
+		User user = new User("bizso09@gmail.com","test","test","test");
+		Article article = new Article();
+		article.title = "test article";
+		
+		Mails.subscriptionArticle(user, article);
+		
 	}
-
 }

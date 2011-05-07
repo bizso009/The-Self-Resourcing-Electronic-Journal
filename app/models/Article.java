@@ -10,6 +10,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import jobs.NotifyKeywordSubscriptions;
+
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
 
@@ -26,6 +28,10 @@ public class Article extends Model {
 	@ManyToOne
 	public JournalNumber journalNumber;
 
+	public void setJournalNumber(JournalNumber journalNumber){
+		this.journalNumber = journalNumber;
+		new NotifyKeywordSubscriptions(this).now();
+	}
 	@ManyToOne
 	public Submission submission;
 

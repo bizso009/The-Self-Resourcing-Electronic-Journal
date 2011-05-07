@@ -10,3 +10,7 @@
 /eclipse
 /tmp
 /data
+/test-result/BasicTest.class.passed.html
+/test-result/TEST-ApplicationTest.xml
+/test-result/TEST-BasicTest.xml
+/test-result/application.log
