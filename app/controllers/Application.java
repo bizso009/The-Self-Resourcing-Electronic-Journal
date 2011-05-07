@@ -41,7 +41,7 @@ public class Application extends Controller
         JournalDetails journalDetails = JournalDetails.findById((long)1);
         renderArgs.put("journalTitle",journalDetails.title );
         renderArgs.put("journalInfo", journalDetails.info);
-        renderArgs.put("journalTemplate", journalDetails.templateLocation);
+        renderArgs.put("journalTemplate", journalDetails.templateLocation.toString());
     }
     public static void index()
     {
