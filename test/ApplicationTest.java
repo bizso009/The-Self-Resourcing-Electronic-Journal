@@ -2,7 +2,14 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+<<<<<<< HEAD
 import org.junit.Test;
+=======
+import misc.CommonUtil;
+import models.Article;
+import models.User;
+import models.UserRole;
+>>>>>>> 1b69be0a72867cfcc5590cbe05f17738393e545e
 
 import play.mvc.Http.Response;
 import play.test.FunctionalTest;

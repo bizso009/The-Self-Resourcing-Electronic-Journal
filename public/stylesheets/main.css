@@ -406,6 +406,7 @@ input.default {
 
 .browser{
 	display:none;
+	width:600px;
 }
 
 .browserPanel
@@ -417,7 +418,9 @@ input.default {
 .volumeData
 {
 	position:relative;
-	top:0px !important;
+	float:right;
+	top:-95px;
+	left: -175px;
 	display:none;
 }
 
