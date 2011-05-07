@@ -1,11 +1,15 @@
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import models.Article;
 import models.Keyword;
 import models.Submission;
 import models.User;
 
-import org.junit.*;
-import java.util.*;
-import play.test.*;
+import org.junit.Test;
+
+import play.test.UnitTest;
 
 public class BasicTest extends UnitTest {
 
@@ -43,7 +47,9 @@ public class BasicTest extends UnitTest {
 		article.save();
 		assertTrue(Article.count() > 1);
 
+
 		/*User ad1 = new User();
+>>>>>>> 1b69be0a72867cfcc5590cbe05f17738393e545e
 		ad1.firstName = "test";
 //		ad1.article = article;
 		ad1.save();
@@ -65,6 +71,7 @@ public class BasicTest extends UnitTest {
 
 		/*User.registerUser("bizso09@gmail.com", "test", "test", "test",
 				"test");
+>>>>>>> 1b69be0a72867cfcc5590cbe05f17738393e545e
 		User user = User.find("byEmail", "bizso09@gmail.com").first();
 		assertNotNull(user);*/
 	}

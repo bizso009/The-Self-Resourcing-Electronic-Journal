@@ -41,40 +41,37 @@ public class User extends Model {
 	public String firstName;
 	public String lastName;
 	public String affiliation;
-	
+
 	@Column(unique = true)
 	@Required
 	public String email;
-	
+
 	@ManyToMany
 	public List<Article> articles;
 
 	@OneToMany(mappedBy = "reviewer")
 	public List<ReviewerAssignment> assignments;
-	
 
-	public User(String firstName, String lastName, String affiliation,
-			String email) {
+	public User(String email,String firstName, String lastName, String affiliation) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.affiliation = affiliation;
 		this.email = email;
 	}
+
 	@OneToMany(mappedBy = "reviewer")
 	public List<Review> reviews;
 
-	
-
-
-	public User(String email, String firstName,
-			String lastName, String affiliation, String password, UserRole role) {
+	public User(String email, String firstName, String lastName,
+			String affiliation, String password, UserRole role) {
 		this(email, firstName, lastName, affiliation);
 		setPassword(password);
-		this.role = role;		
+		this.role = role;
 	}
-	
-	
-	
+
+	public User() {
+		// const
+	}
 
 	public void sendConfirmationEmail() throws EmailException {
 		String emailFrom = (String) Play.configuration.get("mail.smtp.user");
@@ -89,33 +86,41 @@ public class User extends Model {
 	}
 
 	public static User connect(String email, String password) {
-		return find("byEmailAndPassword", email, password).first();
+		User user = find("byEmail", email).first();
+		if (user != null && user.password != null && user.password.equals(password)){
+			return user;
+		}
+		return null;
 	}
 
 	public String getPassword() {
-		//return Crypto.decryptAES(this.password);
-	    return this.password;
+		return Crypto.decryptAES(this.password);
+		// return this.password;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;//Crypto.encryptAES(password);
+		// this.password = password;
+		this.password = Crypto.encryptAES(password);
 	}
+
 	@Override
 	public void _delete() {
 		UserRole editor = UserRole.findByRole(UserRole.EDITOR);
 		if (role.equals(editor) && editor.users.size() == 1) {
-			throw new IllegalStateException("Cannot delete last editor in database");
+			throw new IllegalStateException(
+					"Cannot delete last editor in database");
 		}
 		super._delete();
 	}
-
 
 	public void convertToAuthor() {
 		this.password = CommonUtil.randomString();
 		this.role = UserRole.findByRole(UserRole.AUTHOR_REVIEWER);
 		this.save();
 	}
+
 	public boolean isAuthor() {
-		return this.password != null && this.role.equals(UserRole.authorReviewer());
+		return this.password != null
+				&& this.role.equals(UserRole.authorReviewer());
 	}
 }
