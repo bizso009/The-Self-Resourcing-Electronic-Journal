@@ -43,7 +43,7 @@ public class ViewSubmission extends Controller
                 }
             }
         }
-        canWriteReview = canDownloadForReview && ( !canSelectForReview) && ( !canCancelReview);
+        canWriteReview = canDownloadForReview && ( !canCancelReview);
         if (user.reviews != null)
         {
             for (int i = 0; i < user.reviews.size(); i++ )
@@ -53,9 +53,10 @@ public class ViewSubmission extends Controller
                 {
                     if (r.article.id == s.articles.get(s.articles.size() - 1).id)
                     {
-                        if (r.locked)
+                        if ((r.locked)&&(!r.rejected))
                         {
                             canWriteReview = false;
+                            break;
                         }
                     }
                 }
@@ -75,7 +76,7 @@ public class ViewSubmission extends Controller
                 {
                     for (int j = dbReviews.size() - 1; j >= 0; j-- )
                     {
-                        Review r = dbReviews.get(i);
+                        Review r = dbReviews.get(j);
                         ChatSettings cs = new ChatSettings();
                         if (isEditor || isPublished)
                         {
@@ -100,6 +101,7 @@ public class ViewSubmission extends Controller
                         {
                             if ((r.reviewer.id == user.id)||(r.locked&&(a.submission.author.id == user.id)))
                             {
+                                if (r.rejected) break;
                                 showReviews.add(r);
                                 cs.showAuthorConv = r.locked;
                                 if (r.reviewer.id == user.id)
@@ -120,9 +122,21 @@ public class ViewSubmission extends Controller
                 reviewMap.put(a.id, showReviews);
             }
         }
-        render(user, subID, isPublished, canSelectForReview, canDownloadForReview, canCancelReview, canWriteReview, articles, reviewMap, chatMap);
+        boolean canReject = isEditor&&!isPublished;
+        render(user, subID, isPublished, canSelectForReview, canDownloadForReview, canCancelReview, canWriteReview, articles, reviewMap, chatMap, canReject);
     }
 
+    public static void reject(Long id)
+    {
+        //Rejects a review
+        if (!Security.check(UserRole.EDITOR))
+            return;
+        Review r = Review.findById(id);
+        r.rejected = true;
+        r.save();
+        render();
+    }
+    
     public static void download(Long id)
     {
         Article a = Article.findById(id);

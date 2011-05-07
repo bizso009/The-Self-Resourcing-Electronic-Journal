@@ -56,6 +56,24 @@
 		<td>${review.mark.name}</td>
 	</tr>
 	<tr>
+		<td>Review status</td>
+		<td>
+		#{if (!review.locked)&&(!review.rejected)}
+		Not locked
+		#{/if}
+		#{if (review.locked)&&(!review.rejected)}
+		Locked
+		#{/if}
+		#{if review.rejected}
+		Review rejected by editor
+		#{/if}
+		</td>
+	</tr>
+	<tr>
+		<td>Time submitted</td>
+		<td>${review.dateSubmitted}</td>
+	</tr>
+	<tr>
 		<td>Content summary</td>
 		<td>${review.contentSummary}</td>
 	</tr>
@@ -85,6 +103,12 @@
 	<tr>
 		<td>Communication with editor:</td>
 		<td>#{chat.renderConversation convID:review.editorConversation.id, readOnly:chatMap.get(review.id).editorRO /}</td>
+	</tr>
+	#{/if}
+	#{if canReject}
+	<tr>
+		<td>Actions:</td>
+		<td><a class="blue button" href="@{ViewSubmission.reject(review.id)}">Reject the review</a></td>
 	</tr>
 	#{/if}
 </table>
