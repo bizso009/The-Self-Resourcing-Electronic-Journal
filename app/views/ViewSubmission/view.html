@@ -23,9 +23,13 @@
 <tr>
 	<td>Authors:</td>
 	<td>
-	#{list items:article.authors, as:'author'}
+	%{for (int i=0; i<article.authors.size(); i++)
+	 {
+	 	models.User author = article.authors.get(i); 
+	}%
+	test
 	${author.firstName}&nbsp;${author.lastName} (${author.affiliation}) e-Mail: ${author.email}<br/>
-	#{/list}
+	%{ } }%
 	</td>
 </tr>
 <tr>

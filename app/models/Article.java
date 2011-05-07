@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -38,10 +39,13 @@ public class Article extends Model {
 	@ManyToOne
 	public Submission submission;
 
-	@ManyToMany(mappedBy = "articles")
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Person_Article")
 	public List<User> authors;
 
-	@ManyToMany(mappedBy = "articles")
+	@ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Keyword_Article")
 	public List<Keyword> keywords;
 
 	@OneToMany(mappedBy = "article")
@@ -56,7 +60,7 @@ public class Article extends Model {
 		this.summary = summary;
 		this.keywords = new ArrayList<Keyword>();
 	}
-
+	
 	public Article() {
 		//const
 	}

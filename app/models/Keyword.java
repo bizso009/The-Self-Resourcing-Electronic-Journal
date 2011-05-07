@@ -19,7 +19,7 @@ public class Keyword extends Model {
 	@Column(unique = true)
 	public String word;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "keywords")
 	public List<Article> articles;
   
 	@ManyToMany

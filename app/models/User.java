@@ -47,7 +47,7 @@ public class User extends Model {
 	@Required
 	public String email;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "authors")
 	public List<Article> articles;
 
 	@ManyToMany(mappedBy = "users")
