@@ -47,9 +47,7 @@ public class BasicTest extends UnitTest {
 		article.save();
 		assertTrue(Article.count() > 1);
 
-<<<<<<< HEAD
-		User ad1 = new User();
-=======
+
 		/*User ad1 = new User();
 >>>>>>> 1b69be0a72867cfcc5590cbe05f17738393e545e
 		ad1.firstName = "test";
@@ -70,11 +68,6 @@ public class BasicTest extends UnitTest {
 		User u = User.find("byEmail", "bizso09@gmail.com").first();
 		if (u != null)
 			u.delete();
-<<<<<<< HEAD
-//
-//		User.registerUser("bizso09@gmail.com", "test", "test", "test",
-//				"test");
-=======
 
 		/*User.registerUser("bizso09@gmail.com", "test", "test", "test",
 				"test");

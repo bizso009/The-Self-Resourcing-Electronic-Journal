@@ -18,10 +18,6 @@ import play.mvc.Controller;
 
 public class SubmitArticle extends Controller {
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> 1b69be0a72867cfcc5590cbe05f17738393e545e
 	public static void index() {
 		Application.init(null);
 		render();
