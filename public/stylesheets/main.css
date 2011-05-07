@@ -424,6 +424,14 @@ input.default {
 	display:none;
 }
 
+.articleData
+{
+	position:relative;
+	float:right;
+	top:-95px;
+	display:none;
+	left:150px;
+}
 
 .title
 {
