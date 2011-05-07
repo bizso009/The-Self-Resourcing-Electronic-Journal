@@ -52,7 +52,7 @@ public class Subscribe extends Controller{
 			//TEST
 //			User u2 = User.findById(user.id);
 //			System.out.println("SIZES SIZE SZIES::::: "+u2.keywords.size());
-//			Article article = Article.<Article>findAll().get(0);
+//			Article article = Article.<Article>findById(44L);
 //			article.journalNumber = new JournalNumber().save();;
 //			
 ////			

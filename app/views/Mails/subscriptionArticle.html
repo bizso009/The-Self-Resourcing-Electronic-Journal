@@ -9,7 +9,7 @@
 <br />
 Welcome ${user?.firstName} <hr/>
 
-A new edition of article ${article?.title} has been published.
+A new edition of article ${article?.title} has been published. You can access it here: @@{ViewSubmission.view(article.submission.id)}
 
 </div>
 <a href="@@{Subscribe.unsubscribe(user.id)}">Unsubscribe from this list</a>
