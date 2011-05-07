@@ -70,6 +70,7 @@ public class CommonUtil
     
     public static class JVYearOrdering implements Comparator<JournalVolume>
     {
+        @SuppressWarnings("deprecation")
         @Override
         public int compare(JournalVolume o1, JournalVolume o2)
         {
@@ -87,6 +88,7 @@ public class CommonUtil
     
     public static class JNMonthOrdering implements Comparator<JournalNumber>
     {
+        @SuppressWarnings("deprecation")
         @Override
         public int compare(JournalNumber o1, JournalNumber o2)
         {
