@@ -25,7 +25,7 @@
 						<a class="blue button" href="users?act=e&id=${cuser.id}">+ Editor</a>
 					#{/if}
 					#{else}
-						#{if ( id != cuser.id.toString() )}
+						#{if ( userid != cuser.id.toString() )}
 							<a class="blue button" href="users?act=a&id=${cuser.id}">- Editor</a>
 						#{/if}
 					#{/else}
