@@ -14,19 +14,19 @@
 				<td>User role</td>
 				<td>Actions</td>
 			</tr>
-			#{list items:users, as:'user'}
+			#{list items:userslist, as:'cuser'}
 			<tr>
-				<td>${user.firstName}</td>
-				<td>${user.lastName}</td>
-				<td>${user.affiliation}</td>
-				<td>${user.role.name}</td>
+				<td>${cuser.firstName}</td>
+				<td>${cuser.lastName}</td>
+				<td>${cuser.affiliation}</td>
+				<td>${cuser.role.name}</td>
 				<td>
-					#{if user.role.name == models.UserRole.AUTHOR_REVIEWER}
-						<a class="blue button" href="users?act=e&id=${user.id}">+ Editor</a>
+					#{if cuser.role.name == models.UserRole.AUTHOR_REVIEWER}
+						<a class="blue button" href="users?act=e&id=${cuser.id}">+ Editor</a>
 					#{/if}
 					#{else}
-						#{if ( id != user.id.toString() )}
-							<a class="blue button" href="users?act=a&id=${user.id}">- Editor</a>
+						#{if ( id != cuser.id.toString() )}
+							<a class="blue button" href="users?act=a&id=${cuser.id}">- Editor</a>
 						#{/if}
 					#{/else}
 				</td>

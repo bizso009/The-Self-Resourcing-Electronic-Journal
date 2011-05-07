@@ -82,6 +82,10 @@ $(document).ready(function(){
 		{
 			errors = 1;
 			$('#summaryError').html("Summary cannot be empty.")
+		}else{
+			summary = summary.replace(/(<([^>]+)>)/ig,"");
+			var wordcount = summary.split(" ");
+			alert(summary.length);
 		}
 		
 		var file = $('#file').val();
