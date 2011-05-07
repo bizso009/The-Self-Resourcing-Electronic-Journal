@@ -418,8 +418,9 @@ input.default {
 .volumeData
 {
 	position:relative;
-	top:0px !important;
-	right: 100px !important;
+	float:right;
+	top:-95px;
+	left: -175px;
 	display:none;
 }
 
