@@ -12,8 +12,6 @@ import models.User;
 import play.mvc.Before;
 import play.mvc.Controller;
 
-
-
 public class Application extends Controller
 {
     @SuppressWarnings("boxing")

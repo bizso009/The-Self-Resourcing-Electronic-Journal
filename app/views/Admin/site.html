@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div class="line"></div>
+<div id="maincontent">
+	<h2>Editor Control Panel</h2>
+	<div id="table">
+		<table>
+			<tr class="title">
+				<td>Setting name</td>
+				<td>Value</td>
+			</tr>
+			<form action="@{Admin.updateSettings()}" method="GET">
+				<tr>
+					<td>Site Title</td>
+					<td><input type="text" value="${journalTitle}" name="journalTitle"></a></td>
+				</tr>
+				<tr>
+					<td>Journal Info</td>
+					<td><input type="text" value="${journalInfo}" name="journalInfo"></a></td>
+				</tr>
+				<tr>
+					<td>Template Link</td>
+					<td><input type="text" value="${journalTemplate}" name="journalTemplate"></a></td>
+				</tr>
+					<td><input type="submit" class="button blue" value ="Save Settings"></td>
+				</tr>
+			</form>
+		</table>
+	</div>
+</div>
