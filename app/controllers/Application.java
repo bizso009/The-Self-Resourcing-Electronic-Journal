@@ -21,16 +21,14 @@ public class Application extends Controller
     	renderArgs.put("loggedin", conn);
         if (conn)
         {
-        	String firstname;
-        	if(!session.contains("firstname")){
+        	if(!session.contains("firstname") || !session.contains("id")){
         		User user = (User)User.find("byEmail", Security.connected()).first();
-        		firstname = user.firstName;
-        		session.put("firstname", firstname);
-        	}else{
-        		firstname = session.get("firstname");
+        		session.put("id", user.id);
+        		session.put("firstname", user.firstName);
         	}
-        	System.out.println(firstname);
-        	renderArgs.put("user", firstname);
+        	
+        	renderArgs.put("user", session.get("firstname"));
+        	renderArgs.put("id", session.get("id"));
         }
         
         if(userRole != null){

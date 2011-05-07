@@ -103,18 +103,18 @@ public class User extends Model {
 		this.password = Crypto.encryptAES(password);
 	}
 
-	@Override
-	public void _delete() {
-		UserRole editor = UserRole.findByRole(UserRole.EDITOR);
-		if (role.equals(editor) && editor.users.size() == 1) {
-			throw new IllegalStateException(
-					"Cannot delete last editor in database");
-		}
-		super._delete();
-	}
-
 	public void convertToAuthor() {
 		this.password = CommonUtil.randomString();
+		this.role = UserRole.findByRole(UserRole.AUTHOR_REVIEWER);
+		this.save();
+	}
+	
+	public void makeEditor() {
+		this.role = UserRole.findByRole(UserRole.EDITOR);
+		this.save();
+	}
+	
+	public void makeAuthor(){
 		this.role = UserRole.findByRole(UserRole.AUTHOR_REVIEWER);
 		this.save();
 	}

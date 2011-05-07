@@ -1,11 +1,15 @@
 package controllers;
 
 import java.util.List;
+import java.util.Map;
+
+import org.omg.Dynamic.Parameter;
 
 import models.Article;
 import models.JournalNumber;
 import models.JournalVolume;
 import models.User;
+import models.UserRole;
 import play.mvc.Before;
 import play.mvc.Controller;
 
@@ -51,8 +55,20 @@ public class Admin extends Controller{
 		render(articles);
 	}
 	
-	public static void users()
+	public static void users(String act, long id)
 	{
+		if(act != null && id != 0){
+			User user = User.findById(id);
+			if(act.equals("e")){
+				user.makeEditor();
+			}else if(act.equals("a")){
+				user.makeAuthor();
+			}
+			user.save();
+		}
 		
+		
+		List<User> users = User.findAll();
+		render(users);
 	}
 }

@@ -12,6 +12,7 @@
 				<td>Last Name</td>
 				<td>Affiliation</td>
 				<td>User role</td>
+				<td>Actions</td>
 			</tr>
 			#{list items:users, as:'user'}
 			<tr>
@@ -19,6 +20,16 @@
 				<td>${user.lastName}</td>
 				<td>${user.affiliation}</td>
 				<td>${user.role.name}</td>
+				<td>
+					#{if user.role.name == models.UserRole.AUTHOR_REVIEWER}
+						<a class="blue button" href="users?act=e&id=${user.id}">+ Editor</a>
+					#{/if}
+					#{else}
+						#{if ( id != user.id.toString() )}
+							<a class="blue button" href="users?act=a&id=${user.id}">- Editor</a>
+						#{/if}
+					#{/else}
+				</td>
 			</tr>
 			#{/list}
 		</table>

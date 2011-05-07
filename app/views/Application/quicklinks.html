@@ -2,13 +2,12 @@
 	#{secure.check 'editor'}
 		<ul>
 			<li class="title"><a href="#"> Admin Quick Links</a></li>
-			<li><a href="#">Journal Settings</a></li>
 			<li><a href="/Admin/users">User Management</a></li>
 			<li><a href="/Admin/volumes">Manage Volumes</a></li>
 			<li><a href="/Admin/numbers">Manage Numbers</a></li>
 			<li><a href="/Admin/unpublishedarticles">Manage Unpublished Articles</a></li>
 			<li><a href="/Admin/publishedarticles">Manage Published Articles</a></li>
-			<li><a href="#">Reader Letters</a></li>
+			<li><a href="/Admin/readerletters">Reader Letters</a></li>
 		</ul>
 	#{/secure.check}
 	#{secure.checkeq 'author/reviewer'}
