@@ -35,8 +35,7 @@ public class ApplicationTest extends FunctionalTest {
     	paras.put("author", "1");
     	paras.put("authNumber", "1");
 
-    	POST("/SubmitArticle/submit",paras,files);
-    	
+    	Response response = POST("/SubmitArticle/submit",paras,files);
     	
     	
     }

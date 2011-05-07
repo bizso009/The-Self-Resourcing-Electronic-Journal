@@ -121,6 +121,6 @@ public class User extends Model {
 
 	public boolean isAuthor() {
 		return this.password != null
-				&& this.role.equals(UserRole.authorReviewer());
+				&& (this.role.compareTo(UserRole.authorReviewer()) >=0);
 	}
 }
