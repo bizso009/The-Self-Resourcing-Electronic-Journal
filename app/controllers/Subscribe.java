@@ -9,9 +9,9 @@ public class Subscribe extends Controller{
 		render();
 	}
 	
-	public static void subscribe()
+	public static void subscribe(String firstName, String lastName, String email, String keywords, String subscription)
 	{
-		
+		render(subscription);
 	}
 
 }
