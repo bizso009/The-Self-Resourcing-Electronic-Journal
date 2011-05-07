@@ -4,10 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import misc.CommonUtil;
-import models.Article;
-import models.Person;
-import models.User;
-import models.UserRole;
+import models.*;
 
 import org.junit.*;
 import play.test.*;

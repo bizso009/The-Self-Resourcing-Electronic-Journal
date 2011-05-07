@@ -1,8 +1,5 @@
 import models.Article;
-import models.Person;
-import models.Keyword;
-import models.Submission;
-import models.User;
+import models.*;
 
 import org.junit.*;
 import java.util.*;
