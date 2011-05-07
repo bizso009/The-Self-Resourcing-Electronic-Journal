@@ -406,6 +406,7 @@ input.default {
 
 .browser{
 	display:none;
+	width:600px;
 }
 
 .browserPanel
@@ -418,6 +419,7 @@ input.default {
 {
 	position:relative;
 	top:0px !important;
+	right: 100px !important;
 	display:none;
 }
 

@@ -28,7 +28,7 @@
 				var journalNumber = #{jsAction @Application.getJournalVolumes() /}
 				$.post(journalNumber(), function(data){
 					$('.browser').html(data);
-					$('.browser').slideDown("slow");
+					$('.browser').toggle("slow");
 				});
 			}
 		</script>
