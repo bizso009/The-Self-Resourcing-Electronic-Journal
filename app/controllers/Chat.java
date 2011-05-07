@@ -44,7 +44,7 @@ public class Chat extends Controller
         try
         {
             PreparedStatement stmt = c
-                    .prepareStatement("select M.id, UR.name, U.id, M.contents, M.timeSent from `User` as U, `Conversations` as C, `Messages` as M, `UserRoles` as UR "
+                    .prepareStatement("select M.id, UR.name, U.id, M.contents, M.timeSent from `Person` as U, `Conversations` as C, `Messages` as M, `UserRoles` as UR "
                             + "where UR.id = U.role_id and C.id=M.conversation_id and U.id=M.user_id and C.id = ? and M.id>? " + "ORDER BY M.id");
             stmt.setInt(1, convID);
             stmt.setInt(2, fromMsgID);
