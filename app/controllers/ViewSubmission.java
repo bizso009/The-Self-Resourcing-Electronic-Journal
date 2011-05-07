@@ -120,7 +120,7 @@ public class ViewSubmission extends Controller
                 reviewMap.put(a.id, showReviews);
             }
         }
-        render(user, canSelectForReview, canDownloadForReview, canCancelReview, canWriteReview, articles, reviewMap, chatMap);
+        render(user, subID, isPublished, canSelectForReview, canDownloadForReview, canCancelReview, canWriteReview, articles, reviewMap, chatMap);
     }
 
     public static void download(Long id)
