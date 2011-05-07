@@ -31,6 +31,17 @@
 					$('.browser').toggle("slow");
 				});
 			}
+		    
+		    function getArticles(control)
+		    {
+		    	var id = control.id;
+		    	$('.articleData').slideUp("slow");
+		    	var journalNumber = #{jsAction @Application.getArticles(':journalNumber_id') /};
+		    	$.post(journalNumber({journalNumber_id: id}), function(data){
+		    		$('.articleData').html(data);
+		    		$('.articleData').slideDown("slow");
+		    	});
+		    }
 		</script>
     </head>
     <body #{get 'bodyAttr' /}>    	
