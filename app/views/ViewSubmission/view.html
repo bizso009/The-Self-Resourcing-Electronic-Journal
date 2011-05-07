@@ -34,7 +34,7 @@
 		<a href="@{ViewSubmission.download(article.id)}" class="blue button">Download</a><br />
 		#{/if}
 		#{else}		
-		%{ if (canDownloadForReview) { }%
+		%{ if (canDownloadForReview||isEditor) { }%
 		<a href="@{ViewSubmission.downloadForReview(article.id)}" class="blue button">Download for review</a><br />				
 		   %{ if (canWriteReview&&(article.id==articles.get(articles.size()-1).id)) { }%
 			<a href="@{ReviewArticle.start(article.id)}" class="blue button">Write a review</a><br />
@@ -120,9 +120,10 @@
 	%{ if (canCancelReview) { }%
 	<a href="@{ViewSubmission.cancelReview(articles.get(articles.size()-1).submission.id)}" class="blue button">Cancel review</a><br />		
 	%{ } }%
-	%{if ((!isPublished)&&(article.submission.author.id==user.id)) { }%
-	<a href="@{SubmitArticle.index(subID)}">Submit new version</a>
-	%{}}%
+	
 </center>
 </div>
 #{/list}
+%{if ((!isPublished)&&(article.submission.author.id==user.id)) { }%
+	<a href="@{SubmitArticle.index(subID)}" class="blue button">Submit new version</a>
+%{}}%

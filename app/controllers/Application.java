@@ -1,11 +1,13 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import models.Article;
 import models.JournalDetails;
 import models.JournalNumber;
 import models.JournalVolume;
+import models.Submission;
 import models.User;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -22,14 +24,14 @@ public class Application extends Controller
     	renderArgs.put("loggedin", conn);
         if (conn)
         {
-        	if(!session.contains("firstname") || !session.contains("id")){
+        	if(!session.contains("firstname") || !session.contains("userid")){
         		User user = (User)User.find("byEmail", Security.connected()).first();
-        		session.put("id", user.id);
+        		session.put("userid", user.id);
         		session.put("firstname", user.firstName);
         	}
         	
         	renderArgs.put("user", session.get("firstname"));
-        	renderArgs.put("id", session.get("id"));
+        	renderArgs.put("id", session.get("userid"));
         }
         
         if(userRole != null){
@@ -63,6 +65,15 @@ public class Application extends Controller
     public static void getArticles(long journalNumber_id)
     {
     	List<Article> articles = Article.getArticleByJournal(journalNumber_id);
+    	render(articles);
+    }
+    
+    public static void mysubmissions(){
+    	List <Submission> submissions = Submission.find("byAuthor_id", session.get("userid")).fetch();
+    	List <Article> articles = new ArrayList<Article>();
+    	for(Submission sub: submissions){
+    		articles.add((Article)Article.find("bySubmission_id", sub.id).first());
+    	}
     	render(articles);
     }
 }
