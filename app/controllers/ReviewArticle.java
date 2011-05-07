@@ -52,7 +52,7 @@ public class ReviewArticle extends Controller
         r.authorConversation = Conversation.findById(authorConvID);
         r.editorConversation = Conversation.findById(editorConvID);
         r.dateSubmitted = new Date();
-        r.locked = true;
+        r.locked = false;
         r.save();
         new AsyncCheckAndPublish(r.article).now();
         render();

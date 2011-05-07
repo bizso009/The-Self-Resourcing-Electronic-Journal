@@ -51,4 +51,6 @@ public class Review extends Model
     public boolean locked;
     
     public Date dateSubmitted;
+    
+    public boolean rejected;
 }
