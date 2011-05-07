@@ -4,27 +4,33 @@
         #{stylesheet 'subscribe.css' /}
 #{/set}
 
+<div class="error">
+	#{ifErrors}
+		Please fix the errors on the page.
+	#{/ifErrors}
+</div>
+<div class="spacingSmall"></div>
 <div class="subscribeContent">
 	<div class="title">Please in in the form to subscribe:</div>
 	#{form @Subscribe.subscribe() , class:'subscribeForm' }
 		<div class="container">
 			<span class="left">First Name:</span>
-			<span class="right"><input type="text" name="firstName" class="firstName"></span>
+			<span class="right"><input type="text" name="firstName" class="firstName" value="${flash.firstName}"><span class="error">#{error 'firstName' /}</span></span>
 		</div>
 		<div class="spacingSmall"></div>
 		<div class="container">
 			<span class="left">Last Name:</span>
-			<span class="right"><input type="text" name="lastName" class="lastName"></span>
+			<span class="right"><input type="text" name="lastName" class="lastName" value="${flash.lastName}"><span class="error">#{error 'lastName' /}</span></span>
 		</div>
 		<div class="spacingSmall"></div>
 		<div class="container">
 			<span class="left">Email:</span>
-			<span class="right"><input type="text" name="email" class="email"></span>
+			<span class="right"><input type="text" name="email" class="email" value="${flash.email}"><span class="error">#{error 'email' /}</span></span>
 		</div>
 		<div class="spacingSmall"></div>
 		<div class="container">
 			<span class="left">Keywords:</span>
-			<span class="right"><input type="text" name="keywords" class="keywords"></span>
+			<span class="right"><input type="text" name="keywords" class="keywords" value="${flash.keywords}"><span class="error">#{error 'keywords' /}</span></span>
 		</div>
 		<div class="spacingSmall"></div>
 		<div class="container">
