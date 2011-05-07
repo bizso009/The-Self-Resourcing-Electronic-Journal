@@ -44,6 +44,39 @@
 	</td>
 </tr>
 </table>
+<center><h4>Reviews</h4></center><br />
+#{list items:reviewMap.get(article.id), as:'review'}
+<table>
+	<tr>
+		<td>Abstract</td>
+		<td>${review.contentSummary}</td>
+	</tr>
+	<tr>
+		<td>Good points</td>
+		<td>${review.goodPoints}</td>
+	</tr>
+	<tr>
+		<td>Bad points</td>
+		<td>${review.badPoints}</td>
+	</tr>
+	<tr>
+		<td>Detailed error list</td>
+		<td>${review.detailedErrorList}</td>
+	</tr>
+	<tr>
+		<td>Detailed error list</td>
+		<td>${review.detailedErrorList}</td>
+	</tr>
+	<tr>
+		<td>Communication with author:</td>
+		<td>#{chat.renderConversation convID:review.authorConversation.id, readOnly:1 /}</td>
+	</tr>
+	<tr>
+		<td>Communication with editor:</td>
+		<td>#{chat.renderConversation convID:review.editorConversation.id, readOnly:1 /}</td>
+	</tr>
+</table>
+#{/list}
 <center>
 	%{ if (canSelectForReview) { }%
 	<a href="@{ViewSubmission.selectForReview(articles.get(articles.size()-1).submission.id)}" class="blue button">Select for review</a><br />		
