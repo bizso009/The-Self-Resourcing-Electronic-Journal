@@ -44,4 +44,9 @@ public class Admin extends Controller{
 		List<Article> articles = Article.findAll();
 		render(articles);
 	}
+	
+	public static void users()
+	{
+		
+	}
 }
