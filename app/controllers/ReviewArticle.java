@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.Date;
 import java.util.List;
+import misc.ComplexChecks;
 import models.Article;
 import models.Mark;
 import models.Review;
@@ -28,6 +29,9 @@ public class ReviewArticle extends Controller
         
         User u = Security.loggedUser();
         // TODO: Check if the reviewer is assigned to the article...
+        Article a = Article.findById(articleID);
+        if (!ComplexChecks.isUserReviewingArticle(u, a)) return;
+        if (a.submission.isPublished()) return;
         Conversation authConv = new Conversation().save();
         Long authorConvID = authConv.id;
         Conversation editConv = new Conversation().save();
