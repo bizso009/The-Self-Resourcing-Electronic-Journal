@@ -13,11 +13,12 @@ import org.apache.commons.mail.EmailException;
 
 import play.Logger;
 import play.db.jpa.Blob;
+import play.mvc.Before;
 import play.mvc.Controller;
 
 public class SubmitArticle extends Controller {
 
-
+	@Before
 	public static void index() {
 		Application.init(null);
 		render();

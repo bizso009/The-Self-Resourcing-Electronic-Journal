@@ -407,3 +407,29 @@ input.default {
 .browser{
 	display:none;
 }
+
+.browserPanel
+{
+	position:relative;
+	float:left;
+}
+
+.volumeData
+{
+	position:relative;
+	top:0px;
+	display:none;
+}
+
+
+.title
+{
+	font-weight:bold;
+}
+
+.browseHeader
+{
+	font-weight: bolder;
+	font-size: 20px;
+	padding-bottom: 10px;
+}

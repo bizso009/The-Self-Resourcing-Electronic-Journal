@@ -46,8 +46,6 @@ public class Article extends Model {
 		this.dateSubmitted = dateSubmitted;
 		this.datePublished = datePublished;
 		this.summary = summary;
-
-
 	}
 
 	

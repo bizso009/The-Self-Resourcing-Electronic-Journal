@@ -52,9 +52,18 @@ public class User extends Model {
 	@OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
 	public List<ReviewerAssignment> assignments;
 	
-	public User(String email,String firstName, String lastName, 
-			String affiliation) {
+
+	public User(String firstName, String lastName, String affiliation,
+			String email) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.affiliation = affiliation;
+		this.email = email;
 	}
+	@OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
+	public List<Review> reviews;
+
+	
 
 
 	public User(String email, String firstName,
@@ -84,11 +93,12 @@ public class User extends Model {
 	}
 
 	public String getPassword() {
-		return Crypto.decryptAES(this.password);
+		//return Crypto.decryptAES(this.password);
+	    return this.password;
 	}
 
 	public void setPassword(String password) {
-		this.password = Crypto.encryptAES(password);
+		this.password = password;//Crypto.encryptAES(password);
 	}
 	@Override
 	public void _delete() {

@@ -3,7 +3,7 @@
 
 #{form @post()}
 	<input name="articleID" type="hidden" value="${articleID}"/>	
-	Expertise level (1 - poor; 10 - expert):
+	Expertise level (1 - poor; 5 - expert):
 	<select name="expertiseLevel">
     	#{list items:1..5, as:'level'}
     	<option value="${level}">${level}</option>
