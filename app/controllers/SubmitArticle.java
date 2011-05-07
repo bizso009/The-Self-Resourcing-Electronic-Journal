@@ -18,7 +18,6 @@ import play.mvc.Controller;
 
 public class SubmitArticle extends Controller {
 
-	@Before
 	public static void index() {
 		Application.init(null);
 		render();

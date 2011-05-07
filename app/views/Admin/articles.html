@@ -12,7 +12,7 @@
 				<td>Date Submitted</td>
 				<td>Date Published</td>
 			</tr>
-			%{ for (models.Article article: articles) { }%
+			%{ models.Article article : articles { }%
 			<tr>
 				<td>${article.title}</td>
 				<td>${artcile.dateSubmitted}</td>
