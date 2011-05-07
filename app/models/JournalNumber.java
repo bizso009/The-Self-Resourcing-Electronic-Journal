@@ -12,7 +12,7 @@ public class JournalNumber extends Model
     public JournalVolume volume;
     public Date          publishDate;
 
-    @OneToMany(mappedBy = "journalNumber", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "journalNumber")
     public List<Article> articles;
     
     public static List<JournalNumber> getJournalNumbeByVolume(int volume_id)

@@ -46,7 +46,7 @@ public class User extends Model {
 	@Required
 	public String email;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	public List<Article> articles;
 
 	@OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)

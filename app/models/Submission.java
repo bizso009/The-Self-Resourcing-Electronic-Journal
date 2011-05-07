@@ -9,13 +9,13 @@ import play.data.validation.*;
 public class Submission extends Model {
 	public boolean prioratized;
 
-	@OneToMany(mappedBy = "submission", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "submission")
 	public List<Article> articles;
 
 	@ManyToOne
 	public User author;
 
-	@OneToMany(mappedBy = "submission", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "submission")
 	public List<ReviewerAssignment> reviewerAssignments;
 
 	public static Submission newSubmission() {

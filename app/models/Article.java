@@ -29,13 +29,13 @@ public class Article extends Model {
 	@ManyToOne
 	public Submission submission;
 
-	@ManyToMany(mappedBy = "articles", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "articles")
 	public List<User> authors;
 
-	@ManyToMany(mappedBy = "articles", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "articles")
 	public List<Keyword> keywords;
 
-	@OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "article")
 	public List<Review> reviews;
 
 	public Article(String title, Blob articlePdf, Date dateSubmitted,

@@ -11,6 +11,6 @@ public class JournalVolume extends Model
     public String              title;
     public Date                publishYear;
 
-    @OneToMany(mappedBy = "volume", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "volume")
     public List<JournalNumber> numbers;
 }
