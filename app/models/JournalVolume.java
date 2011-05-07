@@ -15,7 +15,7 @@ public class JournalVolume extends Model
 
     public void setPublishYear(Date date){
     	this.publishYear = date;
-    	new NotifyJournalSubscriptions(this);
+    	new NotifyJournalSubscriptions(this).now();
     }
     @OneToMany(mappedBy = "volume")
     public List<JournalNumber> numbers;

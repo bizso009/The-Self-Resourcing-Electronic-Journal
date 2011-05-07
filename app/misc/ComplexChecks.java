@@ -4,11 +4,53 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import jobs.NotifyKeywordSubscriptions;
 
 import models.*;
 
 public class ComplexChecks
 {
+    public static int getUserReviewCountForSubmission(User u, Submission s)
+    {
+        int res = 0;
+        if (s.articles!=null)
+        {
+            for (Article a: s.articles)
+            {
+                if (a.reviews!=null)
+                {
+                    for (Review r: a.reviews)
+                    {
+                        if ((!r.rejected)&&(r.reviewer.id==r.id))
+                        {
+                            res++;
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+    }
+    
+    public static int getUserReviewBalance(User u)
+    {
+        int reviewed = 0;
+        int assigned = 0;
+        if (u.assignments!=null)
+        {
+            for (int i=0;i<u.assignments.size();i++)
+            {
+                ReviewerAssignment ra = u.assignments.get(i);
+                if (ra.assigned)
+                {
+                    assigned++;
+                    reviewed+=getUserReviewCountForSubmission(u, ra.submission);
+                }
+            }
+        }
+        return reviewed-(assigned*3);
+    }
+    
     public static boolean checkForPublication(Article a)
     {
         if (a == null)
@@ -73,7 +115,7 @@ public class ComplexChecks
 
     public static void publishIfNeeded(Article a)
     {
-        if (checkForPublication(a))
+        if (checkForPublication(a)&&(getUserReviewBalance(a.submission.author)>0))
         {
             a.journalNumber = CommonUtil.getLatestNumberFromVolume(CommonUtil.getLatestVolume());
             a.datePublished = new Date();
