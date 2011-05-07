@@ -14,6 +14,11 @@ import jobs.*;
 
 public class ReviewArticle extends Controller
 {
+	@Before
+	public static void init(){
+		Application.init(null);
+	}
+	
     public static void start(Long articleID)
     {
         //Check authentication
