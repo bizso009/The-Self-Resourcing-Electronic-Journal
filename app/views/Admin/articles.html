@@ -12,13 +12,13 @@
 				<td>Date Submitted</td>
 				<td>Date Published</td>
 			</tr>
-			#{list items:articles, as:'article' }
+			%{ for (models.Article article: articles) { }%
 			<tr>
 				<td>${article.title}</td>
 				<td>${artcile.dateSubmitted}</td>
 				<td>${artcile.datePublished}</td>
 			</tr>
-			#{/list}
+			%{ } }%
 		</table>
 	</div>
 </div>
