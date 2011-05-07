@@ -20,10 +20,11 @@ public class Admin extends Controller{
 	{
 		
 		int numberUsers = User.findAll().size();
-		int totalArticles = Article.findAll().size();
+		int publishedArticles = Article.find("JournalNumber_id is null").fetch().size();
+		int unpublishedArticles = Article.find("JournalNumber_id is not null").fetch().size();
 		int totalEditors = User.find("role_id=?", 3).fetch().size();
 		int totalAuthors = User.find("role_id=?", 2).fetch().size();
-		render(numberUsers, totalArticles, totalEditors, totalAuthors);
+		render(numberUsers, publishedArticles, unpublishedArticles, totalEditors, totalAuthors);
 	}
 	
 	public static void volumes()
@@ -38,9 +39,15 @@ public class Admin extends Controller{
 		render(numbers);
 	}
 	
-	public static void articles()
+	public static void publishedarticles()
 	{
-		List<Article> articles = Article.findAll();
+		List<Article> articles = Article.find("journalNumber_id is not null").fetch();
+		render(articles);
+	}
+	
+	public static void unpublishedarticles()
+	{
+		List<Article> articles = Article.find("journalNumber_id is null").fetch();
 		render(articles);
 	}
 	

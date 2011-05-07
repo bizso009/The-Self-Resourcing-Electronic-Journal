@@ -46,7 +46,7 @@ public class Application extends Controller
     	render(numbers);
     }
     
-    public static void getArticles(int journalNumber_id)
+    public static void getArticles(long journalNumber_id)
     {
     	List<Article> articles = Article.getArticleByJournal(journalNumber_id);
     	render(articles);
