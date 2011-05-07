@@ -5,6 +5,7 @@ import java.util.List;
 import models.Article;
 import models.JournalNumber;
 import models.JournalVolume;
+import models.User;
 import play.mvc.Before;
 import play.mvc.Controller;
 
@@ -20,7 +21,17 @@ public class Application extends Controller
     	renderArgs.put("loggedin", conn);
         if (conn)
         {
-        	renderArgs.put("user", Security.connected());   
+        	String firstname;
+        	session.remove("firstname");
+        	if(!session.contains("firstname")){
+        		firstname = User.find("byEmail", Security.connected()).fetch().get(0).toString();
+        		System.out.println(firstname);
+        		session.put("firstname", firstname);
+        	}else{
+        		firstname = session.get("firstname");
+        	}
+        	System.out.println(firstname);
+        	renderArgs.put("user", firstname);
         }
         
         if(userRole != null){
