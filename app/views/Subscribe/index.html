@@ -1,1 +1,19 @@
-test
+#{extends 'main.html' /}
+#{set title:'Home' /}
+#{set 'moreStyles'}
+        #{stylesheet 'subscribe.css' /}
+#{/set}
+
+<div class="subscribeContent">
+	<div class="title">Please in in the form to subscribe:</div>
+	#{form @Subscribe.subscribe() , class:'subscribeForm' }
+		<div class="container">
+			<span class="left">First Name:</span>
+			<span class="right"><input type="text" name="firstName" class="firstName"></span>
+		</div>
+		<div class="container">
+			<span class="left">Last Name:</span>
+			<span class="right"><input type="text" name="lastName" class="lastName"></span>
+		</div>
+	#{/form}
+</div>
